@@ -59,8 +59,8 @@
   --f-h2:      clamp(1.8rem, 3vw, 2.6rem);    /* section titles */
   --f-h3:      1.25rem;                         /* card titles */
   --f-body:    1.125rem;                        /* 18px body */
-  --f-sm:      0.9375rem;                       /* 15px secondary */
-  --f-xs:      0.75rem;                         /* 12px labels */
+  --f-sm:      1rem;                            /* 16px — RULE: minimum */
+  --f-xs:      1rem;                            /* RULE: minimum 16px, no smaller */
 
   /* Cormorant runs large — scale down slightly */
   --f-display-serif: clamp(3.5rem, 6.5vw, 6rem);
@@ -328,8 +328,14 @@ body {
   border-bottom: 1px solid var(--rule-lt);
   transition: padding .4s var(--ease-out);
 }
+.nav-logo {
+  flex-shrink: 0;               /* RULE: never shrink */
+  min-width: 160px;             /* RULE: minimum 160px */
+}
 .nav-logo img {
-  height: 46px;
+  height: 52px;                 /* fixed, not fluid */
+  width: auto;                  /* RULE: auto width */
+  min-width: 160px;             /* RULE: minimum 160px */
   object-fit: contain;
   display: block;
 }
@@ -1017,26 +1023,32 @@ body {
   object-fit: cover;
   display: block;
 }
-/* ═══ CERT IMAGES — RULE: uniform 60px, rounded card, aligned ═══ */
+/* ═══ CERT IMAGES — FIXED ASSET INTEGRITY ═══
+   RULE: fixed grid, min 120x120, no shrinking
+*/
 .cert-imgs {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.25rem;
+  /* RULE: fixed columns, not 1fr (prevents shrinking) */
+  grid-template-columns: repeat(3, minmax(120px, 200px));
+  gap: 1.5rem;
   align-items: stretch;
+  justify-content: start;
 }
 .cert-imgs img {
-  width: 100%;
-  height: 60px;               /* RULE: fixed 60px — all same height */
-  object-fit: contain;        /* show full logo, no crop */
+  /* RULE: min 120x120, never smaller */
+  min-width: 120px;
+  min-height: 120px;
+  width: 100%;                  /* RULE: fill container */
+  height: 120px;                /* RULE: fixed height, not 60px */
+  object-fit: contain;          /* RULE: no distortion */
   object-position: center;
   display: block;
-  /* Rounded card container effect */
-  background: #F0EEE8;        /* subtle warm grey card */
-  border-radius: 8px;         /* rounded corners */
-  padding: 1rem 1.5rem;       /* internal breathing room */
+  background: #F0EEE8;
+  border-radius: 8px;
+  padding: 1.5rem 2rem;
   border: 1px solid rgba(24,24,22,.06);
-  /* All logos visually equal */
   box-sizing: border-box;
+  flex-shrink: 0;               /* RULE: no shrinking */
 }
 .svc-visual-placeholder {
   background: var(--forest);
@@ -1264,8 +1276,13 @@ body {
   margin-bottom: 5rem;
 }
 .footer-brand img {
-  height: 38px; margin-bottom: 1.5rem;
-  display: block; filter: brightness(0) invert(1);
+  height: 44px;
+  width: auto;
+  min-width: 160px;             /* RULE: minimum 160px */
+  margin-bottom: 1.5rem;
+  display: block;
+  filter: brightness(0) invert(1);
+  flex-shrink: 0;
 }
 .footer-brand p {
   font-size: var(--f-sm);
@@ -1328,7 +1345,8 @@ body {
   .comp-panel.active { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 3rem; }
   .values-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-  .cert-imgs { grid-template-columns: repeat(3,1fr); }
+  /* RULE: keep 3 cols on tablet, maintain min-width */
+  .cert-imgs { grid-template-columns: repeat(3, minmax(120px, 200px)); }
 }
 @media (max-width: 600px) {
   :root { --section-pad: 5rem; }
@@ -1337,7 +1355,10 @@ body {
   .process-grid { grid-template-columns: 1fr; }
   .comp-tabs { overflow-x: auto; }
   .footer-grid { grid-template-columns: 1fr; }
-  .cert-imgs { grid-template-columns: 1fr; }
+  /* RULE: on mobile allow wrap but keep min-width */
+  .cert-imgs {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  }
 }
 
   </style>
