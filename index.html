@@ -1,408 +1,1162 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" id="htmlRoot">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Avenor Consultants Ltd. — Green Building Certification Hong Kong</title>
   <meta name="description" content="Hong Kong's trusted green building consultants. BEAM Plus, LEED, and WELL certification specialists for schools and commercial buildings." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    /* ═══ TOKENS ═══ */
+    :root {
+      --forest:     #0D1F17;
+      --green-dark: #162E20;
+      --green-mid:  #1E4230;
+      --green-sage: #3D7A5C;
+      --green-mist: #6FAF8A;
+      --gold:       #B8935A;
+      --gold-lt:    #D4AA77;
+      --gold-pale:  #E8D5B0;
+      --cream:      #F7F5F0;
+      --paper:      #FAFAF7;
+      --charcoal:   #2C2C2C;
+      --mid:        #5C5852;
+      --light:      #9A9590;
+      --white:      #FFFFFF;
+      --border:     rgba(255,255,255,0.07);
+      --border-dk:  rgba(15,35,24,0.12);
+      --border-gld: rgba(184,147,90,0.28);
+      --text-pri:   #F0EDE8;
+      --text-sec:   rgba(240,237,232,0.55);
+      --text-muted: rgba(240,237,232,0.30);
+      /* type scale 1.414 */
+      --xs:  0.707rem; --sm: 0.85rem; --base: 1rem;
+      --md:  1.25rem;  --lg: 1.75rem; --xl: 2.4rem; --2xl: 3.5rem; --3xl: 5rem;
+      --lh-tight: 1.05; --lh-snug: 1.3; --lh-normal: 1.65; --lh-loose: 1.85;
+      --ls-display: -0.02em; --ls-head: -0.015em; --ls-body: 0.01em;
+      --ls-label: 0.12em; --ls-eye: 0.18em;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; font-size: var(--base); line-height: var(--lh-normal); letter-spacing: var(--ls-body); color: var(--charcoal); background: var(--white); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+
+    /* ═══ PAGE SYSTEM ═══ */
+    .page { display: none; }
+    .page.active { display: block; }
+
+    /* ═══ ANIMATIONS ═══ */
+    @keyframes fadeUp { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:none; } }
+    @keyframes lineGrow { from { width:0; } to { width:30px; } }
+    .reveal { opacity:0; transform:translateY(24px); transition: opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1); }
+    .reveal.visible { opacity:1; transform:none; }
+    .reveal.visible .eyebrow-line { animation: lineGrow .7s cubic-bezier(.16,1,.3,1) .2s forwards; }
+    .d1{transition-delay:.08s} .d2{transition-delay:.16s} .d3{transition-delay:.24s} .d4{transition-delay:.32s}
+
+    /* ═══ SHARED ═══ */
+    .eyebrow { display:flex; align-items:center; gap:.8rem; margin-bottom:1.4rem; }
+    .eyebrow-line { width:0; height:1px; background:var(--gold); flex-shrink:0; }
+    .eyebrow span { font-size:var(--xs); letter-spacing:var(--ls-eye); text-transform:uppercase; color:var(--gold); font-weight:500; }
+    .section-title { font-family:'Cormorant Garamond',serif; font-size:clamp(var(--lg),4vw,var(--xl)); line-height:var(--lh-snug); letter-spacing:var(--ls-head); color:var(--forest); font-weight:400; margin-bottom:1.2rem; }
+    .section-title em { color:var(--green-sage); font-style:italic; }
+    .section-title.light { color:var(--text-pri); }
+    .section-title.light em { color:var(--gold-lt); }
+    .section-desc { font-size:var(--sm); line-height:var(--lh-loose); color:var(--mid); max-width:520px; font-weight:300; }
+    .section-desc.light { color:var(--text-sec); }
+    .divider { border:none; height:1px; background:linear-gradient(to right,transparent,rgba(255,255,255,0.08),transparent); margin:3rem 0; }
+    .divider.dark { background:linear-gradient(to right,transparent,var(--border-dk),transparent); }
+    .btn-gold { display:inline-block; background:var(--gold); color:var(--forest); padding:.85rem 2.2rem; border-radius:1px; font-weight:600; font-size:var(--xs); letter-spacing:var(--ls-label); text-transform:uppercase; text-decoration:none; cursor:pointer; border:none; transition:background .25s,transform .25s; }
+    .btn-gold:hover { background:var(--gold-lt); transform:translateY(-2px); }
+    .btn-ghost-light { display:inline-block; border:1px solid rgba(255,255,255,0.2); color:var(--text-sec); padding:.85rem 2.2rem; border-radius:1px; font-size:var(--xs); letter-spacing:var(--ls-label); text-transform:uppercase; text-decoration:none; cursor:pointer; background:none; transition:all .25s; }
+    .btn-ghost-light:hover { border-color:var(--gold); color:var(--gold-lt); }
+    .btn-green { display:inline-block; background:var(--forest); color:white; padding:.85rem 2.2rem; border-radius:1px; font-weight:600; font-size:var(--xs); letter-spacing:var(--ls-label); text-transform:uppercase; text-decoration:none; cursor:pointer; border:none; transition:background .25s,transform .25s; }
+    .btn-green:hover { background:var(--green-mid); transform:translateY(-2px); }
+    .wrap { max-width:1280px; margin:auto; padding:0 5vw; }
+    .section { padding:6rem 5vw; }
+    .section-inner { max-width:1280px; margin:auto; }
+
+    /* ═══ NAV ═══ */
+    .nav { position:fixed; top:0; left:0; right:0; z-index:100; display:flex; align-items:center; justify-content:space-between; padding:1.2rem 5vw; background:rgba(247,245,240,0.97); backdrop-filter:blur(16px); border-bottom:1px solid var(--border-dk); transition:all .3s; }
+    .nav-logo img { height:52px; object-fit:contain; display:block; }
+    .nav-links { display:flex; align-items:center; gap:2rem; }
+    .nav-links a { color:rgba(44,44,44,0.65); text-decoration:none; font-size:var(--xs); letter-spacing:var(--ls-label); text-transform:uppercase; transition:color .2s; cursor:pointer; background:none; border:none; font-family:'Inter',sans-serif; }
+    .nav-links a:hover, .nav-links a.active { color:var(--forest); }
+    .nav-lang { display:flex; align-items:center; gap:.4rem; font-size:var(--xs); letter-spacing:var(--ls-label); color:rgba(44,44,44,0.65); border:1px solid var(--border-dk); padding:.3rem .7rem; border-radius:1px; cursor:pointer; background:none; transition:all .2s; font-family:'Inter',sans-serif; }
+    .nav-lang:hover { color:var(--forest); border-color:var(--forest); }
+    .nav-cta { background:var(--forest) !important; color:white !important; padding:.45rem 1.2rem; border-radius:1px; }
+    .nav-cta:hover { background:var(--green-mid) !important; color:white !important; }
+    .nav-toggle { display:none; background:none; border:none; font-size:1.4rem; cursor:pointer; color:var(--charcoal); }
+    .nav-mobile { display:none; flex-direction:column; position:fixed; inset:0; background:var(--cream); z-index:99; align-items:center; justify-content:center; gap:2.5rem; }
+    .nav-mobile.open { display:flex; }
+    .nav-mobile a { color:var(--forest); text-decoration:none; font-family:'Cormorant Garamond',serif; font-size:2.5rem; cursor:pointer; background:none; border:none; }
+
+    /* ═══ HERO ═══ */
+    .hero { min-height:100vh; display:grid; grid-template-columns:1.1fr .9fr; background:var(--forest); position:relative; overflow:hidden; }
+    .hero-left { display:flex; flex-direction:column; justify-content:flex-end; padding:8rem 5vw 5rem; position:relative; z-index:2; }
+    .hero-right { position:relative; overflow:hidden; }
+    .hero-img { position:absolute; inset:0; object-fit:cover; width:100%; height:100%; opacity:.45; }
+    .hero-right-overlay { position:absolute; inset:0; background:linear-gradient(to right, var(--forest) 0%, transparent 40%); z-index:1; }
+    .hero-badge { display:inline-flex; align-items:center; gap:.8rem; margin-bottom:2.5rem; }
+    .hero-badge-line { width:40px; height:1px; background:var(--gold); }
+    .hero-badge span { font-size:var(--xs); color:var(--gold); letter-spacing:var(--ls-eye); text-transform:uppercase; }
+    .hero-title { font-family:'Cormorant Garamond',serif; font-size:clamp(3rem,5.5vw,var(--3xl)); line-height:var(--lh-tight); letter-spacing:var(--ls-display); color:var(--text-pri); font-weight:300; margin-bottom:2rem; }
+    .hero-title em { color:var(--gold-lt); font-style:italic; display:block; }
+    .hero-sub { font-size:var(--sm); line-height:var(--lh-loose); color:var(--text-sec); max-width:400px; margin-bottom:3rem; font-weight:300; }
+    .hero-actions { display:flex; gap:1rem; flex-wrap:wrap; margin-bottom:3.5rem; }
+    .hero-certs { display:flex; align-items:center; gap:.8rem; padding-top:2rem; border-top:1px solid var(--border); }
+    .cert-pill { font-size:var(--xs); letter-spacing:var(--ls-label); text-transform:uppercase; color:var(--text-muted); padding:.3rem .9rem; border:1px solid var(--border); border-radius:1px; }
+
+    /* ═══ STATS ═══ */
+    .stats-bar { background:var(--gold); }
+    .stats-inner { display:grid; grid-template-columns:repeat(4,1fr); max-width:1280px; margin:auto; }
+    .stat-item { padding:2.2rem 2rem; text-align:center; border-right:1px solid rgba(13,31,23,.15); }
+    .stat-item:last-child { border-right:none; }
+    .stat-num { font-family:'Cormorant Garamond',serif; font-size:2.8rem; color:var(--forest); line-height:1; letter-spacing:var(--ls-display); }
+    .stat-lbl { font-size:var(--xs); color:var(--forest); opacity:.6; letter-spacing:var(--ls-label); text-transform:uppercase; margin-top:.4rem; }
+
+    /* ═══ HOME PROCESS ═══ */
+    .process-bg { background:var(--green-dark); }
+    .process-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:2.5rem; margin-top:3rem; }
+    .process-card { padding:2rem; border-top:2px solid rgba(255,255,255,.1); transition:border-color .3s; }
+    .process-card:hover { border-top-color:var(--gold); }
+    .process-num { font-family:'Cormorant Garamond',serif; font-size:4rem; color:rgba(255,255,255,.12); line-height:1; margin-bottom:1rem; }
+    .process-card h3 { font-size:var(--base); font-weight:600; color:var(--text-pri); margin-bottom:.5rem; }
+    .process-card p { font-size:var(--sm); color:var(--text-sec); line-height:var(--lh-loose); font-weight:300; }
+
+    /* ═══ BUILDING TYPES ═══ */
+    .btype-bg { background:var(--cream); }
+    .btype-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; margin-top:3rem; }
+    .btype-card { background:white; padding:2.5rem; text-align:center; border:1px solid var(--border-dk); border-radius:2px; transition:all .3s; }
+    .btype-card:hover { border-color:var(--gold); box-shadow:0 12px 40px rgba(15,35,24,.08); transform:translateY(-3px); }
+    .btype-icon { font-size:2.5rem; margin-bottom:1rem; }
+    .btype-card h4 { font-size:var(--md); font-weight:600; color:var(--forest); margin-bottom:.5rem; font-family:'Cormorant Garamond',serif; }
+    .btype-card p { font-size:var(--xs); color:var(--gold); letter-spacing:var(--ls-label); text-transform:uppercase; }
+
+    /* ═══ SERVICES GRID (HOME) ═══ */
+    .svc-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--border-dk); border:1px solid var(--border-dk); margin:3rem 0; }
+    .svc-card { background:white; padding:2.5rem; position:relative; overflow:hidden; transition:background .3s; }
+    .svc-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:var(--gold); transform:scaleX(0); transform-origin:left; transition:transform .4s cubic-bezier(.16,1,.3,1); }
+    .svc-card:hover { background:var(--cream); }
+    .svc-card:hover::before { transform:scaleX(1); }
+    .svc-card.dark { background:var(--forest); }
+    .svc-card.dark:hover { background:var(--green-mid); }
+    .svc-num { font-family:'Cormorant Garamond',serif; font-size:3.5rem; color:rgba(0,0,0,.06); line-height:1; margin-bottom:1rem; }
+    .svc-card.dark .svc-num { color:rgba(255,255,255,.06); }
+    .svc-card h3 { font-family:'Cormorant Garamond',serif; font-size:var(--lg); color:var(--forest); margin-bottom:.8rem; }
+    .svc-card.dark h3 { color:var(--text-pri); }
+    .svc-card p { font-size:var(--sm); color:var(--mid); line-height:var(--lh-loose); font-weight:300; }
+    .svc-card.dark p { color:var(--text-sec); }
+
+    /* ═══ PROJECTS ═══ */
+    .proj-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:var(--border-dk); border:1px solid var(--border-dk); margin-top:3rem; }
+    .proj-card { background:white; padding:2rem; position:relative; transition:background .3s; }
+    .proj-card::before { content:''; position:absolute; left:0; top:0; bottom:0; width:2px; background:var(--gold); transform:scaleY(0); transform-origin:bottom; transition:transform .4s cubic-bezier(.16,1,.3,1); }
+    .proj-card:hover { background:var(--cream); }
+    .proj-card:hover::before { transform:scaleY(1); }
+    .proj-meta { display:flex; align-items:center; gap:.6rem; margin-bottom:.6rem; }
+    .proj-year { font-size:var(--xs); color:var(--gold); font-weight:600; letter-spacing:.1em; }
+    .proj-dot { width:3px; height:3px; background:var(--border-dk); border-radius:50%; }
+    .proj-type { font-size:var(--xs); color:var(--light); letter-spacing:.08em; text-transform:uppercase; }
+    .proj-card h3 { font-size:var(--base); color:var(--forest); font-weight:600; margin-bottom:.4rem; }
+    .proj-card p { font-size:var(--sm); color:var(--mid); line-height:var(--lh-normal); margin-bottom:.8rem; font-weight:300; }
+    .proj-tags { display:flex; flex-wrap:wrap; gap:.4rem; }
+    .ptag { font-size:.65rem; letter-spacing:.08em; text-transform:uppercase; padding:.2rem .6rem; border-radius:1px; font-weight:500; }
+    .ptag.pl { background:rgba(61,122,92,.1); color:var(--green-sage); border:1px solid rgba(61,122,92,.2); }
+    .ptag.go { background:rgba(184,147,90,.1); color:#8a6a1a; border:1px solid rgba(184,147,90,.2); }
+
+    /* ═══ CTA BAND ═══ */
+    .cta-band { background:var(--forest); padding:6rem 5vw; text-align:center; position:relative; overflow:hidden; }
+    .cta-band::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 60% 100% at 50% 50%,rgba(61,122,92,.15) 0%,transparent 70%); pointer-events:none; }
+    .cta-band h2 { font-family:'Cormorant Garamond',serif; font-size:clamp(var(--lg),4vw,var(--2xl)); color:var(--text-pri); font-weight:300; letter-spacing:var(--ls-head); margin-bottom:1rem; position:relative; }
+    .cta-band p { color:var(--text-sec); font-size:var(--sm); margin-bottom:2.5rem; position:relative; font-weight:300; max-width:480px; margin-left:auto; margin-right:auto; line-height:var(--lh-loose); }
+
+    /* ═══ ABOUT PAGE ═══ */
+    .about-hero { background:var(--forest); padding:9rem 5vw 6rem; }
+    .about-story { background:white; }
+    .about-story-grid { display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:center; }
+    .about-story-grid img { width:100%; height:420px; object-fit:cover; }
+    .about-values { background:var(--cream); }
+    .values-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:3rem; margin-top:3rem; }
+    .value-card { }
+    .value-icon { width:44px; height:44px; background:var(--forest); display:flex; align-items:center; justify-content:center; margin-bottom:1.2rem; font-size:1.2rem; color:white; }
+    .value-card h3 { font-size:var(--base); font-weight:600; color:var(--forest); margin-bottom:.5rem; }
+    .value-card p { font-size:var(--sm); color:var(--mid); line-height:var(--lh-loose); font-weight:300; }
+    .cert-expertise { background:white; }
+    .cert-grid { display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:center; }
+    .cert-grid img { width:100%; height:420px; object-fit:cover; }
+    .cert-list { display:flex; flex-direction:column; gap:1.5rem; margin-top:2rem; }
+    .cert-item { display:flex; gap:1rem; }
+    .cert-bar { width:3px; background:var(--green-sage); flex-shrink:0; }
+    .cert-item h4 { font-size:var(--base); font-weight:600; color:var(--forest); margin-bottom:.3rem; }
+    .cert-item p { font-size:var(--sm); color:var(--mid); line-height:var(--lh-normal); font-weight:300; }
+
+    /* ═══ SERVICES PAGE ═══ */
+    .services-hero { background:var(--forest); padding:9rem 5vw 6rem; }
+    .svc-nav { background:var(--cream); padding:1.5rem 5vw; border-bottom:1px solid var(--border-dk); }
+    .svc-nav-inner { max-width:1280px; margin:auto; display:flex; flex-wrap:wrap; gap:.75rem; justify-content:center; }
+    .svc-pill { display:inline-flex; align-items:center; gap:.5rem; padding:.45rem 1.1rem; border:1px solid var(--border-dk); border-radius:100px; font-size:var(--xs); color:var(--mid); text-decoration:none; cursor:pointer; transition:all .2s; background:white; }
+    .svc-pill:hover { border-color:var(--forest); color:var(--forest); background:white; }
+    .svc-detail { padding:5rem 5vw; }
+    .svc-detail:nth-child(odd) { background:white; }
+    .svc-detail:nth-child(even) { background:var(--cream); }
+    .svc-detail-inner { max-width:1280px; margin:auto; display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:center; }
+    .svc-detail-inner.rev .svc-content { order:2; }
+    .svc-detail-inner.rev .svc-visual { order:1; }
+    .svc-content {}
+    .svc-subtitle { display:flex; align-items:center; gap:.8rem; margin-bottom:1.2rem; }
+    .svc-subtitle span { font-size:var(--xs); color:var(--gold); letter-spacing:var(--ls-eye); text-transform:uppercase; font-weight:500; }
+    .svc-content h2 { font-family:'Cormorant Garamond',serif; font-size:clamp(var(--lg),3vw,var(--xl)); line-height:var(--lh-snug); color:var(--forest); font-weight:400; margin-bottom:1.2rem; }
+    .svc-content p { font-size:var(--sm); color:var(--mid); line-height:var(--lh-loose); margin-bottom:2rem; font-weight:300; }
+    .benefits-list { list-style:none; display:flex; flex-direction:column; gap:.75rem; margin-bottom:2rem; }
+    .benefits-list li { display:flex; align-items:flex-start; gap:.8rem; font-size:var(--sm); color:var(--charcoal); }
+    .benefits-list li::before { content:''; width:18px; height:1px; background:var(--gold); flex-shrink:0; margin-top:.55rem; }
+    .svc-visual img { width:100%; height:380px; object-fit:cover; border-radius:2px; }
+    .cert-imgs { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; }
+    .cert-imgs img { width:100%; height:160px; object-fit:cover; border-radius:2px; }
+    .svc-visual-placeholder { background:var(--forest); height:380px; border-radius:2px; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:1rem; }
+    .svc-visual-placeholder .icon { font-size:3rem; opacity:.3; }
+    /* Comparison table in services */
+    .comp-table-wrap { overflow-x:auto; }
+    .comp-table { width:100%; border-collapse:collapse; }
+    .comp-table th { background:var(--forest); color:white; padding:1rem 1.5rem; text-align:left; font-size:var(--xs); letter-spacing:var(--ls-label); text-transform:uppercase; font-weight:600; }
+    .comp-table td { padding:1rem 1.5rem; border-bottom:1px solid var(--border-dk); font-size:var(--sm); color:var(--charcoal); }
+    .comp-table tr:nth-child(even) td { background:rgba(247,245,240,.5); }
+    .comp-table tr:last-child td { background:rgba(184,147,90,.08); font-weight:500; }
+    .comp-table td:first-child { font-weight:600; color:var(--forest); }
+    .comp-table tr:hover td { background:white; }
+
+    /* ═══ COMPARISON PAGE ═══ */
+    .comp-hero { background:var(--forest); padding:9rem 5vw 6rem; }
+    .comp-tabs { display:flex; gap:0; border-bottom:2px solid var(--border-dk); margin-bottom:3rem; }
+    .comp-tab { padding:1.2rem 2.5rem; font-size:var(--sm); font-weight:600; color:var(--mid); border-bottom:3px solid transparent; margin-bottom:-2px; cursor:pointer; background:none; border-top:none; border-left:none; border-right:none; font-family:'Inter',sans-serif; transition:all .2s; letter-spacing:.04em; }
+    .comp-tab.active { color:var(--forest); border-bottom-color:var(--gold); }
+    .comp-tab:hover { color:var(--forest); }
+    .comp-panel { display:none; }
+    .comp-panel.active { display:grid; grid-template-columns:1fr 1fr; gap:3rem; }
+    .comp-info-card { background:white; border:1px solid var(--border-dk); padding:2.5rem; }
+    .comp-info-card + .comp-info-card { margin-top:1.5rem; }
+    .comp-field { margin-bottom:1.5rem; }
+    .comp-field:last-child { margin-bottom:0; }
+    .comp-field-label { font-size:var(--xs); color:var(--gold); letter-spacing:var(--ls-eye); text-transform:uppercase; margin-bottom:.4rem; font-weight:600; }
+    .comp-field-value { font-size:var(--base); color:var(--forest); font-weight:500; }
+    .comp-recommend { background:rgba(184,147,90,.1); border:2px solid var(--gold); padding:2rem; border-radius:1px; }
+    .comp-recommend-label { font-size:var(--xs); color:var(--gold); letter-spacing:var(--ls-eye); text-transform:uppercase; margin-bottom:.8rem; font-weight:600; }
+    .comp-recommend p { font-size:var(--base); color:var(--forest); font-weight:500; line-height:var(--lh-snug); }
+    .benefits-dark { list-style:none; display:flex; flex-direction:column; gap:.6rem; }
+    .benefits-dark li { display:flex; align-items:flex-start; gap:.8rem; font-size:var(--sm); color:var(--charcoal); }
+    .benefits-dark li::before { content:'✓'; color:var(--green-sage); font-weight:700; flex-shrink:0; }
+
+    /* ═══ BLOG PAGE ═══ */
+    .blog-hero { background:var(--forest); padding:9rem 5vw 6rem; }
+    .blog-grid { display:flex; flex-direction:column; gap:2rem; margin-top:3rem; }
+    .blog-card { background:white; border:1px solid var(--border-dk); overflow:hidden; transition:box-shadow .3s,transform .3s; }
+    .blog-card:hover { box-shadow:0 8px 40px rgba(15,35,24,.08); transform:translateY(-2px); }
+    .blog-content { padding:2.5rem; }
+    .blog-cat { display:inline-flex; align-items:center; gap:.5rem; font-size:var(--xs); color:var(--green-sage); font-weight:600; letter-spacing:.06em; text-transform:uppercase; margin-bottom:1rem; }
+    .blog-card h2 { font-family:'Cormorant Garamond',serif; font-size:clamp(var(--md),2.5vw,var(--lg)); color:var(--forest); font-weight:400; line-height:var(--lh-snug); margin-bottom:.8rem; }
+    .blog-card p { font-size:var(--sm); color:var(--mid); line-height:var(--lh-loose); margin-bottom:1.5rem; font-weight:300; }
+    .blog-meta { display:flex; align-items:center; justify-content:space-between; padding-top:1.2rem; border-top:1px solid var(--border-dk); }
+    .blog-date { font-size:var(--xs); color:var(--light); }
+    .blog-read { font-size:var(--xs); color:var(--green-sage); font-weight:600; letter-spacing:.06em; text-transform:uppercase; }
+
+    /* ═══ CONTACT PAGE ═══ */
+    .contact-hero { background:var(--forest); padding:9rem 5vw 6rem; }
+    .contact-grid { display:grid; grid-template-columns:1.4fr 1fr; gap:5rem; margin-top:3rem; }
+    .contact-form-wrap {}
+    .contact-form { display:flex; flex-direction:column; gap:1.2rem; }
+    .frow { display:grid; grid-template-columns:1fr 1fr; gap:1.2rem; }
+    .fgrp { display:flex; flex-direction:column; gap:.4rem; }
+    .fgrp label { font-size:var(--xs); letter-spacing:var(--ls-label); text-transform:uppercase; color:var(--forest); font-weight:600; }
+    .fgrp input, .fgrp select, .fgrp textarea { padding:.85rem 1rem; border:1px solid var(--border-dk); background:var(--cream); font-family:'Inter',sans-serif; font-size:var(--sm); color:var(--charcoal); outline:none; transition:border-color .2s,box-shadow .2s; border-radius:1px; }
+    .fgrp input:focus, .fgrp select:focus, .fgrp textarea:focus { border-color:var(--green-sage); box-shadow:0 0 0 3px rgba(61,122,92,.08); }
+    .contact-info-panel { background:var(--forest); padding:3rem; }
+    .contact-info-panel h3 { font-family:'Cormorant Garamond',serif; font-size:var(--lg); color:var(--text-pri); font-weight:400; margin-bottom:2rem; }
+    .cinfo-item { display:flex; gap:1rem; margin-bottom:2rem; }
+    .cinfo-icon { width:40px; height:40px; background:rgba(255,255,255,.08); display:flex; align-items:center; justify-content:center; font-size:1.1rem; flex-shrink:0; }
+    .cinfo-label { font-size:var(--xs); color:var(--text-muted); letter-spacing:var(--ls-eye); text-transform:uppercase; margin-bottom:.3rem; }
+    .cinfo-value { font-size:var(--sm); color:var(--text-sec); }
+    .cinfo-value a { color:var(--text-sec); text-decoration:none; transition:color .2s; }
+    .cinfo-value a:hover { color:var(--gold-lt); }
+    .hours-block { border-top:1px solid var(--border); padding-top:1.5rem; margin-top:1.5rem; }
+    .hours-block h4 { font-size:var(--xs); color:var(--gold); letter-spacing:var(--ls-eye); text-transform:uppercase; margin-bottom:.8rem; font-weight:600; }
+    .hours-block p { font-size:var(--sm); color:var(--text-muted); line-height:1.8; }
+
+    /* ═══ FOOTER ═══ */
+    .footer { background:var(--forest); padding:5rem 5vw 2.5rem; border-top:1px solid var(--border); }
+    .footer-grid { display:grid; grid-template-columns:1.5fr 1fr 1fr 1fr; gap:3rem; margin-bottom:4rem; }
+    .footer-brand img { height:40px; margin-bottom:1rem; display:block; filter:brightness(0) invert(1); }
+    .footer-brand p { font-size:var(--sm); color:var(--text-muted); line-height:var(--lh-loose); max-width:260px; font-weight:300; }
+    .footer-col strong { display:block; font-size:var(--xs); letter-spacing:var(--ls-eye); text-transform:uppercase; color:var(--gold); margin-bottom:1.2rem; }
+    .footer-col a { display:block; color:var(--text-muted); text-decoration:none; font-size:var(--sm); margin-bottom:.6rem; transition:color .2s; cursor:pointer; }
+    .footer-col a:hover { color:var(--gold-lt); }
+    .footer-bottom { border-top:1px solid var(--border); padding-top:1.5rem; display:flex; justify-content:space-between; align-items:center; }
+    .footer-bottom p { font-size:var(--xs); color:var(--text-muted); }
+
+    /* ═══ RESPONSIVE ═══ */
+    @media(max-width:960px) {
+      .nav-links { display:none; }
+      .nav-toggle { display:block; }
+      .hero { grid-template-columns:1fr; }
+      .hero-right { display:none; }
+      .hero-left { padding:7rem 5vw 4rem; }
+      .stats-inner,.process-grid,.btype-grid,.svc-grid,.values-grid,.footer-grid { grid-template-columns:1fr 1fr; }
+      .proj-grid,.about-story-grid,.cert-grid,.svc-detail-inner,.comp-panel.active,.contact-grid { grid-template-columns:1fr; }
+      .svc-detail-inner.rev .svc-content,.svc-detail-inner.rev .svc-visual { order:unset; }
+      .comp-tabs { overflow-x:auto; }
+    }
+    @media(max-width:600px) {
+      .stats-inner,.process-grid,.btype-grid { grid-template-columns:1fr; }
+      .svc-grid { grid-template-columns:1fr; }
+      .frow { grid-template-columns:1fr; }
+      .hero-title { font-size:2.8rem; }
+      :root { --sp-xl:4rem; }
+    }
+  </style>
 </head>
 <body>
 
   <!-- NAV -->
-  <nav class="nav" id="nav">
-    <a href="/" class="nav-logo">
-      <span class="logo-text">Avenor</span>
-      <span class="logo-sub">Consultants Ltd.</span>
+  <nav class="nav" id="mainNav">
+    <a class="nav-logo" onclick="navigate('home')" style="cursor:pointer">
+      <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663419719601/NdwjjiPRHbUkh95Lk8zgQg/logo-serif-final-1-XHhBsyoh8UzD6ssoLsGZ4U.png" alt="Avenor Consultants Ltd." />
     </a>
     <div class="nav-links">
-      <a href="#about">About</a>
-      <a href="#services">Services</a>
-      <a href="#projects">Projects</a>
-      <a href="#contact" class="nav-cta">Get in Touch</a>
+      <a onclick="navigate('home')" data-page="home">Home</a>
+      <a onclick="navigate('about')" data-page="about">About</a>
+      <a onclick="navigate('services')" data-page="services">Services</a>
+      <a onclick="navigate('blog')" data-page="blog">Blog</a>
+      <a onclick="navigate('comparison')" data-page="comparison">Comparison</a>
+      <a onclick="navigate('contact')" data-page="contact">Contact</a>
+      <button class="nav-lang" onclick="toggleLang()" id="langBtn">🌐 中文</button>
+      <a onclick="navigate('contact')" class="nav-cta">Get in Touch</a>
     </div>
-    <button class="nav-toggle" onclick="toggleMenu()">☰</button>
+    <button class="nav-toggle" onclick="toggleMobile()">☰</button>
   </nav>
   <div class="nav-mobile" id="navMobile">
-    <a href="#about" onclick="toggleMenu()">About</a>
-    <a href="#services" onclick="toggleMenu()">Services</a>
-    <a href="#projects" onclick="toggleMenu()">Projects</a>
-    <a href="#contact" onclick="toggleMenu()">Contact</a>
+    <a onclick="navigate('home');toggleMobile()">Home</a>
+    <a onclick="navigate('about');toggleMobile()">About</a>
+    <a onclick="navigate('services');toggleMobile()">Services</a>
+    <a onclick="navigate('blog');toggleMobile()">Blog</a>
+    <a onclick="navigate('comparison');toggleMobile()">Comparison</a>
+    <a onclick="navigate('contact');toggleMobile()">Contact</a>
   </div>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-bg"></div>
-    <div class="hero-content">
-      <div class="hero-badge">Green Building Consultants · Hong Kong</div>
-      <h1 class="hero-title">Building a<br/><em>Sustainable Future</em><br/>for Hong Kong</h1>
-      <p class="hero-sub">We help schools and commercial buildings achieve BEAM Plus, LEED, and WELL certifications — making sustainability simple and stress-free.</p>
-      <div class="hero-actions">
-        <a href="#services" class="btn-primary">Our Services</a>
-        <a href="#contact" class="btn-outline">Get in Touch</a>
-      </div>
-      <div class="hero-certs">
-        <span>BEAM Plus</span>
-        <span class="divider">·</span>
-        <span>LEED</span>
-        <span class="divider">·</span>
-        <span>WELL</span>
-      </div>
-    </div>
-    <div class="hero-scroll">
-      <span>Scroll</span>
-      <div class="scroll-line"></div>
-    </div>
-  </section>
+  <!-- ════════════════════════════════
+       HOME PAGE
+  ════════════════════════════════ -->
+  <div class="page active" id="page-home">
 
-  <!-- STATS -->
-  <section class="stats">
-    <div class="container">
-      <div class="stat">
-        <div class="stat-num">10+</div>
-        <div class="stat-label">Projects Delivered</div>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-left">
+        <div class="hero-badge">
+          <div class="hero-badge-line"></div>
+          <span data-t="home.hero.tag">Green Building Consultants · Hong Kong</span>
+        </div>
+        <h1 class="hero-title">
+          <span data-t="home.hero.title1">Building a</span><br/>
+          <em><span data-t="home.hero.title2">Sustainable</span> <span data-t="home.hero.title3">Future</span></em>
+          <span data-t="home.hero.title4"> for Hong Kong</span>
+        </h1>
+        <p class="hero-sub" data-t="home.hero.desc">We help schools and commercial buildings achieve BEAM Plus, LEED, and WELL certifications.</p>
+        <div class="hero-actions">
+          <button class="btn-gold" onclick="navigate('services')" data-t="home.hero.services">Our Services</button>
+          <button class="btn-ghost-light" onclick="navigate('contact')" data-t="home.hero.contact">Get in Touch</button>
+        </div>
+        <div class="hero-certs">
+          <span class="cert-pill">BEAM Plus</span>
+          <span class="cert-pill">LEED</span>
+          <span class="cert-pill">WELL</span>
+        </div>
       </div>
-      <div class="stat">
-        <div class="stat-num">3</div>
-        <div class="stat-label">Certification Types</div>
+      <div class="hero-right">
+        <img class="hero-img" src="https://d2xsxph8kpxj0f.cloudfront.net/310519663419719601/NdwjjiPRHbUkh95Lk8zgQg/hero-main-YRasNDFXWkTLtwm4ye5KMz.webp" alt="Green building" />
+        <div class="hero-right-overlay"></div>
       </div>
-      <div class="stat">
-        <div class="stat-num">100%</div>
-        <div class="stat-label">Platinum Ratio</div>
-      </div>
-      <div class="stat">
-        <div class="stat-num">HK</div>
-        <div class="stat-label">Local Expertise</div>
+    </section>
+
+    <!-- Stats -->
+    <div class="stats-bar">
+      <div class="stats-inner">
+        <div class="stat-item reveal"><div class="stat-num">10+</div><div class="stat-lbl" data-t="">Projects Delivered</div></div>
+        <div class="stat-item reveal d1"><div class="stat-num">3</div><div class="stat-lbl">Certification Types</div></div>
+        <div class="stat-item reveal d2"><div class="stat-num">100%</div><div class="stat-lbl">Platinum Success Rate</div></div>
+        <div class="stat-item reveal d3"><div class="stat-num">HK</div><div class="stat-lbl">Local Expertise</div></div>
       </div>
     </div>
-  </section>
 
-  <!-- ABOUT -->
-  <section class="about" id="about">
-    <div class="container">
-      <div class="section-label">Who We Are</div>
-      <h2 class="section-title">A Clear Path<br/>to Certification</h2>
-      <p class="section-desc">We handle the complexity so you don't have to. Our proven process makes achieving green building certification straightforward — from initial assessment to final approval.</p>
-      <div class="process-grid">
-        <div class="process-step">
-          <div class="step-num">01</div>
-          <h3>Assessment</h3>
-          <p>We evaluate your building's current performance and identify opportunities for improvement.</p>
+    <!-- Process -->
+    <section class="section process-bg">
+      <div class="section-inner">
+        <div class="reveal">
+          <div class="eyebrow"><div class="eyebrow-line"></div><span data-t="home.process.tag">Our Process</span></div>
+          <h2 class="section-title light" data-t="home.process.title">A Clear Path to Certification</h2>
+          <p class="section-desc light" data-t="home.process.desc">We handle the complexity so you don't have to.</p>
         </div>
-        <div class="process-step">
-          <div class="step-num">02</div>
-          <h3>Strategy</h3>
-          <p>We develop a tailored roadmap to achieve your target certification level efficiently.</p>
-        </div>
-        <div class="process-step">
-          <div class="step-num">03</div>
-          <h3>Implementation</h3>
-          <p>We manage the process end-to-end, coordinating with contractors and handling all documentation.</p>
-        </div>
-        <div class="process-step">
-          <div class="step-num">04</div>
-          <h3>Certification</h3>
-          <p>We submit your application and guide you through the final review to secure your certification.</p>
+        <div class="process-grid">
+          <div class="process-card reveal d1"><div class="process-num">01</div><h3 data-t="home.process.step1.title">Assessment</h3><p data-t="home.process.step1.desc">We evaluate your building's current performance and identify opportunities for improvement.</p></div>
+          <div class="process-card reveal d2"><div class="process-num">02</div><h3 data-t="home.process.step2.title">Strategy</h3><p data-t="home.process.step2.desc">We develop a tailored roadmap to achieve your target certification level efficiently.</p></div>
+          <div class="process-card reveal d3"><div class="process-num">03</div><h3 data-t="home.process.step3.title">Implementation</h3><p data-t="home.process.step3.desc">We manage the process end-to-end, coordinating with contractors and handling all documentation.</p></div>
+          <div class="process-card reveal d4"><div class="process-num">04</div><h3 data-t="home.process.step4.title">Certification</h3><p data-t="home.process.step4.desc">We submit your application and guide you through the final review to secure your certification.</p></div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- SERVICES -->
-  <section class="services" id="services">
-    <div class="container">
-      <div class="section-label">What We Do</div>
-      <h2 class="section-title">International Green<br/>Building Standards</h2>
-      <div class="services-grid">
-        <div class="service-card">
-          <div class="service-icon">🏢</div>
-          <h3>BEAM Plus</h3>
-          <p>Hong Kong's local green building standard. We handle New Buildings, Existing Buildings, and Interior certifications across all rating levels.</p>
-          <ul>
-            <li>New Buildings V2.0</li>
-            <li>Interior V1.0 & V2.0</li>
-            <li>All rating levels</li>
-          </ul>
+    <!-- Building Types -->
+    <section class="section btype-bg">
+      <div class="section-inner">
+        <div class="reveal" style="text-align:center;max-width:700px;margin:0 auto 0">
+          <h2 class="section-title" style="text-align:center" data-t="home.buildingTypes.title">International Green Building Standards</h2>
+          <p style="color:var(--gold);font-family:'Cormorant Garamond',serif;font-size:var(--md);text-align:center;margin-bottom:1rem" data-t="home.buildingTypes.subtitle">BEAM Plus · LEED · WELL</p>
+          <p class="section-desc" style="max-width:600px;margin:0 auto" data-t="home.buildingTypes.desc">No matter the building type, we provide comprehensive green building certification services.</p>
         </div>
-        <div class="service-card featured">
-          <div class="service-badge">Most Popular</div>
-          <div class="service-icon">🌿</div>
-          <h3>LEED</h3>
-          <p>The world's most widely used green building rating system. We specialise in BD+C, ID+C, and O+M certifications.</p>
-          <ul>
-            <li>BD+C New Construction</li>
-            <li>ID+C Commercial Interiors</li>
-            <li>ID+C Retail</li>
-          </ul>
-        </div>
-        <div class="service-card">
-          <div class="service-icon">✨</div>
-          <h3>WELL</h3>
-          <p>The leading tool for advancing health and human wellbeing in buildings. We guide you through WELL V2 certification.</p>
-          <ul>
-            <li>WELL V2 Core</li>
-            <li>WELL V2 Full</li>
-            <li>Human-centric design</li>
-          </ul>
+        <div class="btype-grid">
+          <div class="btype-card reveal"><div class="btype-icon">🏢</div><h4 data-t="home.buildingTypes.commercial">Commercial Buildings</h4><p data-t="home.buildingTypes.certifications">BEAM Plus · LEED · WELL</p></div>
+          <div class="btype-card reveal d1"><div class="btype-icon">📊</div><h4 data-t="home.buildingTypes.offices">Offices</h4><p data-t="home.buildingTypes.certifications">BEAM Plus · LEED · WELL</p></div>
+          <div class="btype-card reveal d2"><div class="btype-icon">🎓</div><h4 data-t="home.buildingTypes.schools">Green Schools</h4><p data-t="home.buildingTypes.certifications">BEAM Plus · LEED · WELL</p></div>
         </div>
       </div>
-      <div class="building-types">
-        <div class="btype">Commercial Buildings</div>
-        <div class="btype">Offices & Fit-outs</div>
-        <div class="btype">Schools & Education</div>
-        <div class="btype">Retail Spaces</div>
-        <div class="btype">Data Centres</div>
-        <div class="btype">Institutional</div>
+    </section>
+
+    <!-- Services Overview -->
+    <section class="section" style="background:white">
+      <div class="section-inner">
+        <div class="reveal">
+          <div class="eyebrow"><div class="eyebrow-line"></div><span data-t="home.services.tag">What We Do</span></div>
+          <h2 class="section-title" data-t="home.services.title">Comprehensive Green Building Services</h2>
+        </div>
+        <div class="svc-grid">
+          <div class="svc-card reveal"><div class="svc-num">01</div><h3 data-t="home.services.energy.title">Energy & Carbon Audit</h3><p data-t="home.services.energy.desc">Comprehensive energy and carbon audits, life-cycle assessments, and carbon footprint consultancy.</p></div>
+          <div class="svc-card dark reveal d1"><div class="svc-num">02</div><h3 data-t="home.services.greenCert.title">Green Building Certification</h3><p data-t="home.services.greenCert.desc">End-to-end consultancy for BEAM Plus, LEED, and WELL certifications.</p></div>
+          <div class="svc-card reveal d2"><div class="svc-num">03</div><h3 data-t="home.services.environmental.title">Environmental Assessment</h3><p data-t="home.services.environmental.desc">Environmental assessment studies, monitoring and audit services.</p></div>
+          <div class="svc-card reveal"><div class="svc-num">04</div><h3 data-t="home.services.tc.title">Testing & Commissioning</h3><p data-t="home.services.tc.desc">Testing and commissioning of M&E systems.</p></div>
+          <div class="svc-card reveal d1"><div class="svc-num">05</div><h3 data-t="home.services.acoustic.title">Acoustic Consultant</h3><p data-t="home.services.acoustic.desc">Professional acoustic assessment and design consultancy.</p></div>
+          <div class="svc-card dark reveal d2"><div class="svc-num">06</div><h3 data-t="home.services.iaq.title">IAQ Consultant & iCxA</h3><p data-t="home.services.iaq.desc">Independent Commissioning Authority services and indoor air quality consulting.</p></div>
+        </div>
+        <div style="text-align:center"><button class="btn-green" onclick="navigate('services')" data-t="home.services.viewAll">View All Services</button></div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- PROJECTS -->
-  <section class="projects" id="projects">
-    <div class="container">
-      <div class="section-label">Track Record</div>
-      <h2 class="section-title">Projects Our Team<br/>Has Delivered</h2>
-      <p class="section-desc">Before founding Avenor Consultants, our team has delivered green building certifications across Hong Kong's education and commercial sectors.</p>
-      <div class="projects-grid">
-
-        <div class="project-card">
-          <div class="project-meta">
-            <span class="project-year">2025</span>
-            <span class="project-type">Office</span>
-          </div>
-          <h3>CLP Headquarters</h3>
-          <p>Whole Building. BEAM Plus New Buildings V2.0 Platinum · LEED V4 BD+C Platinum · WELL V2 Platinum.</p>
-          <div class="project-tags">
-            <span class="tag platinum">BEAM Plus Platinum</span>
-            <span class="tag platinum">LEED Platinum</span>
-            <span class="tag platinum">WELL Platinum</span>
-          </div>
+    <!-- Projects -->
+    <section class="section" style="background:var(--cream)">
+      <div class="section-inner">
+        <div class="reveal">
+          <div class="eyebrow"><div class="eyebrow-line"></div><span data-t="home.projects.tag">Selected Experience</span></div>
+          <h2 class="section-title" data-t="home.projects.title">Projects Our Team Has Delivered</h2>
+          <p class="section-desc" data-t="home.projects.desc">Before founding Avenor Consultants, our team delivered green building certifications across Hong Kong.</p>
         </div>
-
-        <div class="project-card">
-          <div class="project-meta">
-            <span class="project-year">2025</span>
-            <span class="project-type">Food Space</span>
-          </div>
-          <h3>Jardine House Basehall 2&3</h3>
-          <p>BEAM Plus Interior V2.0 Platinum · LEED V4 ID+C Retail Platinum · WELL V2 Core Platinum.</p>
-          <div class="project-tags">
-            <span class="tag platinum">BEAM Plus Platinum</span>
-            <span class="tag platinum">LEED Platinum</span>
-            <span class="tag platinum">WELL Platinum</span>
-          </div>
+        <div class="proj-grid">
+          <div class="proj-card reveal"><div class="proj-meta"><span class="proj-year">2023</span><span class="proj-dot"></span><span class="proj-type" data-t="home.projects.p1.type">Office Building</span></div><h3 data-t="home.projects.p1.title">Apollo 36/F One Exchange Square</h3><p data-t="home.projects.p1.desc">Interior Fit-out. BEAM Plus Interior V1.0 Platinum.</p><div class="proj-tags"><span class="ptag pl">BEAM Plus Platinum</span></div></div>
+          <div class="proj-card reveal d1"><div class="proj-meta"><span class="proj-year">2023</span><span class="proj-dot"></span><span class="proj-type" data-t="home.projects.p2.type">Office Building</span></div><h3 data-t="home.projects.p2.title">Bank Julius Baer & Co Ltd</h3><p data-t="home.projects.p2.desc">Office Space. Human-centric lighting. LEED V4 ID+C Platinum.</p><div class="proj-tags"><span class="ptag pl">LEED Platinum</span></div></div>
+          <div class="proj-card reveal"><div class="proj-meta"><span class="proj-year">2023</span><span class="proj-dot"></span><span class="proj-type" data-t="home.projects.p3.type">Office Building</span></div><h3 data-t="home.projects.p3.title">Amundi Greenfield 32</h3><p data-t="home.projects.p3.desc">Office Space. WELL V2 Platinum.</p><div class="proj-tags"><span class="ptag pl">WELL Platinum</span></div></div>
+          <div class="proj-card reveal d1"><div class="proj-meta"><span class="proj-year">2025</span><span class="proj-dot"></span><span class="proj-type" data-t="home.projects.p4.type">Office Building</span></div><h3 data-t="home.projects.p4.title">Jardine House Basehall 2&3</h3><p data-t="home.projects.p4.desc">Food Space. BEAM Plus Platinum · LEED Platinum · WELL Platinum.</p><div class="proj-tags"><span class="ptag pl">BEAM Plus Platinum</span><span class="ptag pl">LEED Platinum</span><span class="ptag pl">WELL Platinum</span></div></div>
+          <div class="proj-card reveal"><div class="proj-meta"><span class="proj-year">2025</span><span class="proj-dot"></span><span class="proj-type" data-t="home.projects.p8.type">Office Building</span></div><h3 data-t="home.projects.p8.title">CLP Headquarters</h3><p data-t="home.projects.p8.desc">Whole Building. BEAM Plus Platinum · LEED Platinum · WELL Platinum.</p><div class="proj-tags"><span class="ptag pl">BEAM Plus Platinum</span><span class="ptag pl">LEED Platinum</span><span class="ptag pl">WELL Platinum</span></div></div>
+          <div class="proj-card reveal d1"><div class="proj-meta"><span class="proj-year">2025</span><span class="proj-dot"></span><span class="proj-type" data-t="home.projects.p5.type">Institutional</span></div><h3 data-t="home.projects.p5.title">Lingnan University LBY G01 & G02</h3><p data-t="home.projects.p5.desc">Lecture Theatre. BEAM Plus Interior V2.0 Gold.</p><div class="proj-tags"><span class="ptag go">BEAM Plus Gold</span></div></div>
+          <div class="proj-card reveal"><div class="proj-meta"><span class="proj-year">2025</span><span class="proj-dot"></span><span class="proj-type" data-t="home.projects.p6.type">Institutional</span></div><h3 data-t="home.projects.p6.title">Centre for Future Construction</h3><p data-t="home.projects.p6.desc">Work Space. BEAM Plus Interior V2.0 Platinum.</p><div class="proj-tags"><span class="ptag pl">BEAM Plus Platinum</span></div></div>
+          <div class="proj-card reveal d1"><div class="proj-meta"><span class="proj-year">2025</span><span class="proj-dot"></span><span class="proj-type" data-t="home.projects.p7.type">Office Building</span></div><h3 data-t="home.projects.p7.title">Pneumoconiosis Compensation Fund Board</h3><p data-t="home.projects.p7.desc">Office Space. BEAM Plus Interior V2.0 Platinum.</p><div class="proj-tags"><span class="ptag pl">BEAM Plus Platinum</span></div></div>
+          <div class="proj-card reveal"><div class="proj-meta"><span class="proj-year">2025</span><span class="proj-dot"></span><span class="proj-type" data-t="home.projects.p9.type">Office Building</span></div><h3 data-t="home.projects.p9.title">OCBC at L1 L10 ECP</h3><p data-t="home.projects.p9.desc">LEED V4 ID+C Commercial Interiors Gold.</p><div class="proj-tags"><span class="ptag go">LEED Gold</span></div></div>
+          <div class="proj-card reveal d1"><div class="proj-meta"><span class="proj-year">2025</span><span class="proj-dot"></span><span class="proj-type" data-t="home.projects.p10.type">Office Building</span></div><h3 data-t="home.projects.p10.title">Philip Morris International</h3><p data-t="home.projects.p10.desc">LEED Platinum · WELL Platinum.</p><div class="proj-tags"><span class="ptag pl">LEED Platinum</span><span class="ptag pl">WELL Platinum</span></div></div>
         </div>
-
-        <div class="project-card">
-          <div class="project-meta">
-            <span class="project-year">2025</span>
-            <span class="project-type">Office</span>
-          </div>
-          <h3>Philip Morris International</h3>
-          <p>Office Space. LEED V4 ID+C Commercial Interiors Platinum · WELL V2 Platinum.</p>
-          <div class="project-tags">
-            <span class="tag platinum">LEED Platinum</span>
-            <span class="tag platinum">WELL Platinum</span>
-          </div>
-        </div>
-
-        <div class="project-card">
-          <div class="project-meta">
-            <span class="project-year">2025</span>
-            <span class="project-type">Institutional</span>
-          </div>
-          <h3>Centre for Future Construction</h3>
-          <p>Work Space. BEAM Plus Interior V2.0 Platinum.</p>
-          <div class="project-tags">
-            <span class="tag platinum">BEAM Plus Platinum</span>
-          </div>
-        </div>
-
-        <div class="project-card">
-          <div class="project-meta">
-            <span class="project-year">2025</span>
-            <span class="project-type">Institutional</span>
-          </div>
-          <h3>Lingnan University LBY G01 & G02</h3>
-          <p>Lecture Theatre. BEAM Plus Interior V2.0 Gold.</p>
-          <div class="project-tags">
-            <span class="tag gold">BEAM Plus Gold</span>
-          </div>
-        </div>
-
-        <div class="project-card">
-          <div class="project-meta">
-            <span class="project-year">2025</span>
-            <span class="project-type">Office</span>
-          </div>
-          <h3>OCBC at L1 L10 ECP</h3>
-          <p>Retail & Office. LEED V4 ID+C Commercial Interiors Gold.</p>
-          <div class="project-tags">
-            <span class="tag gold">LEED Gold</span>
-          </div>
-        </div>
-
-        <div class="project-card">
-          <div class="project-meta">
-            <span class="project-year">2023</span>
-            <span class="project-type">Office</span>
-          </div>
-          <h3>Bank Julius Baer & Co Ltd</h3>
-          <p>Office Space. Human-centric lighting and thermal comfort design. LEED V4 ID+C Platinum.</p>
-          <div class="project-tags">
-            <span class="tag platinum">LEED Platinum</span>
-          </div>
-        </div>
-
-        <div class="project-card">
-          <div class="project-meta">
-            <span class="project-year">2023</span>
-            <span class="project-type">Office</span>
-          </div>
-          <h3>Apollo 36/F One Exchange Square</h3>
-          <p>Interior Fit-out. IAQ, waste and safety management. BEAM Plus Interior V1.0 Platinum.</p>
-          <div class="project-tags">
-            <span class="tag platinum">BEAM Plus Platinum</span>
-          </div>
-        </div>
-
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- CTA -->
-  <section class="cta-section">
-    <div class="container">
-      <h2>Ready to Make Your<br/>Building Greener?</h2>
-      <p>Whether you're a school looking to improve your campus or a property owner seeking certification, we're here to help.</p>
-      <a href="#contact" class="btn-primary-lg">Start the Conversation</a>
-    </div>
-  </section>
+    <!-- CTA -->
+    <section class="cta-band">
+      <h2 class="reveal" data-t="home.cta.title">Ready to Make Your Building Greener?</h2>
+      <p class="reveal d1" data-t="home.cta.desc">Whether you're a school looking to improve your campus or a property owner seeking certification, we're here to help.</p>
+      <button class="btn-gold reveal d2" onclick="navigate('contact')" data-t="home.cta.button">Contact Us Today</button>
+    </section>
 
-  <!-- CONTACT -->
-  <section class="contact" id="contact">
-    <div class="container">
-      <div class="section-label">Contact Us</div>
-      <h2 class="section-title">Let's Work Together</h2>
-      <div class="contact-grid">
-        <div class="contact-info">
-          <div class="contact-item">
-            <div class="contact-icon">📍</div>
-            <div>
-              <strong>Location</strong>
-              <p>Hong Kong</p>
-            </div>
-          </div>
-          <div class="contact-item">
-            <div class="contact-icon">✉️</div>
-            <div>
-              <strong>Email</strong>
-              <p><a href="mailto:info@avenorconsultantsltd.com">info@avenorconsultantsltd.com</a></p>
-            </div>
-          </div>
-          <div class="contact-item">
-            <div class="contact-icon">🏆</div>
-            <div>
-              <strong>Certifications</strong>
-              <p>BEAM Plus · LEED · WELL</p>
-            </div>
-          </div>
-        </div>
-        <form class="contact-form" onsubmit="handleSubmit(event)">
-          <div class="form-group">
-            <label>Name</label>
-            <input type="text" placeholder="Your name" required />
-          </div>
-          <div class="form-group">
-            <label>Email</label>
-            <input type="email" placeholder="your@email.com" required />
-          </div>
-          <div class="form-group">
-            <label>Building Type</label>
-            <select>
-              <option value="">Select building type</option>
-              <option>Commercial Office</option>
-              <option>School / Education</option>
-              <option>Retail</option>
-              <option>Data Centre</option>
-              <option>Other</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label>Message</label>
-            <textarea placeholder="Tell us about your project..." rows="4"></textarea>
-          </div>
-          <button type="submit" class="btn-submit">Send Message →</button>
-        </form>
+    <!-- Footer -->
+    <footer class="footer" id="footer-home">
+      <div class="footer-grid">
+        <div class="footer-brand"><img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663419719601/NdwjjiPRHbUkh95Lk8zgQg/logo-serif-final-1-XHhBsyoh8UzD6ssoLsGZ4U.png" alt="Avenor"/><p data-t="footer.desc">Professional green building consulting for schools and commercial buildings in Hong Kong.</p></div>
+        <div class="footer-col"><strong data-t="footer.quickLinks">Quick Links</strong><a onclick="navigate('home')">Home</a><a onclick="navigate('about')">About</a><a onclick="navigate('services')">Services</a><a onclick="navigate('contact')">Contact</a></div>
+        <div class="footer-col"><strong data-t="footer.certifications">Certifications</strong><a onclick="navigate('services')">BEAM Plus</a><a onclick="navigate('services')">LEED</a><a onclick="navigate('services')">WELL</a></div>
+        <div class="footer-col"><strong data-t="footer.contact">Contact</strong><a href="mailto:info@avenorconsultantsltd.com">info@avenorconsultantsltd.com</a><a href="https://wa.me/85257947791">+852 5794 7791</a><a>Hong Kong</a></div>
       </div>
-    </div>
-  </section>
+      <div class="footer-bottom"><p>© 2026 Avenor Consultants Ltd. <span data-t="footer.rights">All rights reserved.</span></p><p>Hong Kong</p></div>
+    </footer>
+  </div>
 
-  <!-- FOOTER -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-top">
-        <div class="footer-brand">
-          <div class="logo-text">Avenor</div>
-          <div class="logo-sub">Consultants Ltd.</div>
-          <p>Professional green building consulting for schools and commercial buildings in Hong Kong.</p>
-        </div>
-        <div class="footer-links">
+  <!-- ════════════════════════════════
+       ABOUT PAGE
+  ════════════════════════════════ -->
+  <div class="page" id="page-about">
+    <section class="about-hero">
+      <div class="wrap">
+        <div class="eyebrow"><div class="eyebrow-line" style="width:30px"></div><span data-t="about.hero.tag">About Us</span></div>
+        <h1 class="section-title light" style="font-size:clamp(2.5rem,5vw,4rem)"><span data-t="about.hero.title1">Committed to a</span><br/><em><span data-t="about.hero.title2">Greener Hong Kong</span></em></h1>
+        <p class="section-desc light" style="margin-top:1rem" data-t="about.hero.desc">Avenor Consultants Ltd. was founded with a clear mission: to make green building certification accessible, affordable, and stress-free.</p>
+      </div>
+    </section>
+
+    <section class="section about-story">
+      <div class="section-inner">
+        <div class="about-story-grid">
+          <div><img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663419719601/NdwjjiPRHbUkh95Lk8zgQg/about-team-ZjuntTzPxQkcyuiBKnVCK4.webp" alt="Team" /></div>
           <div>
-            <strong>Quick Links</strong>
-            <a href="#about">About</a>
-            <a href="#services">Services</a>
-            <a href="#projects">Projects</a>
-            <a href="#contact">Contact</a>
-          </div>
-          <div>
-            <strong>Certifications</strong>
-            <a href="#services">BEAM Plus</a>
-            <a href="#services">LEED</a>
-            <a href="#services">WELL</a>
+            <div class="eyebrow"><div class="eyebrow-line" style="width:30px"></div><span data-t="about.story.tag">Our Story</span></div>
+            <h2 class="section-title" data-t="about.story.title">Built on a Passion for Better Buildings</h2>
+            <p class="section-desc" style="margin-bottom:1rem" data-t="about.story.p1">Hong Kong's buildings account for over 60% of the city's total electricity consumption and roughly 90% of its carbon emissions.</p>
+            <p class="section-desc" style="margin-bottom:1rem" data-t="about.story.p2">Avenor Consultants was established to bridge the gap between sustainability goals and practical action.</p>
+            <p class="section-desc" data-t="about.story.p3">Our approach is different. We simplify the journey, handle the technical complexity, and help our clients access available subsidies.</p>
           </div>
         </div>
       </div>
-      <div class="footer-bottom">
-        <p>© 2026 Avenor Consultants Ltd. All rights reserved.</p>
+    </section>
+
+    <section class="section about-values">
+      <div class="section-inner">
+        <div class="reveal">
+          <div class="eyebrow"><div class="eyebrow-line"></div><span data-t="about.values.tag">Our Values</span></div>
+          <h2 class="section-title" data-t="about.values.guidesTitle">What Guides Our Work</h2>
+        </div>
+        <div class="values-grid">
+          <div class="value-card reveal"><div class="value-icon">🎯</div><h3 data-t="about.values.v1.titleAlt">Results-Driven</h3><p data-t="about.values.v1.descAlt">We measure our success by your certification outcome.</p></div>
+          <div class="value-card reveal d1"><div class="value-icon">👁</div><h3 data-t="about.values.v2.titleAlt">Transparency</h3><p data-t="about.values.v2.descAlt">No hidden costs, no unnecessary complexity.</p></div>
+          <div class="value-card reveal d2"><div class="value-icon">🌿</div><h3 data-t="about.values.v3.titleAlt">Genuine Impact</h3><p data-t="about.values.v3.descAlt">We believe sustainability should benefit people first.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section cert-expertise">
+      <div class="section-inner">
+        <div class="cert-grid">
+          <div>
+            <div class="eyebrow"><div class="eyebrow-line" style="width:30px"></div><span data-t="about.expertise.tag">Expertise</span></div>
+            <h2 class="section-title" data-t="about.expertise.specialise">Certifications We Specialise In</h2>
+            <div class="cert-list">
+              <div class="cert-item"><div class="cert-bar"></div><div><h4 data-t="about.expertise.beam.title">BEAM Plus</h4><p data-t="about.expertise.beam.desc">Hong Kong's own green building assessment tool.</p></div></div>
+              <div class="cert-item"><div class="cert-bar"></div><div><h4 data-t="about.expertise.leed.title">LEED</h4><p data-t="about.expertise.leed.desc">The world's most widely used green building rating system.</p></div></div>
+              <div class="cert-item"><div class="cert-bar" style="background:var(--gold)"></div><div><h4 data-t="about.expertise.well.title">WELL</h4><p data-t="about.expertise.well.desc">A performance-based system for human health and well-being.</p></div></div>
+            </div>
+          </div>
+          <div><img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663419719601/NdwjjiPRHbUkh95Lk8zgQg/certification-badges-Mx3fMKuiZX5cm9CPqNUJjb.webp" alt="Certifications" /></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-band">
+      <h2 data-t="about.cta.title">Let's Work Together</h2>
+      <p data-t="about.cta.desc">Whether you're exploring certification for the first time or looking for a partner to manage the process.</p>
+      <button class="btn-gold" onclick="navigate('contact')" data-t="nav.getInTouch">Get in Touch</button>
+    </section>
+    <footer class="footer"><div class="footer-grid"><div class="footer-brand"><img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663419719601/NdwjjiPRHbUkh95Lk8zgQg/logo-serif-final-1-XHhBsyoh8UzD6ssoLsGZ4U.png" alt="Avenor"/><p data-t="footer.desc">Professional green building consulting for schools and commercial buildings in Hong Kong.</p></div><div class="footer-col"><strong data-t="footer.quickLinks">Quick Links</strong><a onclick="navigate('home')">Home</a><a onclick="navigate('about')">About</a><a onclick="navigate('services')">Services</a><a onclick="navigate('contact')">Contact</a></div><div class="footer-col"><strong data-t="footer.certifications">Certifications</strong><a onclick="navigate('services')">BEAM Plus</a><a onclick="navigate('services')">LEED</a><a onclick="navigate('services')">WELL</a></div><div class="footer-col"><strong data-t="footer.contact">Contact</strong><a href="mailto:info@avenorconsultantsltd.com">info@avenorconsultantsltd.com</a><a href="https://wa.me/85257947791">+852 5794 7791</a></div></div><div class="footer-bottom"><p>© 2026 Avenor Consultants Ltd. <span data-t="footer.rights">All rights reserved.</span></p></div></footer>
+  </div>
+
+  <!-- ════════════════════════════════
+       SERVICES PAGE
+  ════════════════════════════════ -->
+  <div class="page" id="page-services">
+    <section class="services-hero">
+      <div class="wrap">
+        <div class="eyebrow"><div class="eyebrow-line" style="width:30px"></div><span data-t="services.tag">Our Services</span></div>
+        <h1 class="section-title light" style="font-size:clamp(2.5rem,5vw,4rem)" data-t="services.title">Expert Guidance for Every Certification</h1>
+        <p class="section-desc light" style="margin-top:1rem" data-t="services.desc">From local BEAM Plus to international LEED and WELL standards, end-to-end consulting for schools and commercial buildings.</p>
+      </div>
+    </section>
+
+    <div class="svc-nav">
+      <div class="svc-nav-inner">
+        <a class="svc-pill" href="#svc-beam-schools">🎓 BEAM Plus Schools</a>
+        <a class="svc-pill" href="#svc-green-cert">🏆 Green Certification</a>
+        <a class="svc-pill" href="#svc-energy">⚡ Energy Audit</a>
+        <a class="svc-pill" href="#svc-environmental">🌿 Environmental</a>
+        <a class="svc-pill" href="#svc-testing">🔧 Testing & Commissioning</a>
+        <a class="svc-pill" href="#svc-iaq">💨 IAQ</a>
+        <a class="svc-pill" href="#svc-icxa">🔍 iCxA</a>
       </div>
     </div>
-  </footer>
+
+    <!-- BEAM Plus Schools -->
+    <div class="svc-detail" id="svc-beam-schools">
+      <div class="svc-detail-inner">
+        <div class="svc-content">
+          <div class="svc-subtitle"><span>🎓</span><span data-t="services.beam.schools.subtitle">Green School Certification</span></div>
+          <h2 data-t="services.beam.schools.title">BEAM Plus for Schools</h2>
+          <p data-t="services.beam.schools.desc">Transform your school campus into a certified green learning environment.</p>
+          <ul class="benefits-list">
+            <li data-t="services.beam.schools.b1">Improved indoor air quality and natural lighting for students</li>
+            <li data-t="services.beam.schools.b2">Reduced energy and water consumption, lowering operational costs</li>
+            <li data-t="services.beam.schools.b3">Enhanced school reputation and public recognition</li>
+            <li data-t="services.beam.schools.b4">Access to government subsidies and utility incentives</li>
+            <li data-t="services.beam.schools.b5">Healthier, more productive learning environment</li>
+            <li data-t="services.beam.schools.b6">Zero disruption to teaching during the process</li>
+          </ul>
+          <button class="btn-green" onclick="navigate('contact')" data-t="services.enquire">Enquire Now</button>
+        </div>
+        <div class="svc-visual"><img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663419719601/NdwjjiPRHbUkh95Lk8zgQg/hero-school-BXJZQfyoTyxgYfaBHcYukh.webp" alt="School" /></div>
+      </div>
+    </div>
+
+    <!-- Green Certification -->
+    <div class="svc-detail" id="svc-green-cert">
+      <div class="svc-detail-inner rev">
+        <div class="svc-content">
+          <div class="svc-subtitle"><span>🏆</span><span data-t="services.greencert.subtitle">International Green Building Standards</span></div>
+          <h2 data-t="services.greencert.title">BEAM Plus · LEED · WELL Certification</h2>
+          <p data-t="services.greencert.desc">Achieve multiple international certifications with our comprehensive consulting.</p>
+          <ul class="benefits-list">
+            <li data-t="services.greencert.b1">Triple certification pathway for maximum market advantage</li>
+            <li data-t="services.greencert.b2">Internationally recognized credentials across 180+ countries</li>
+            <li data-t="services.greencert.b3">Enhanced property value and tenant attraction</li>
+            <li data-t="services.greencert.b4">Comprehensive assessment covering energy, water, materials, and wellness</li>
+            <li data-t="services.greencert.b5">Flexible certification levels and customized pathways</li>
+            <li data-t="services.greencert.b6">Complements your sustainability and ESG reporting goals</li>
+          </ul>
+          <button class="btn-green" onclick="navigate('contact')" data-t="services.enquire">Enquire Now</button>
+        </div>
+        <div class="svc-visual">
+          <div class="cert-imgs">
+            <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663419719601/NdwjjiPRHbUkh95Lk8zgQg/ZW8Qt8jHjOCc_4f8ff60e.jpg" alt="BEAM Plus" />
+            <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663419719601/NdwjjiPRHbUkh95Lk8zgQg/6JxAlB9iC0NK_aaf689fd.jpg" alt="LEED" />
+            <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663419719601/NdwjjiPRHbUkh95Lk8zgQg/pkYDsEJHUbCm_214075a7.png" alt="WELL" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Energy Audit -->
+    <div class="svc-detail" id="svc-energy">
+      <div class="svc-detail-inner">
+        <div class="svc-content">
+          <div class="svc-subtitle"><span>⚡</span><span data-t="services.energy.subtitle">Energy Efficiency & Carbon Reduction</span></div>
+          <h2 data-t="services.energy.title">Energy & Carbon Audit</h2>
+          <p data-t="services.energy.desc">Comprehensive energy and carbon audits, life-cycle assessments, and carbon footprint consultancy.</p>
+          <ul class="benefits-list">
+            <li data-t="services.energy.b1">Detailed energy consumption analysis and benchmarking</li>
+            <li data-t="services.energy.b2">Carbon footprint assessment and reduction strategies</li>
+            <li data-t="services.energy.b3">Life-cycle assessment for sustainable materials selection</li>
+            <li data-t="services.energy.b4">Operational cost savings through efficiency improvements</li>
+            <li data-t="services.energy.b5">Compliance with energy regulations and ESG standards</li>
+            <li data-t="services.energy.b6">Renewable energy integration recommendations</li>
+          </ul>
+          <button class="btn-green" onclick="navigate('contact')" data-t="services.enquire">Enquire Now</button>
+        </div>
+        <div class="svc-visual"><div class="svc-visual-placeholder"><div class="icon">⚡</div><p style="color:rgba(255,255,255,.4);font-size:var(--sm)" data-t="services.energy.subtitle">Energy Efficiency</p></div></div>
+      </div>
+    </div>
+
+    <!-- Environmental -->
+    <div class="svc-detail" id="svc-environmental">
+      <div class="svc-detail-inner rev">
+        <div class="svc-content">
+          <div class="svc-subtitle"><span>🌿</span><span data-t="services.environmental.subtitle">Environmental Compliance</span></div>
+          <h2 data-t="services.environmental.title">Environmental Assessment</h2>
+          <p data-t="services.environmental.desc">Environmental assessment studies, monitoring and audit services covering noise, air quality, water quality, and waste management.</p>
+          <ul class="benefits-list">
+            <li data-t="services.environmental.b1">Comprehensive noise and vibration assessments</li>
+            <li data-t="services.environmental.b2">Air quality monitoring and pollution control</li>
+            <li data-t="services.environmental.b3">Water quality testing and wastewater management</li>
+            <li data-t="services.environmental.b4">Waste management planning and optimization</li>
+            <li data-t="services.environmental.b5">Environmental impact assessments for new projects</li>
+            <li data-t="services.environmental.b6">Regulatory compliance and reporting support</li>
+          </ul>
+          <button class="btn-green" onclick="navigate('contact')" data-t="services.enquire">Enquire Now</button>
+        </div>
+        <div class="svc-visual"><div class="svc-visual-placeholder"><div class="icon">🌿</div><p style="color:rgba(255,255,255,.4);font-size:var(--sm)" data-t="services.environmental.subtitle">Environmental</p></div></div>
+      </div>
+    </div>
+
+    <!-- Testing -->
+    <div class="svc-detail" id="svc-testing">
+      <div class="svc-detail-inner">
+        <div class="svc-content">
+          <div class="svc-subtitle"><span>🔧</span><span data-t="services.testing.subtitle">M&E Systems Verification</span></div>
+          <h2 data-t="services.testing.title">Testing & Commissioning</h2>
+          <p data-t="services.testing.desc">Testing and commissioning of M&E systems including air-conditioning, ventilation, electrical, lighting, and plumbing.</p>
+          <ul class="benefits-list">
+            <li data-t="services.testing.b1">Comprehensive HVAC system testing and balancing</li>
+            <li data-t="services.testing.b2">Electrical and lighting system verification</li>
+            <li data-t="services.testing.b3">Plumbing and water system commissioning</li>
+            <li data-t="services.testing.b4">Performance optimization and efficiency tuning</li>
+            <li data-t="services.testing.b5">Documentation and compliance certification</li>
+            <li data-t="services.testing.b6">Handover training and maintenance support</li>
+          </ul>
+          <button class="btn-green" onclick="navigate('contact')" data-t="services.enquire">Enquire Now</button>
+        </div>
+        <div class="svc-visual"><div class="svc-visual-placeholder"><div class="icon">🔧</div><p style="color:rgba(255,255,255,.4);font-size:var(--sm)" data-t="services.testing.subtitle">M&E Systems</p></div></div>
+      </div>
+    </div>
+
+    <!-- IAQ -->
+    <div class="svc-detail" id="svc-iaq">
+      <div class="svc-detail-inner rev">
+        <div class="svc-content">
+          <div class="svc-subtitle"><span>💨</span><span data-t="services.iaq.subtitle">Occupant Health & Wellness</span></div>
+          <h2 data-t="services.iaq.title">Indoor Air Quality Consultant</h2>
+          <p data-t="services.iaq.desc">Comprehensive indoor air quality consulting to ensure healthy, compliant building environments.</p>
+          <ul class="benefits-list">
+            <li data-t="services.iaq.b1">Indoor air quality assessments and testing</li>
+            <li data-t="services.iaq.b2">Ventilation system design and optimization</li>
+            <li data-t="services.iaq.b3">Air filtration and purification recommendations</li>
+            <li data-t="services.iaq.b4">Compliance with WELL and BEAM Plus IAQ standards</li>
+            <li data-t="services.iaq.b5">Ongoing monitoring and maintenance planning</li>
+            <li data-t="services.iaq.b6">Occupant health and productivity improvements</li>
+          </ul>
+          <button class="btn-green" onclick="navigate('contact')" data-t="services.enquire">Enquire Now</button>
+        </div>
+        <div class="svc-visual"><div class="svc-visual-placeholder"><div class="icon">💨</div><p style="color:rgba(255,255,255,.4);font-size:var(--sm)" data-t="services.iaq.subtitle">Indoor Air Quality</p></div></div>
+      </div>
+    </div>
+
+    <!-- iCxA -->
+    <div class="svc-detail" id="svc-icxa">
+      <div class="svc-detail-inner">
+        <div class="svc-content">
+          <div class="svc-subtitle"><span>🔍</span><span data-t="services.icxa.subtitle">Independent Commissioning Authority</span></div>
+          <h2 data-t="services.icxa.title">iCxA</h2>
+          <p data-t="services.icxa.desc">Independent Commissioning Authority services ensuring building systems operate as designed.</p>
+          <ul class="benefits-list">
+            <li data-t="services.icxa.b1">Independent commissioning authority certification</li>
+            <li data-t="services.icxa.b2">Verification of HVAC and ventilation system performance</li>
+            <li data-t="services.icxa.b3">Building automation system testing and optimization</li>
+            <li data-t="services.icxa.b4">Compliance with iCxA standards and building codes</li>
+            <li data-t="services.icxa.b5">Support for WELL, BEAM Plus, and LEED requirements</li>
+            <li data-t="services.icxa.b6">Ongoing monitoring and performance verification</li>
+          </ul>
+          <button class="btn-green" onclick="navigate('contact')" data-t="services.enquire">Enquire Now</button>
+        </div>
+        <div class="svc-visual"><div class="svc-visual-placeholder"><div class="icon">🔍</div><p style="color:rgba(255,255,255,.4);font-size:var(--sm)" data-t="services.icxa.subtitle">iCxA</p></div></div>
+      </div>
+    </div>
+
+    <!-- Comparison Table -->
+    <section class="section" style="background:var(--cream)">
+      <div class="section-inner">
+        <div class="reveal">
+          <div class="eyebrow"><div class="eyebrow-line"></div><span data-t="comparison.title">Comparison</span></div>
+          <h2 class="section-title" data-t="comparison.subtitle">Choose the Right Certification</h2>
+        </div>
+        <div class="comp-table-wrap reveal">
+          <table class="comp-table">
+            <thead><tr><th data-t="comparison.feature">Feature</th><th data-t="comparison.beamplus">BEAM Plus</th><th data-t="comparison.leed">LEED</th><th data-t="comparison.well">WELL</th></tr></thead>
+            <tbody>
+              <tr><td data-t="comparison.origin">Origin</td><td data-t="comparison.originBeam">HK Green Building Council</td><td data-t="comparison.originLeed">U.S. Green Building Council</td><td data-t="comparison.originWell">International WELL Building Institute</td></tr>
+              <tr><td data-t="comparison.focus">Primary Focus</td><td data-t="comparison.focusBeam">Environmental performance</td><td data-t="comparison.focusLeed">Environmental design</td><td data-t="comparison.focusWell">Occupant health & wellness</td></tr>
+              <tr><td data-t="comparison.geography">Geographic Focus</td><td data-t="comparison.geographyBeam">HK & Asia-Pacific</td><td data-t="comparison.geographyLeed">Global (180+ countries)</td><td data-t="comparison.geographyWell">Global (100+ countries)</td></tr>
+              <tr><td data-t="comparison.levels">Levels</td><td data-t="comparison.levelsBeam">Platinum, Gold, Silver, Bronze</td><td data-t="comparison.levelsLeed">Platinum, Gold, Silver, Certified</td><td data-t="comparison.levelsWell">Platinum, Gold, Silver</td></tr>
+              <tr><td data-t="comparison.timeline">Timeline</td><td data-t="comparison.timelineBeam">6–12 months</td><td data-t="comparison.timelineLeed">8–18 months</td><td data-t="comparison.timelineWell">6–12 months</td></tr>
+              <tr><td data-t="comparison.cost">Cost Range</td><td data-t="comparison.costBeam">HK$50K–300K</td><td data-t="comparison.costLeed">HK$100K–500K</td><td data-t="comparison.costWell">HK$80K–400K</td></tr>
+              <tr><td data-t="comparison.buildingTypes">Best For</td><td data-t="comparison.buildingTypesBeam">Schools, commercial, offices</td><td data-t="comparison.buildingTypesLeed">All building types globally</td><td data-t="comparison.buildingTypesWell">Offices, schools, residential</td></tr>
+              <tr><td data-t="comparison.recommendation">Recommendation</td><td data-t="comparison.recommendationBeam">Ideal for schools and local projects</td><td data-t="comparison.recommendationLeed">Best for international projects</td><td data-t="comparison.recommendationWell">Perfect for occupant health focus</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-band"><h2 data-t="services.cta.title">Not Sure Which Certification Is Right?</h2><p data-t="services.cta.desc">Every building is different. We'll help you identify the most suitable pathway.</p><button class="btn-gold" onclick="navigate('contact')" data-t="services.cta.button">Book a Free Consultation</button></section>
+    <footer class="footer"><div class="footer-grid"><div class="footer-brand"><img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663419719601/NdwjjiPRHbUkh95Lk8zgQg/logo-serif-final-1-XHhBsyoh8UzD6ssoLsGZ4U.png" alt="Avenor"/><p data-t="footer.desc">Professional green building consulting.</p></div><div class="footer-col"><strong data-t="footer.quickLinks">Quick Links</strong><a onclick="navigate('home')">Home</a><a onclick="navigate('about')">About</a><a onclick="navigate('services')">Services</a><a onclick="navigate('contact')">Contact</a></div><div class="footer-col"><strong data-t="footer.certifications">Certifications</strong><a onclick="navigate('services')">BEAM Plus</a><a onclick="navigate('services')">LEED</a><a onclick="navigate('services')">WELL</a></div><div class="footer-col"><strong data-t="footer.contact">Contact</strong><a href="mailto:info@avenorconsultantsltd.com">info@avenorconsultantsltd.com</a></div></div><div class="footer-bottom"><p>© 2026 Avenor Consultants Ltd.</p></div></footer>
+  </div>
+
+  <!-- ════════════════════════════════
+       COMPARISON PAGE
+  ════════════════════════════════ -->
+  <div class="page" id="page-comparison">
+    <section class="comp-hero">
+      <div class="wrap">
+        <div class="eyebrow"><div class="eyebrow-line" style="width:30px"></div><span>Certification Comparison</span></div>
+        <h1 class="section-title light" style="font-size:clamp(2.5rem,5vw,4rem)" data-t="comparison.subtitle">Choose the Right Certification</h1>
+        <p class="section-desc light" style="margin-top:1rem" data-t="comparison.desc">Compare BEAM Plus, LEED, and WELL certifications to understand which standards best fit your building.</p>
+      </div>
+    </section>
+    <section class="section" style="background:var(--cream)">
+      <div class="section-inner">
+        <div class="comp-tabs">
+          <button class="comp-tab active" onclick="switchTab('beam',this)">BEAM Plus</button>
+          <button class="comp-tab" onclick="switchTab('leed',this)">LEED</button>
+          <button class="comp-tab" onclick="switchTab('well',this)">WELL</button>
+        </div>
+        <!-- BEAM Panel -->
+        <div class="comp-panel active" id="tab-beam">
+          <div>
+            <div class="comp-info-card"><div class="comp-field"><div class="comp-field-label" data-t="comparison.origin">Origin</div><div class="comp-field-value" data-t="comparison.originBeam">HK Green Building Council</div></div><div class="comp-field"><div class="comp-field-label" data-t="comparison.focus">Focus</div><div class="comp-field-value" data-t="comparison.focusBeam">Environmental performance</div></div><div class="comp-field"><div class="comp-field-label" data-t="comparison.geography">Geography</div><div class="comp-field-value" data-t="comparison.geographyBeam">HK & Asia-Pacific</div></div></div>
+            <div class="comp-info-card" style="margin-top:1.5rem"><div class="comp-field"><div class="comp-field-label" data-t="comparison.levels">Levels</div><div class="comp-field-value" data-t="comparison.levelsBeam">Platinum, Gold, Silver, Bronze</div></div><div class="comp-field"><div class="comp-field-label" data-t="comparison.timeline">Timeline</div><div class="comp-field-value" data-t="comparison.timelineBeam">6–12 months</div></div><div class="comp-field"><div class="comp-field-label" data-t="comparison.cost">Cost</div><div class="comp-field-value" data-t="comparison.costBeam">HK$50K–300K</div></div></div>
+          </div>
+          <div>
+            <div class="comp-info-card"><div class="comp-field"><div class="comp-field-label" data-t="comparison.buildingTypes">Best For</div><div class="comp-field-value" data-t="comparison.buildingTypesBeam">Schools, commercial, offices, retail</div></div><div class="comp-field"><div class="comp-field-label" data-t="comparison.keyBenefits">Key Benefits</div><ul class="benefits-dark"><li data-t="comparison.keyBenefitsBeam">Local recognition, government incentives, energy savings</li></ul></div></div>
+            <div class="comp-recommend" style="margin-top:1.5rem"><div class="comp-recommend-label" data-t="comparison.recommendation">Recommendation</div><p data-t="comparison.recommendationBeam">Ideal for schools and local projects seeking government support and cost efficiency</p></div>
+          </div>
+        </div>
+        <!-- LEED Panel -->
+        <div class="comp-panel" id="tab-leed">
+          <div>
+            <div class="comp-info-card"><div class="comp-field"><div class="comp-field-label" data-t="comparison.origin">Origin</div><div class="comp-field-value" data-t="comparison.originLeed">U.S. Green Building Council</div></div><div class="comp-field"><div class="comp-field-label" data-t="comparison.focus">Focus</div><div class="comp-field-value" data-t="comparison.focusLeed">Environmental design & operations</div></div><div class="comp-field"><div class="comp-field-label" data-t="comparison.geography">Geography</div><div class="comp-field-value" data-t="comparison.geographyLeed">Global (180+ countries)</div></div></div>
+            <div class="comp-info-card" style="margin-top:1.5rem"><div class="comp-field"><div class="comp-field-label" data-t="comparison.levels">Levels</div><div class="comp-field-value" data-t="comparison.levelsLeed">Platinum, Gold, Silver, Certified</div></div><div class="comp-field"><div class="comp-field-label" data-t="comparison.timeline">Timeline</div><div class="comp-field-value" data-t="comparison.timelineLeed">8–18 months</div></div><div class="comp-field"><div class="comp-field-label" data-t="comparison.cost">Cost</div><div class="comp-field-value" data-t="comparison.costLeed">HK$100K–500K</div></div></div>
+          </div>
+          <div>
+            <div class="comp-info-card"><div class="comp-field"><div class="comp-field-label" data-t="comparison.buildingTypes">Best For</div><div class="comp-field-value" data-t="comparison.buildingTypesLeed">All building types globally</div></div><div class="comp-field"><div class="comp-field-label" data-t="comparison.keyBenefits">Key Benefits</div><ul class="benefits-dark"><li data-t="comparison.keyBenefitsLeed">Global recognition, premium positioning, investor appeal</li></ul></div></div>
+            <div class="comp-recommend" style="margin-top:1.5rem"><div class="comp-recommend-label" data-t="comparison.recommendation">Recommendation</div><p data-t="comparison.recommendationLeed">Best for international projects, premium positioning, and global market appeal</p></div>
+          </div>
+        </div>
+        <!-- WELL Panel -->
+        <div class="comp-panel" id="tab-well">
+          <div>
+            <div class="comp-info-card"><div class="comp-field"><div class="comp-field-label" data-t="comparison.origin">Origin</div><div class="comp-field-value" data-t="comparison.originWell">International WELL Building Institute</div></div><div class="comp-field"><div class="comp-field-label" data-t="comparison.focus">Focus</div><div class="comp-field-value" data-t="comparison.focusWell">Occupant health & wellness</div></div><div class="comp-field"><div class="comp-field-label" data-t="comparison.geography">Geography</div><div class="comp-field-value" data-t="comparison.geographyWell">Global (100+ countries)</div></div></div>
+            <div class="comp-info-card" style="margin-top:1.5rem"><div class="comp-field"><div class="comp-field-label" data-t="comparison.levels">Levels</div><div class="comp-field-value" data-t="comparison.levelsWell">Platinum, Gold, Silver</div></div><div class="comp-field"><div class="comp-field-label" data-t="comparison.timeline">Timeline</div><div class="comp-field-value" data-t="comparison.timelineWell">6–12 months</div></div><div class="comp-field"><div class="comp-field-label" data-t="comparison.cost">Cost</div><div class="comp-field-value" data-t="comparison.costWell">HK$80K–400K</div></div></div>
+          </div>
+          <div>
+            <div class="comp-info-card"><div class="comp-field"><div class="comp-field-label" data-t="comparison.buildingTypes">Best For</div><div class="comp-field-value" data-t="comparison.buildingTypesWell">Offices, schools, residential, retail</div></div><div class="comp-field"><div class="comp-field-label" data-t="comparison.keyBenefits">Key Benefits</div><ul class="benefits-dark"><li data-t="comparison.keyBenefitsWell">Occupant health focus, wellness benefits, employee productivity</li></ul></div></div>
+            <div class="comp-recommend" style="margin-top:1.5rem"><div class="comp-recommend-label" data-t="comparison.recommendation">Recommendation</div><p data-t="comparison.recommendationWell">Perfect for organizations prioritizing employee health and occupant experience</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="cta-band"><h2>Not Sure Which Is Right for You?</h2><p>Our expert consultants can help you identify the most suitable certification pathway.</p><button class="btn-gold" onclick="navigate('contact')">Book a Free Consultation</button></section>
+    <footer class="footer"><div class="footer-grid"><div class="footer-brand"><img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663419719601/NdwjjiPRHbUkh95Lk8zgQg/logo-serif-final-1-XHhBsyoh8UzD6ssoLsGZ4U.png" alt="Avenor"/><p data-t="footer.desc">Professional green building consulting.</p></div><div class="footer-col"><strong data-t="footer.quickLinks">Quick Links</strong><a onclick="navigate('home')">Home</a><a onclick="navigate('about')">About</a><a onclick="navigate('services')">Services</a><a onclick="navigate('contact')">Contact</a></div><div class="footer-col"><strong data-t="footer.certifications">Certifications</strong><a onclick="navigate('services')">BEAM Plus</a><a onclick="navigate('services')">LEED</a><a onclick="navigate('services')">WELL</a></div><div class="footer-col"><strong data-t="footer.contact">Contact</strong><a href="mailto:info@avenorconsultantsltd.com">info@avenorconsultantsltd.com</a></div></div><div class="footer-bottom"><p>© 2026 Avenor Consultants Ltd.</p></div></footer>
+  </div>
+
+  <!-- ════════════════════════════════
+       BLOG PAGE
+  ════════════════════════════════ -->
+  <div class="page" id="page-blog">
+    <section class="blog-hero">
+      <div class="wrap">
+        <div class="eyebrow"><div class="eyebrow-line" style="width:30px"></div><span>Insights & Resources</span></div>
+        <h1 class="section-title light" style="font-size:clamp(2.5rem,5vw,4rem)" data-t="blog.title">Insights & Resources</h1>
+        <p class="section-desc light" style="margin-top:1rem" data-t="blog.desc">Stay updated with the latest trends and best practices in green building certification.</p>
+      </div>
+    </section>
+    <section class="section" style="background:var(--cream)">
+      <div class="section-inner" style="max-width:860px">
+        <div class="blog-grid">
+          <article class="blog-card reveal">
+            <div class="blog-content">
+              <div class="blog-cat">🏷 <span data-t="blog.post1.category">Certification</span></div>
+              <h2 data-t="blog.post1.title">Understanding BEAM Plus Certification: A Complete Guide for Hong Kong Schools</h2>
+              <p data-t="blog.post1.excerpt">Learn how BEAM Plus certification can transform your school campus into a sustainable learning environment.</p>
+              <div class="blog-meta"><span class="blog-date" data-t="blog.post1.date">March 15, 2026</span><span class="blog-read">Read More →</span></div>
+            </div>
+          </article>
+          <article class="blog-card reveal">
+            <div class="blog-content">
+              <div class="blog-cat">🏷 <span data-t="blog.post2.category">Comparison</span></div>
+              <h2 data-t="blog.post2.title">LEED vs BEAM Plus vs WELL: Which Certification is Right for Your Building?</h2>
+              <p data-t="blog.post2.excerpt">Comprehensive comparison of three major green building certifications to help you choose the best standard.</p>
+              <div class="blog-meta"><span class="blog-date" data-t="blog.post2.date">March 8, 2026</span><span class="blog-read">Read More →</span></div>
+            </div>
+          </article>
+          <article class="blog-card reveal">
+            <div class="blog-content">
+              <div class="blog-cat">🏷 <span data-t="blog.post3.category">Sustainability</span></div>
+              <h2 data-t="blog.post3.title">Energy Audits and Carbon Footprint Assessment: Reducing Operational Costs</h2>
+              <p data-t="blog.post3.excerpt">Discover how comprehensive energy audits can identify cost-saving opportunities and help your building achieve sustainability goals.</p>
+              <div class="blog-meta"><span class="blog-date" data-t="blog.post3.date">February 28, 2026</span><span class="blog-read">Read More →</span></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+    <section class="cta-band"><h2>Ready to Get Started?</h2><p>Contact us today to discuss your green building certification needs.</p><button class="btn-gold" onclick="navigate('contact')">Book a Free Consultation</button></section>
+    <footer class="footer"><div class="footer-grid"><div class="footer-brand"><img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663419719601/NdwjjiPRHbUkh95Lk8zgQg/logo-serif-final-1-XHhBsyoh8UzD6ssoLsGZ4U.png" alt="Avenor"/><p data-t="footer.desc">Professional green building consulting.</p></div><div class="footer-col"><strong data-t="footer.quickLinks">Quick Links</strong><a onclick="navigate('home')">Home</a><a onclick="navigate('about')">About</a><a onclick="navigate('services')">Services</a><a onclick="navigate('contact')">Contact</a></div><div class="footer-col"><strong data-t="footer.certifications">Certifications</strong><a onclick="navigate('services')">BEAM Plus</a><a onclick="navigate('services')">LEED</a><a onclick="navigate('services')">WELL</a></div><div class="footer-col"><strong data-t="footer.contact">Contact</strong><a href="mailto:info@avenorconsultantsltd.com">info@avenorconsultantsltd.com</a></div></div><div class="footer-bottom"><p>© 2026 Avenor Consultants Ltd.</p></div></footer>
+  </div>
+
+  <!-- ════════════════════════════════
+       CONTACT PAGE
+  ════════════════════════════════ -->
+  <div class="page" id="page-contact">
+    <section class="contact-hero">
+      <div class="wrap">
+        <div class="eyebrow"><div class="eyebrow-line" style="width:30px"></div><span data-t="contact.hero.tag">Contact Us</span></div>
+        <h1 class="section-title light" style="font-size:clamp(2.5rem,5vw,4rem)"><span data-t="contact.hero.title1">Let's Start the</span><br/><em><span data-t="contact.hero.title2">Conversation</span></em></h1>
+        <p class="section-desc light" style="margin-top:1rem" data-t="contact.hero.desc">Whether you have a specific project in mind or simply want to learn more.</p>
+      </div>
+    </section>
+    <section class="section" style="background:white">
+      <div class="section-inner">
+        <div class="contact-grid">
+          <div class="contact-form-wrap">
+            <h2 class="section-title" style="font-size:var(--lg);margin-bottom:2rem" data-t="contact.form.title">Send Us an Enquiry</h2>
+            <form class="contact-form" onsubmit="handleContact(event)">
+              <div class="frow">
+                <div class="fgrp"><label data-t="contact.form.name">Full Name</label><input type="text" required placeholder="Your name" data-ph="contact.form.namePlaceholder"/></div>
+                <div class="fgrp"><label data-t="contact.form.email">Email</label><input type="email" required placeholder="you@example.com" data-ph="contact.form.emailPlaceholder"/></div>
+              </div>
+              <div class="frow">
+                <div class="fgrp"><label data-t="contact.form.phone">Phone</label><input type="tel" placeholder="+852 XXXX XXXX" data-ph="contact.form.phonePlaceholder"/></div>
+                <div class="fgrp"><label data-t="contact.form.org">Organisation</label><input type="text" placeholder="School or company name" data-ph="contact.form.orgPlaceholder"/></div>
+              </div>
+              <div class="fgrp"><label data-t="contact.form.service">Service of Interest</label>
+                <select>
+                  <option value="" data-t="contact.form.serviceSelect">Select a service</option>
+                  <option data-t="contact.form.serviceBeamSchool">BEAM Plus for Schools</option>
+                  <option data-t="contact.form.serviceBeamCommercial">BEAM Plus Commercial</option>
+                  <option data-t="contact.form.serviceLeed">LEED Certification</option>
+                  <option data-t="contact.form.serviceWell">WELL Building Standard</option>
+                  <option data-t="contact.form.serviceMultiple">Multiple / Not Sure</option>
+                </select>
+              </div>
+              <div class="fgrp"><label data-t="contact.form.message">Message</label><textarea rows="5" required placeholder="Tell us about your project..." data-ph="contact.form.messagePlaceholder"></textarea></div>
+              <button type="submit" class="btn-green" id="contactBtn" data-t="contact.form.submit">Send Enquiry</button>
+            </form>
+          </div>
+          <div class="contact-info-panel">
+            <h3 data-t="contact.info.title">Contact Information</h3>
+            <div class="cinfo-item"><div class="cinfo-icon">✉️</div><div><div class="cinfo-label" data-t="contact.info.email">Email</div><div class="cinfo-value"><a href="mailto:info@avenorconsultantsltd.com">info@avenorconsultantsltd.com</a></div></div></div>
+            <div class="cinfo-item"><div class="cinfo-icon">💬</div><div><div class="cinfo-label" data-t="contact.info.whatsapp">WhatsApp</div><div class="cinfo-value"><a href="https://wa.me/85257947791">+852 5794 7791</a></div></div></div>
+            <div class="cinfo-item"><div class="cinfo-icon">📍</div><div><div class="cinfo-label" data-t="contact.info.location">Location</div><div class="cinfo-value" data-t="contact.info.locationValue">Hong Kong</div></div></div>
+            <div class="hours-block">
+              <h4 data-t="contact.info.hours">Office Hours</h4>
+              <p data-t="contact.info.weekday">Monday – Friday: 9:00 AM – 6:00 PM</p>
+              <p data-t="contact.info.saturday">Saturday: By appointment</p>
+              <p data-t="contact.info.sunday">Sunday & Public Holidays: Closed</p>
+            </div>
+            <div class="hours-block">
+              <h4 data-t="contact.info.response">Response Time</h4>
+              <p data-t="contact.info.responseDesc">We aim to respond to all enquiries within one business day.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <footer class="footer"><div class="footer-grid"><div class="footer-brand"><img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663419719601/NdwjjiPRHbUkh95Lk8zgQg/logo-serif-final-1-XHhBsyoh8UzD6ssoLsGZ4U.png" alt="Avenor"/><p data-t="footer.desc">Professional green building consulting.</p></div><div class="footer-col"><strong data-t="footer.quickLinks">Quick Links</strong><a onclick="navigate('home')">Home</a><a onclick="navigate('about')">About</a><a onclick="navigate('services')">Services</a><a onclick="navigate('contact')">Contact</a></div><div class="footer-col"><strong data-t="footer.certifications">Certifications</strong><a onclick="navigate('services')">BEAM Plus</a><a onclick="navigate('services')">LEED</a><a onclick="navigate('services')">WELL</a></div><div class="footer-col"><strong data-t="footer.contact">Contact</strong><a href="mailto:info@avenorconsultantsltd.com">info@avenorconsultantsltd.com</a><a href="https://wa.me/85257947791">+852 5794 7791</a></div></div><div class="footer-bottom"><p>© 2026 Avenor Consultants Ltd.</p></div></footer>
+  </div>
 
   <script>
-    // Sticky nav
-    window.addEventListener('scroll', () => {
-      document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 50);
-    });
-
-    // Mobile menu
-    function toggleMenu() {
-      document.getElementById('navMobile').classList.toggle('open');
+  /* ════════ TRANSLATIONS ════════ */
+  const t = {
+    en: {
+      "nav.home":"Home","nav.about":"About","nav.services":"Services","nav.blog":"Blog","nav.comparison":"Comparison","nav.contact":"Contact","nav.getInTouch":"Get in Touch",
+      "home.hero.tag":"Green Building Consultants · Hong Kong","home.hero.title1":"Building a","home.hero.title2":"Sustainable","home.hero.title3":"Future","home.hero.title4":" for Hong Kong",
+      "home.hero.desc":"We help schools and commercial buildings achieve BEAM Plus, LEED, and WELL certifications — making sustainability simple and stress-free.",
+      "home.hero.services":"Our Services","home.hero.contact":"Get in Touch",
+      "home.process.tag":"Our Process","home.process.title":"A Clear Path to Certification","home.process.desc":"We handle the complexity so you don't have to. Our proven four-step process makes achieving green building certification straightforward.",
+      "home.process.step1.title":"Assessment","home.process.step1.desc":"We evaluate your building's current performance and identify opportunities for improvement.",
+      "home.process.step2.title":"Strategy","home.process.step2.desc":"We develop a tailored roadmap to achieve your target certification level efficiently.",
+      "home.process.step3.title":"Implementation","home.process.step3.desc":"We manage the process end-to-end, coordinating with contractors and handling all documentation.",
+      "home.process.step4.title":"Certification","home.process.step4.desc":"We submit your application and guide you through the final review to secure your certification.",
+      "home.buildingTypes.title":"International Green Building Standards","home.buildingTypes.subtitle":"BEAM Plus · LEED · WELL Green Building Certification",
+      "home.buildingTypes.desc":"No matter the building type, we provide comprehensive green building certification services tailored to your specific needs.",
+      "home.buildingTypes.commercial":"Commercial Buildings","home.buildingTypes.offices":"Offices","home.buildingTypes.schools":"Green Schools","home.buildingTypes.certifications":"BEAM Plus · LEED · WELL",
+      "home.services.tag":"What We Do","home.services.title":"Comprehensive Green Building & Environmental Services","home.services.desc":"We offer comprehensive green building solutions across six key service areas",
+      "home.services.energy.title":"Energy & Carbon Audit","home.services.energy.desc":"Comprehensive energy and carbon audits, life-cycle assessments, and carbon footprint consultancy to reduce emissions and operating costs.",
+      "home.services.environmental.title":"Environmental Assessment","home.services.environmental.desc":"Environmental assessment studies, monitoring and audit services covering noise, air quality, water quality, and waste management.",
+      "home.services.greenCert.title":"Green Building Certification","home.services.greenCert.desc":"End-to-end consultancy for BEAM Plus, LEED, and WELL certifications for schools, commercial buildings, and mixed-use developments.",
+      "home.services.tc.title":"Testing & Commissioning","home.services.tc.desc":"Testing and commissioning of M&E systems including air-conditioning, ventilation, electrical, lighting, and plumbing installations.",
+      "home.services.acoustic.title":"Acoustic Consultant","home.services.acoustic.desc":"Professional acoustic assessment and design consultancy to ensure optimal sound control, noise reduction, and acoustic comfort in buildings.",
+      "home.services.iaq.title":"IAQ Consultant & iCxA","home.services.iaq.desc":"Independent Commissioning Authority (iCxA) services and comprehensive indoor air quality consulting to ensure healthy, compliant building environments.",
+      "home.services.viewAll":"View All Services",
+      "home.projects.tag":"Selected Experience","home.projects.title":"Projects Our Team Has Delivered","home.projects.desc":"Before founding Avenor Consultants, our team has been involved in delivering green building certifications across Hong Kong's education and commercial sectors.",
+      "home.projects.p1.title":"Apollo 36/F One Exchange Square","home.projects.p1.type":"Office Building","home.projects.p1.desc":"Interior Fit-out. Implemented best construction practices (IAQ, waste, safety management). BEAM Plus Interior V1.0 Platinum (2023).",
+      "home.projects.p2.title":"Bank Julius Baer & Co Ltd","home.projects.p2.type":"Office Building","home.projects.p2.desc":"Office Space. Incorporated human-centric lighting designs and thermal comfort. LEED V4 ID+C Commercial Interiors Platinum (2023).",
+      "home.projects.p3.title":"Amundi Greenfield 32","home.projects.p3.type":"Office Building","home.projects.p3.desc":"Office Space. Improved indoor air quality, optimised water and energy use, sustainable materials. WELL V2 Platinum (2023).",
+      "home.projects.p4.title":"Jardine House Basehall 2&3","home.projects.p4.type":"Office Building","home.projects.p4.desc":"Food Space. BEAM Plus Interior V2.0 Platinum; LEED V4 ID+C Retail Platinum; WELL V2 Core Platinum (2025).",
+      "home.projects.p5.title":"Lingnan University LBY G01 & G02","home.projects.p5.type":"Institutional Building","home.projects.p5.desc":"Lecture Theatre. BEAM Plus Interior V2.0 Gold (2025).",
+      "home.projects.p6.title":"Centre for Future Construction","home.projects.p6.type":"Institutional Building","home.projects.p6.desc":"Work Space. BEAM Plus Interior V2.0 Platinum (2025).",
+      "home.projects.p7.title":"Pneumoconiosis Compensation Fund Board","home.projects.p7.type":"Office Building","home.projects.p7.desc":"Office Space. BEAM Plus Interior V2.0 Platinum (2025).",
+      "home.projects.p8.title":"CLP Headquarters","home.projects.p8.type":"Office Building","home.projects.p8.desc":"Whole Building. BEAM Plus New Buildings V2.0 Platinum; LEED V4 BD+C Platinum; WELL V2 Platinum (2025).",
+      "home.projects.p9.title":"OCBC at L1 L10 ECP","home.projects.p9.type":"Office Building","home.projects.p9.desc":"Retail & Office Space. LEED V4 ID+C Commercial Interiors Gold (2025).",
+      "home.projects.p10.title":"Philip Morris International Office","home.projects.p10.type":"Office Building","home.projects.p10.desc":"Office Space. LEED V4 ID+C Commercial Interiors Platinum; WELL V2 Platinum (2025).",
+      "home.cta.title":"Ready to Make Your Building Greener?","home.cta.desc":"Whether you're a school looking to improve your campus or a property owner seeking certification, we're here to help. Let's start the conversation.","home.cta.button":"Contact Us Today",
+      "about.hero.tag":"About Us","about.hero.title1":"Committed to a","about.hero.title2":"Greener Hong Kong","about.hero.desc":"Avenor Consultants Ltd. was founded with a clear mission: to make green building certification accessible, affordable, and stress-free for schools and commercial buildings across Hong Kong.",
+      "about.story.tag":"Our Story","about.story.title":"Built on a Passion for Better Buildings",
+      "about.story.p1":"Hong Kong's buildings account for over 60% of the city's total electricity consumption and roughly 90% of its carbon emissions. Behind these numbers are real people — students learning in poorly ventilated classrooms, office workers under harsh fluorescent lighting, and building owners facing rising energy bills.",
+      "about.story.p2":"Avenor Consultants was established to bridge the gap between sustainability goals and practical action. We saw that many schools and building owners wanted to go green but found the certification process overwhelming, expensive, or confusing.",
+      "about.story.p3":"Our approach is different. We simplify the journey, handle the technical complexity, and help our clients access available subsidies and incentives — so that going green becomes an investment that pays for itself.",
+      "about.values.tag":"Our Values","about.values.guidesTitle":"What Guides Our Work",
+      "about.values.v1.titleAlt":"Results-Driven","about.values.v1.descAlt":"We measure our success by your certification outcome. Every recommendation we make is grounded in practical, achievable steps.",
+      "about.values.v2.titleAlt":"Transparency","about.values.v2.descAlt":"No hidden costs, no unnecessary complexity. We keep you informed at every stage of the certification journey.",
+      "about.values.v3.titleAlt":"Genuine Impact","about.values.v3.descAlt":"We believe sustainability should benefit people first — healthier air, better lighting, and lower costs for the communities we serve.",
+      "about.expertise.tag":"Expertise","about.expertise.specialise":"Certifications We Specialise In",
+      "about.expertise.beam.title":"BEAM Plus","about.expertise.beam.desc":"Hong Kong's own green building assessment tool, covering new buildings, existing buildings, interiors, and neighbourhood developments.",
+      "about.expertise.leed.title":"LEED","about.expertise.leed.desc":"The world's most widely used green building rating system, recognised across 180+ countries for sustainable design and construction.",
+      "about.expertise.well.title":"WELL","about.expertise.well.desc":"A performance-based system for measuring and certifying features of buildings that impact human health and well-being.",
+      "about.cta.title":"Let's Work Together","about.cta.desc":"Whether you're exploring certification for the first time or looking for a partner to manage the process, we'd love to hear from you.",
+      "services.tag":"Our Services","services.title":"Expert Guidance for Every Certification","services.desc":"From local BEAM Plus to international LEED and WELL standards, we provide end-to-end consulting for schools and commercial buildings.",
+      "services.enquire":"Enquire Now","services.cta.title":"Not Sure Which Certification Is Right for You?","services.cta.desc":"Every building is different. We'll help you identify the most suitable certification pathway based on your goals, budget, and timeline.","services.cta.button":"Book a Free Consultation",
+      "services.beam.schools.title":"BEAM Plus for Schools","services.beam.schools.subtitle":"Green School Certification","services.beam.schools.desc":"Transform your school campus into a certified green learning environment. We guide schools through the entire BEAM Plus certification process, from initial assessment to final accreditation.",
+      "services.beam.schools.b1":"Improved indoor air quality and natural lighting for students","services.beam.schools.b2":"Reduced energy and water consumption, lowering operational costs","services.beam.schools.b3":"Enhanced school reputation and public recognition","services.beam.schools.b4":"Access to government subsidies and utility incentives","services.beam.schools.b5":"Healthier, more productive learning environment","services.beam.schools.b6":"Zero disruption to teaching during the process",
+      "services.greencert.title":"BEAM Plus · LEED · WELL Green Building Certification","services.greencert.subtitle":"International Green Building Standards","services.greencert.desc":"Achieve multiple international certifications with our comprehensive consulting. We guide you through BEAM Plus for local recognition, LEED for global standards, and WELL for occupant health and wellness.",
+      "services.greencert.b1":"Triple certification pathway for maximum market advantage","services.greencert.b2":"Internationally recognized credentials across 180+ countries","services.greencert.b3":"Enhanced property value and tenant attraction","services.greencert.b4":"Comprehensive assessment covering energy, water, materials, and wellness","services.greencert.b5":"Flexible certification levels and customized pathways","services.greencert.b6":"Complements your sustainability and ESG reporting goals",
+      "services.energy.title":"Energy & Carbon Audit / Life-Cycle Assessment","services.energy.subtitle":"Energy Efficiency & Carbon Reduction","services.energy.desc":"Comprehensive energy and carbon audits, life-cycle assessments, and carbon footprint consultancy to reduce emissions and operating costs.",
+      "services.energy.b1":"Detailed energy consumption analysis and benchmarking","services.energy.b2":"Carbon footprint assessment and reduction strategies","services.energy.b3":"Life-cycle assessment for sustainable materials selection","services.energy.b4":"Operational cost savings through efficiency improvements","services.energy.b5":"Compliance with energy regulations and ESG standards","services.energy.b6":"Renewable energy integration recommendations",
+      "services.environmental.title":"Environmental Assessment & Monitoring","services.environmental.subtitle":"Environmental Compliance & Protection","services.environmental.desc":"Environmental assessment studies, monitoring and audit services covering noise, air quality, water quality, and waste management.",
+      "services.environmental.b1":"Comprehensive noise and vibration assessments","services.environmental.b2":"Air quality monitoring and pollution control","services.environmental.b3":"Water quality testing and wastewater management","services.environmental.b4":"Waste management planning and optimization","services.environmental.b5":"Environmental impact assessments for new projects","services.environmental.b6":"Regulatory compliance and reporting support",
+      "services.testing.title":"Testing & Commissioning","services.testing.subtitle":"M&E Systems Verification","services.testing.desc":"Testing and commissioning of M&E systems including air-conditioning, ventilation, electrical, lighting, and plumbing installations.",
+      "services.testing.b1":"Comprehensive HVAC system testing and balancing","services.testing.b2":"Electrical and lighting system verification","services.testing.b3":"Plumbing and water system commissioning","services.testing.b4":"Performance optimization and efficiency tuning","services.testing.b5":"Documentation and compliance certification","services.testing.b6":"Handover training and maintenance support",
+      "services.iaq.title":"Indoor Air Quality Consultant","services.iaq.subtitle":"Occupant Health & Wellness","services.iaq.desc":"Comprehensive indoor air quality consulting to ensure healthy, compliant building environments with optimal ventilation and air filtration.",
+      "services.iaq.b1":"Indoor air quality assessments and testing","services.iaq.b2":"Ventilation system design and optimization","services.iaq.b3":"Air filtration and purification recommendations","services.iaq.b4":"Compliance with WELL and BEAM Plus IAQ standards","services.iaq.b5":"Ongoing monitoring and maintenance planning","services.iaq.b6":"Occupant health and productivity improvements",
+      "services.icxa.title":"iCxA (Independent Commissioning Authority)","services.icxa.subtitle":"Independent Commissioning Authority","services.icxa.desc":"Independent Commissioning Authority (iCxA) services ensuring building systems operate as designed, with comprehensive verification and oversight.",
+      "services.icxa.b1":"Independent commissioning authority certification and oversight","services.icxa.b2":"Verification of HVAC and ventilation system performance","services.icxa.b3":"Building automation system testing and optimization","services.icxa.b4":"Compliance with iCxA standards and building codes","services.icxa.b5":"Support for WELL, BEAM Plus, and LEED requirements","services.icxa.b6":"Ongoing monitoring and performance verification",
+      "comparison.title":"Certification Comparison","comparison.subtitle":"Choose the Right Certification for Your Building","comparison.desc":"Compare BEAM Plus, LEED, and WELL certifications to understand which standards best fit your building type, goals, and location.",
+      "comparison.feature":"Feature","comparison.beamplus":"BEAM Plus","comparison.leed":"LEED","comparison.well":"WELL",
+      "comparison.origin":"Origin","comparison.originBeam":"Hong Kong Green Building Council","comparison.originLeed":"U.S. Green Building Council","comparison.originWell":"International WELL Building Institute",
+      "comparison.focus":"Primary Focus","comparison.focusBeam":"Environmental performance & sustainability","comparison.focusLeed":"Environmental design & operations","comparison.focusWell":"Occupant health & wellness",
+      "comparison.geography":"Geographic Focus","comparison.geographyBeam":"Hong Kong & Asia-Pacific","comparison.geographyLeed":"Global (180+ countries)","comparison.geographyWell":"Global (100+ countries)",
+      "comparison.levels":"Certification Levels","comparison.levelsBeam":"Platinum, Gold, Silver, Bronze","comparison.levelsLeed":"Platinum, Gold, Silver, Certified","comparison.levelsWell":"Platinum, Gold, Silver",
+      "comparison.timeline":"Typical Timeline","comparison.timelineBeam":"6-12 months","comparison.timelineLeed":"8-18 months","comparison.timelineWell":"6-12 months",
+      "comparison.cost":"Typical Cost Range","comparison.costBeam":"HK$50K - HK$300K","comparison.costLeed":"HK$100K - HK$500K","comparison.costWell":"HK$80K - HK$400K",
+      "comparison.buildingTypes":"Best For","comparison.buildingTypesBeam":"Schools, commercial, offices, retail","comparison.buildingTypesLeed":"All building types globally","comparison.buildingTypesWell":"Offices, schools, residential, retail",
+      "comparison.keyBenefits":"Key Benefits","comparison.keyBenefitsBeam":"Local recognition, government incentives, energy savings, cost-effective","comparison.keyBenefitsLeed":"Global recognition, premium positioning, investor appeal, comprehensive","comparison.keyBenefitsWell":"Occupant health focus, wellness benefits, employee productivity, premium value",
+      "comparison.recommendation":"Recommendation","comparison.recommendationBeam":"Ideal for schools and local projects seeking government support and cost efficiency","comparison.recommendationLeed":"Best for international projects, premium positioning, and global market appeal","comparison.recommendationWell":"Perfect for organizations prioritizing employee health, wellness, and occupant experience",
+      "blog.title":"Insights & Resources","blog.desc":"Stay updated with the latest trends, insights, and best practices in green building certification and sustainability.",
+      "blog.post1.title":"Understanding BEAM Plus Certification: A Complete Guide for Hong Kong Schools","blog.post1.excerpt":"Learn how BEAM Plus certification can transform your school campus into a sustainable learning environment with improved air quality and reduced operating costs.","blog.post1.date":"March 15, 2026","blog.post1.category":"Certification",
+      "blog.post2.title":"LEED vs BEAM Plus vs WELL: Which Certification is Right for Your Building?","blog.post2.excerpt":"Comprehensive comparison of three major green building certifications to help you choose the best standard for your project's goals and timeline.","blog.post2.date":"March 8, 2026","blog.post2.category":"Comparison",
+      "blog.post3.title":"Energy Audits and Carbon Footprint Assessment: Reducing Operational Costs","blog.post3.excerpt":"Discover how comprehensive energy audits can identify cost-saving opportunities and help your building achieve sustainability goals while improving profitability.","blog.post3.date":"February 28, 2026","blog.post3.category":"Sustainability",
+      "contact.hero.tag":"Contact Us","contact.hero.title1":"Let's Start the","contact.hero.title2":"Conversation","contact.hero.desc":"Whether you have a specific project in mind or simply want to learn more about green building certification, we'd love to hear from you.",
+      "contact.form.title":"Send Us an Enquiry","contact.form.name":"Full Name","contact.form.namePlaceholder":"Your name","contact.form.email":"Email Address","contact.form.emailPlaceholder":"you@example.com","contact.form.phone":"Phone Number","contact.form.phonePlaceholder":"+852 XXXX XXXX","contact.form.org":"Organisation","contact.form.orgPlaceholder":"School or company name","contact.form.service":"Service of Interest","contact.form.serviceSelect":"Select a service","contact.form.serviceBeamSchool":"BEAM Plus for Schools","contact.form.serviceBeamCommercial":"BEAM Plus for Commercial Buildings","contact.form.serviceLeed":"LEED Certification","contact.form.serviceWell":"WELL Building Standard","contact.form.serviceMultiple":"Multiple / Not Sure","contact.form.message":"Message","contact.form.messagePlaceholder":"Tell us about your project or questions...","contact.form.submit":"Send Enquiry",
+      "contact.info.title":"Contact Information","contact.info.email":"Email","contact.info.whatsapp":"WhatsApp","contact.info.location":"Location","contact.info.locationValue":"Hong Kong","contact.info.hours":"Office Hours","contact.info.weekday":"Monday – Friday: 9:00 AM – 6:00 PM","contact.info.saturday":"Saturday: By appointment","contact.info.sunday":"Sunday & Public Holidays: Closed","contact.info.response":"Response Time","contact.info.responseDesc":"We aim to respond to all enquiries within one business day. For urgent matters, please indicate so in your message.",
+      "footer.desc":"Professional green building consulting for schools and commercial buildings in Hong Kong.","footer.quickLinks":"Quick Links","footer.certifications":"Certifications","footer.contact":"Contact","footer.rights":"All rights reserved."
+    },
+    zh: {
+      "nav.home":"首頁","nav.about":"關於我們","nav.services":"服務","nav.blog":"部落格","nav.comparison":"比較","nav.contact":"聯絡我們","nav.getInTouch":"聯絡我們",
+      "home.hero.tag":"綠色建築顧問 · 香港","home.hero.title1":"為香港建設","home.hero.title2":"可持續發展的","home.hero.title3":"綠色未來","home.hero.title4":"",
+      "home.hero.desc":"我們協助學校及商業建築取得 BEAM Plus、LEED 及 WELL 認證 — 讓可持續發展變得簡單輕鬆。",
+      "home.hero.services":"我們的服務","home.hero.contact":"聯絡我們",
+      "home.process.tag":"我們的流程","home.process.title":"清晰的認證路徑","home.process.desc":"我們處理所有複雜事務，讓您無需煩惱。我們成熟的四步流程讓綠色建築認證變得簡單直接。",
+      "home.process.step1.title":"評估","home.process.step1.desc":"我們評估您建築物的現有表現，並找出改善空間。",
+      "home.process.step2.title":"策略","home.process.step2.desc":"我們制定度身訂造的路線圖，高效達成您的目標認證級別。",
+      "home.process.step3.title":"實施","home.process.step3.desc":"我們全程管理，與承建商協調並處理所有文件。",
+      "home.process.step4.title":"認證","home.process.step4.desc":"我們提交申請並引導您完成最終審核，確保取得認證。",
+      "home.buildingTypes.title":"國際綠色建築標準","home.buildingTypes.subtitle":"BEAM Plus · LEED · WELL 綠色建築認證",
+      "home.buildingTypes.desc":"無論建築類型如何，我們都提供量身訂造的全面綠色建築認證服務。",
+      "home.buildingTypes.commercial":"商業建築","home.buildingTypes.offices":"辦公室","home.buildingTypes.schools":"綠色學校","home.buildingTypes.certifications":"BEAM Plus · LEED · WELL",
+      "home.services.tag":"我們的服務","home.services.title":"全面的綠色建築及環境服務","home.services.desc":"我們在六個主要服務領域提供全面的綠色建築解決方案",
+      "home.services.energy.title":"能源及碳審計","home.services.energy.desc":"全面的能源及碳審計、生命週期評估及碳足跡顧問服務，減少排放及營運成本。",
+      "home.services.environmental.title":"環境評估","home.services.environmental.desc":"環境評估研究、監測及審計服務，涵蓋噪音、空氣質素、水質及廢物管理。",
+      "home.services.greenCert.title":"綠色建築認證","home.services.greenCert.desc":"為學校、商業建築及綜合用途發展項目提供 BEAM Plus、LEED 及 WELL 認證的全程顧問服務。",
+      "home.services.tc.title":"測試及調試","home.services.tc.desc":"機電系統的測試及調試，包括空調、通風、電氣、照明及管道裝置。",
+      "home.services.acoustic.title":"聲學顧問","home.services.acoustic.desc":"專業聲學評估及設計顧問服務，確保建築物的最佳聲音控制、噪音減少及聲學舒適度。",
+      "home.services.iaq.title":"室內空氣質素顧問及獨立調試認證","home.services.iaq.desc":"獨立調試認證 (iCxA) 服務及全面的室內空氣質素顧問，確保健康、合規的建築環境。",
+      "home.services.viewAll":"查看所有服務",
+      "home.projects.tag":"精選項目經驗","home.projects.title":"我們團隊曾參與的項目","home.projects.desc":"在創立 Avenor Consultants 之前，我們的團隊曾參與香港教育及商業領域的多個綠色建築認證項目。",
+      "home.projects.p1.title":"阿波羅 36樓 交易廣場","home.projects.p1.type":"辦公大樓","home.projects.p1.desc":"室內裝修。採用最佳建築實踐（室內空氣質素、廢物、安全管理）。BEAM Plus 室內 V1.0 白金級（2023）。",
+      "home.projects.p2.title":"瑞銀集團朱利葉斯貝爾公司","home.projects.p2.type":"辦公大樓","home.projects.p2.desc":"辦公空間。融合以人為中心的照明設計和熱舒適度。LEED V4 ID+C 商業室內白金級（2023）。",
+      "home.projects.p3.title":"安盛綠地 32","home.projects.p3.type":"辦公大樓","home.projects.p3.desc":"辦公空間。改善室內空氣質素、優化用水和能源使用、可持續材料。WELL V2 白金級（2023）。",
+      "home.projects.p4.title":"怡和大廈基地 2&3","home.projects.p4.type":"辦公大樓","home.projects.p4.desc":"食品空間。BEAM Plus 室內 V2.0 白金級；LEED V4 ID+C 零售白金級；WELL V2 核心白金級（2025）。",
+      "home.projects.p5.title":"嶺南大學 LBY G01 & G02","home.projects.p5.type":"教育機構建築","home.projects.p5.desc":"講堂。BEAM Plus 室內 V2.0 金級（2025）。",
+      "home.projects.p6.title":"未來建築中心 BEAM 白金級","home.projects.p6.type":"教育機構建築","home.projects.p6.desc":"工作空間。BEAM Plus 室內 V2.0 白金級（2025）。",
+      "home.projects.p7.title":"塵肺病補償基金委員會","home.projects.p7.type":"辦公大樓","home.projects.p7.desc":"辦公空間。BEAM Plus 室內 V2.0 白金級（2025）。",
+      "home.projects.p8.title":"中華電力總部","home.projects.p8.type":"辦公大樓","home.projects.p8.desc":"整棟建築。BEAM Plus 新建築 V2.0 白金級；LEED V4 BD+C 白金級；WELL V2 白金級（2025）。",
+      "home.projects.p9.title":"OCBC 東角中心 L1 L10","home.projects.p9.type":"辦公大樓","home.projects.p9.desc":"零售及辦公空間。LEED V4 ID+C 商業室內金級（2025）。",
+      "home.projects.p10.title":"菲利普莫里斯國際辦公室","home.projects.p10.type":"辦公大樓","home.projects.p10.desc":"辦公空間。LEED V4 ID+C 商業室內白金級；WELL V2 白金級（2025）。",
+      "home.cta.title":"準備好讓您的建築更環保嗎？","home.cta.desc":"無論您是希望改善校園的學校，還是尋求認證的物業業主，我們都樂意協助。讓我們開始對話。","home.cta.button":"立即聯絡我們",
+      "about.hero.tag":"關於我們","about.hero.title1":"致力於","about.hero.title2":"更綠色的香港","about.hero.desc":"Avenor Consultants Ltd. 成立的使命明確：讓香港的學校及商業建築能夠輕鬆、經濟且無壓力地取得綠色建築認證。",
+      "about.story.tag":"我們的故事","about.story.title":"源於對更好建築的熱忱",
+      "about.story.p1":"香港的建築物佔全港總用電量超過60%，碳排放量約佔90%。這些數字背後是真實的人 — 在通風不良的教室學習的學生、在刺眼日光燈下工作的辦公室員工，以及面對不斷上升電費的業主。",
+      "about.story.p2":"Avenor Consultants 的成立旨在彌合可持續發展目標與實際行動之間的差距。我們看到許多學校和業主希望走向綠色，但發現認證過程令人卻步、昂貴或令人困惑。",
+      "about.story.p3":"我們的方法與眾不同。我們簡化流程、處理技術複雜性，並幫助客戶獲取可用的補貼和優惠 — 讓綠色轉型成為一項自負盈虧的投資。",
+      "about.values.tag":"我們的價值觀","about.values.guidesTitle":"指導我們工作的原則",
+      "about.values.v1.titleAlt":"以成果為導向","about.values.v1.descAlt":"我們以您的認證結果來衡量成功。我們的每項建議都基於切實可行的步驟。",
+      "about.values.v2.titleAlt":"透明度","about.values.v2.descAlt":"沒有隱藏費用，沒有不必要的複雜性。我們在認證旅程的每個階段都讓您了解最新進展。",
+      "about.values.v3.titleAlt":"真正的影響","about.values.v3.descAlt":"我們相信可持續發展應首先惠及人們 — 為我們服務的社區帶來更健康的空氣、更好的照明和更低的成本。",
+      "about.expertise.tag":"專業範疇","about.expertise.specialise":"我們專長的認證",
+      "about.expertise.beam.title":"BEAM Plus","about.expertise.beam.desc":"香港本地的綠色建築評估工具，涵蓋新建築、現有建築、室內裝修及社區發展。",
+      "about.expertise.leed.title":"LEED","about.expertise.leed.desc":"全球最廣泛使用的綠色建築評級系統，在180多個國家獲認可，用於可持續設計及建造。",
+      "about.expertise.well.title":"WELL","about.expertise.well.desc":"一個以表現為基礎的系統，用於衡量及認證影響人類健康與福祉的建築特徵。",
+      "about.cta.title":"讓我們攜手合作","about.cta.desc":"無論您是首次探索認證，還是尋找合作夥伴來管理流程，我們都期待與您交流。",
+      "services.tag":"我們的服務","services.title":"涵蓋每項認證的專業指導","services.desc":"從本地 BEAM Plus 到國際 LEED 及 WELL 標準，我們為學校及商業建築提供全程顧問服務。",
+      "services.enquire":"立即查詢","services.cta.title":"不確定哪項認證適合您？","services.cta.desc":"每棟建築都不同。我們會根據您的目標、預算及時間表，協助您找出最合適的認證途徑。","services.cta.button":"預約免費諮詢",
+      "services.beam.schools.title":"BEAM Plus 學校認證","services.beam.schools.subtitle":"綠色學校認證","services.beam.schools.desc":"將您的校園轉化為認證綠色學習環境。我們引導學校完成整個 BEAM Plus 認證流程，從初步評估到最終認證。",
+      "services.beam.schools.b1":"改善學生的室內空氣質素及自然採光","services.beam.schools.b2":"減少能源及用水量，降低營運成本","services.beam.schools.b3":"提升學校聲譽及公眾認可","services.beam.schools.b4":"獲取政府補貼及公用事業優惠","services.beam.schools.b5":"更健康、更高效的學習環境","services.beam.schools.b6":"過程中對教學零干擾",
+      "services.greencert.title":"BEAM Plus · LEED · WELL 綠色建築認證","services.greencert.subtitle":"國際綠色建築標準","services.greencert.desc":"通過我們的全面顧問服務取得多項國際認證。我們引導您取得本地認可的 BEAM Plus、全球標準的 LEED 及重視使用者健康的 WELL。",
+      "services.greencert.b1":"三重認證途徑以獲得最大市場優勢","services.greencert.b2":"在180多個國家獲國際認可的認證","services.greencert.b3":"提升物業價值及租戶吸引力","services.greencert.b4":"全面評估涵蓋能源、水資源、材料及福祉","services.greencert.b5":"靈活的認證級別及度身訂造的途徑","services.greencert.b6":"符合您的可持續發展及 ESG 報告目標",
+      "services.energy.title":"能源及碳審計 / 生命週期評估","services.energy.subtitle":"能源效率及碳減排","services.energy.desc":"全面的能源及碳審計、生命週期評估及碳足跡顧問服務，減少排放及營運成本。",
+      "services.energy.b1":"詳細的能源消耗分析及基準設定","services.energy.b2":"碳足跡評估及減排策略","services.energy.b3":"生命週期評估以選擇可持續材料","services.energy.b4":"通過效率改進降低營運成本","services.energy.b5":"符合能源法規及 ESG 標準","services.energy.b6":"可再生能源整合建議",
+      "services.environmental.title":"環境評估及監測","services.environmental.subtitle":"環境合規及保護","services.environmental.desc":"環境評估研究、監測及審計服務，涵蓋噪音、空氣質素、水質及廢物管理。",
+      "services.environmental.b1":"全面的噪音及振動評估","services.environmental.b2":"空氣質素監測及污染控制","services.environmental.b3":"水質測試及廢水管理","services.environmental.b4":"廢物管理規劃及優化","services.environmental.b5":"新項目的環境影響評估","services.environmental.b6":"監管合規及報告支持",
+      "services.testing.title":"測試及調試","services.testing.subtitle":"機電系統驗證","services.testing.desc":"機電系統的測試及調試，包括空調、通風、電氣、照明及管道裝置。",
+      "services.testing.b1":"全面的空調系統測試及平衡","services.testing.b2":"電氣及照明系統驗證","services.testing.b3":"管道及水系統調試","services.testing.b4":"性能優化及效率調整","services.testing.b5":"文件編制及合規認證","services.testing.b6":"交接培訓及維護支持",
+      "services.iaq.title":"室內空氣質素顧問","services.iaq.subtitle":"使用者健康及福祉","services.iaq.desc":"全面的室內空氣質素顧問，確保健康、合規的建築環境，具有最佳通風及空氣過濾。",
+      "services.iaq.b1":"室內空氣質素評估及測試","services.iaq.b2":"通風系統設計及優化","services.iaq.b3":"空氣過濾及淨化建議","services.iaq.b4":"符合 WELL 及 BEAM Plus 室內空氣質素標準","services.iaq.b5":"持續監測及維護規劃","services.iaq.b6":"改善使用者健康及生產力",
+      "services.icxa.title":"iCxA（獨立調試認證）","services.icxa.subtitle":"獨立調試認證","services.icxa.desc":"獨立調試認證 (iCxA) 服務，確保建築系統按設計運作，提供全面驗證及監督。",
+      "services.icxa.b1":"獨立調試認證及監督","services.icxa.b2":"驗證空調及通風系統表現","services.icxa.b3":"建築自動化系統測試及優化","services.icxa.b4":"符合 iCxA 標準及建築法規","services.icxa.b5":"支持 WELL、BEAM Plus 及 LEED 要求","services.icxa.b6":"持續監測及性能驗證",
+      "comparison.title":"認證對比","comparison.subtitle":"為您的建築選擇合適的認證","comparison.desc":"比較 BEAM Plus、LEED 及 WELL 認證，了解哪些標準最適合您的建築類型、目標及地點。",
+      "comparison.feature":"功能","comparison.beamplus":"BEAM Plus","comparison.leed":"LEED","comparison.well":"WELL",
+      "comparison.origin":"起源","comparison.originBeam":"香港綠色建築議會","comparison.originLeed":"美國綠色建築委員會","comparison.originWell":"國際WELL建築協會",
+      "comparison.focus":"主要焦點","comparison.focusBeam":"環境表現及可持續性","comparison.focusLeed":"環保設計及運營","comparison.focusWell":"使用者健康及福祉",
+      "comparison.geography":"地理焦點","comparison.geographyBeam":"香港及亞太地區","comparison.geographyLeed":"全球 (180+ 國家)","comparison.geographyWell":"全球 (100+ 國家)",
+      "comparison.levels":"認證級別","comparison.levelsBeam":"白金、黃金、白銀、銅牌","comparison.levelsLeed":"白金、黃金、白銀、認證","comparison.levelsWell":"白金、黃金、白銀",
+      "comparison.timeline":"典型時間表","comparison.timelineBeam":"6-12 個月","comparison.timelineLeed":"8-18 個月","comparison.timelineWell":"6-12 個月",
+      "comparison.cost":"典型成本範圍","comparison.costBeam":"HK$50K - HK$300K","comparison.costLeed":"HK$100K - HK$500K","comparison.costWell":"HK$80K - HK$400K",
+      "comparison.buildingTypes":"最適用於","comparison.buildingTypesBeam":"學校、商業、辦公室、零售","comparison.buildingTypesLeed":"全球所有建築類型","comparison.buildingTypesWell":"辦公室、學校、住宅、零售",
+      "comparison.keyBenefits":"主要優勢","comparison.keyBenefitsBeam":"本地認可、政府獎勵、節能、成本效益","comparison.keyBenefitsLeed":"全球認可、優質定位、投資者吸引力、全面","comparison.keyBenefitsWell":"使用者健康焦點、福祉優勢、員工生產力、優質價值",
+      "comparison.recommendation":"建議","comparison.recommendationBeam":"適合尋求政府支持和成本效益的學校及本地項目","comparison.recommendationLeed":"最適合國際項目、優質定位及全球市場吸引力","comparison.recommendationWell":"完美適合優先考慮員工健康、福祉及使用者體驗的機構",
+      "blog.title":"洞察與資源","blog.desc":"了解綠色建築認證及可持續發展的最新趨勢、洞察及最佳實踐。",
+      "blog.post1.title":"了解 BEAM Plus 認證：香港學校完整指南","blog.post1.excerpt":"了解 BEAM Plus 認證如何將您的學校校園轉變為可持續發展的學習環境，改善空氣質素並降低營運成本。","blog.post1.date":"2026 年 3 月 15 日","blog.post1.category":"認證",
+      "blog.post2.title":"LEED vs BEAM Plus vs WELL：哪個認證適合您的建築？","blog.post2.excerpt":"三大綠色建築認證的全面比較，幫助您為項目目標和時間表選擇最佳標準。","blog.post2.date":"2026 年 3 月 8 日","blog.post2.category":"比較",
+      "blog.post3.title":"能源審計和碳足跡評估：降低營運成本","blog.post3.excerpt":"了解全面的能源審計如何識別成本節省機會，幫助您的建築實現可持續發展目標並提高盈利能力。","blog.post3.date":"2026 年 2 月 28 日","blog.post3.category":"可持續發展",
+      "contact.hero.tag":"聯絡我們","contact.hero.title1":"讓我們開始","contact.hero.title2":"對話","contact.hero.desc":"無論您有具體的項目計劃，還是只想了解更多綠色建築認證資訊，我們都樂意與您交流。",
+      "contact.form.title":"發送查詢","contact.form.name":"姓名","contact.form.namePlaceholder":"您的姓名","contact.form.email":"電郵地址","contact.form.emailPlaceholder":"you@example.com","contact.form.phone":"電話號碼","contact.form.phonePlaceholder":"+852 XXXX XXXX","contact.form.org":"機構名稱","contact.form.orgPlaceholder":"學校或公司名稱","contact.form.service":"感興趣的服務","contact.form.serviceSelect":"選擇服務","contact.form.serviceBeamSchool":"BEAM Plus 學校認證","contact.form.serviceBeamCommercial":"BEAM Plus 商業建築認證","contact.form.serviceLeed":"LEED 認證","contact.form.serviceWell":"WELL 建築標準","contact.form.serviceMultiple":"多項 / 未確定","contact.form.message":"訊息","contact.form.messagePlaceholder":"請告訴我們您的項目或問題...","contact.form.submit":"發送查詢",
+      "contact.info.title":"聯絡資訊","contact.info.email":"電郵","contact.info.whatsapp":"WhatsApp","contact.info.location":"地點","contact.info.locationValue":"香港","contact.info.hours":"辦公時間","contact.info.weekday":"星期一至五：上午9:00 – 下午6:00","contact.info.saturday":"星期六：預約制","contact.info.sunday":"星期日及公眾假期：休息","contact.info.response":"回覆時間","contact.info.responseDesc":"我們致力於在一個工作天內回覆所有查詢。如有緊急事項，請在訊息中註明。",
+      "footer.desc":"為香港學校及商業建築提供專業綠色建築顧問服務。","footer.quickLinks":"快速連結","footer.certifications":"認證服務","footer.contact":"聯絡","footer.rights":"版權所有。"
     }
+  };
 
-    // Form submit
-    function handleSubmit(e) {
-      e.preventDefault();
-      const btn = e.target.querySelector('.btn-submit');
-      btn.textContent = '✓ Message Sent!';
-      btn.style.background = '#2d6a4f';
-      setTimeout(() => {
-        btn.textContent = 'Send Message →';
-        btn.style.background = '';
-        e.target.reset();
-      }, 3000);
-    }
+  /* ════════ STATE ════════ */
+  let lang = 'en';
+  let currentPage = 'home';
 
-    // Scroll reveal
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.process-step, .service-card, .project-card, .stat').forEach(el => {
-      el.classList.add('reveal');
-      observer.observe(el);
+  /* ════════ NAV ════════ */
+  function navigate(page) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById('page-' + page).classList.add('active');
+    document.querySelectorAll('.nav-links a[data-page]').forEach(a => {
+      a.classList.toggle('active', a.dataset.page === page);
     });
+    currentPage = page;
+    window.scrollTo(0,0);
+    setTimeout(initReveal, 100);
+  }
+
+  function toggleMobile() {
+    document.getElementById('navMobile').classList.toggle('open');
+  }
+
+  /* ════════ LANGUAGE ════════ */
+  function toggleLang() {
+    lang = lang === 'en' ? 'zh' : 'en';
+    document.getElementById('langBtn').textContent = lang === 'en' ? '🌐 中文' : '🌐 EN';
+    applyTranslations();
+  }
+
+  function tr(key) {
+    return (t[lang] && t[lang][key]) || (t.en[key]) || key;
+  }
+
+  function applyTranslations() {
+    document.querySelectorAll('[data-t]').forEach(el => {
+      const key = el.getAttribute('data-t');
+      if (key) el.textContent = tr(key);
+    });
+    document.querySelectorAll('[data-ph]').forEach(el => {
+      const key = el.getAttribute('data-ph');
+      if (key) el.placeholder = tr(key);
+    });
+  }
+
+  /* ════════ SCROLL REVEAL ════════ */
+  function initReveal() {
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if(e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }});
+    }, { threshold: 0.08 });
+    document.querySelectorAll('#page-' + currentPage + ' .reveal').forEach(el => {
+      if (!el.classList.contains('visible')) obs.observe(el);
+    });
+  }
+
+  /* ════════ COMPARISON TABS ════════ */
+  function switchTab(id, btn) {
+    document.querySelectorAll('.comp-tab').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.comp-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('tab-' + id).classList.add('active');
+  }
+
+  /* ════════ CONTACT FORM ════════ */
+  function handleContact(e) {
+    e.preventDefault();
+    const btn = document.getElementById('contactBtn');
+    btn.textContent = '✓ ' + tr('contact.form.submit');
+    btn.style.background = 'var(--green-sage)';
+    setTimeout(() => { btn.textContent = tr('contact.form.submit'); btn.style.background = ''; e.target.reset(); }, 3000);
+  }
+
+  /* ════════ INIT ════════ */
+  applyTranslations();
+  initReveal();
   </script>
 </body>
 </html>
