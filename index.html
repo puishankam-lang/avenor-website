@@ -107,12 +107,7 @@
     .cert-pill { font-size:var(--xs); letter-spacing:var(--ls-label); text-transform:uppercase; color:var(--text-muted); padding:.3rem .9rem; border:1px solid var(--border); border-radius:1px; }
 
     /* ═══ STATS ═══ */
-    .stats-bar { background:var(--gold); }
-    .stats-inner { display:grid; grid-template-columns:repeat(4,1fr); max-width:1280px; margin:auto; }
-    .stat-item { padding:2.2rem 2rem; text-align:center; border-right:1px solid rgba(13,31,23,.15); }
-    .stat-item:last-child { border-right:none; }
-    .stat-num { font-family:'Cormorant Garamond',serif; font-size:2.8rem; color:var(--forest); line-height:1; letter-spacing:var(--ls-display); }
-    .stat-lbl { font-size:var(--xs); color:var(--forest); opacity:.6; letter-spacing:var(--ls-label); text-transform:uppercase; margin-top:.4rem; }
+
 
     /* ═══ HOME PROCESS ═══ */
     .process-bg { background:var(--green-dark); }
@@ -321,23 +316,23 @@
       <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663419719601/NdwjjiPRHbUkh95Lk8zgQg/logo-serif-final-1-XHhBsyoh8UzD6ssoLsGZ4U.png" alt="Avenor Consultants Ltd." />
     </a>
     <div class="nav-links">
-      <a onclick="navigate('home')" data-page="home">Home</a>
-      <a onclick="navigate('about')" data-page="about">About</a>
-      <a onclick="navigate('services')" data-page="services">Services</a>
-      <a onclick="navigate('blog')" data-page="blog">Blog</a>
-      <a onclick="navigate('comparison')" data-page="comparison">Comparison</a>
-      <a onclick="navigate('contact')" data-page="contact">Contact</a>
+      <a onclick="navigate('home')" data-page="home" data-t="nav.home">Home</a>
+      <a onclick="navigate('about')" data-page="about" data-t="nav.about">About</a>
+      <a onclick="navigate('services')" data-page="services" data-t="nav.services">Services</a>
+      <a onclick="navigate('blog')" data-page="blog" data-t="nav.blog">Blog</a>
+      <a onclick="navigate('comparison')" data-page="comparison" data-t="nav.comparison">Comparison</a>
+      <a onclick="navigate('contact')" data-page="contact" data-t="nav.contact">Contact</a>
       <button class="nav-lang" onclick="toggleLang()" id="langBtn">🌐 中文</button>
-      <a onclick="navigate('contact')" class="nav-cta">Get in Touch</a>
+      <a onclick="navigate('contact')" class="nav-cta" data-t="nav.getInTouch">Get in Touch</a>
     </div>
     <button class="nav-toggle" onclick="toggleMobile()">☰</button>
   </nav>
   <div class="nav-mobile" id="navMobile">
-    <a onclick="navigate('home');toggleMobile()">Home</a>
-    <a onclick="navigate('about');toggleMobile()">About</a>
-    <a onclick="navigate('services');toggleMobile()">Services</a>
-    <a onclick="navigate('blog');toggleMobile()">Blog</a>
-    <a onclick="navigate('comparison');toggleMobile()">Comparison</a>
+    <a onclick="navigate('home');toggleMobile()" data-t="nav.home">Home</a>
+    <a onclick="navigate('about');toggleMobile()" data-t="nav.about">About</a>
+    <a onclick="navigate('services');toggleMobile()" data-t="nav.services">Services</a>
+    <a onclick="navigate('blog');toggleMobile()" data-t="nav.blog">Blog</a>
+    <a onclick="navigate('comparison');toggleMobile()" data-t="nav.comparison">Comparison</a>
     <a onclick="navigate('contact');toggleMobile()">Contact</a>
   </div>
 
@@ -375,15 +370,7 @@
       </div>
     </section>
 
-    <!-- Stats -->
-    <div class="stats-bar">
-      <div class="stats-inner">
-        <div class="stat-item reveal"><div class="stat-num">10+</div><div class="stat-lbl" data-t="">Projects Delivered</div></div>
-        <div class="stat-item reveal d1"><div class="stat-num">3</div><div class="stat-lbl">Certification Types</div></div>
-        <div class="stat-item reveal d2"><div class="stat-num">100%</div><div class="stat-lbl">Platinum Success Rate</div></div>
-        <div class="stat-item reveal d3"><div class="stat-num">HK</div><div class="stat-lbl">Local Expertise</div></div>
-      </div>
-    </div>
+
 
     <!-- Process -->
     <section class="section process-bg">
@@ -757,7 +744,7 @@
   <div class="page" id="page-comparison">
     <section class="comp-hero">
       <div class="wrap">
-        <div class="eyebrow"><div class="eyebrow-line" style="width:30px"></div><span>Certification Comparison</span></div>
+        <div class="eyebrow"><div class="eyebrow-line" style="width:30px"></div><span data-t="comparison.title">Certification Comparison</span></div>
         <h1 class="section-title light" style="font-size:clamp(2.5rem,5vw,4rem)" data-t="comparison.subtitle">Choose the Right Certification</h1>
         <p class="section-desc light" style="margin-top:1rem" data-t="comparison.desc">Compare BEAM Plus, LEED, and WELL certifications to understand which standards best fit your building.</p>
       </div>
@@ -804,7 +791,7 @@
         </div>
       </div>
     </section>
-    <section class="cta-band"><h2>Not Sure Which Is Right for You?</h2><p>Our expert consultants can help you identify the most suitable certification pathway.</p><button class="btn-gold" onclick="navigate('contact')">Book a Free Consultation</button></section>
+    <section class="cta-band"><h2 data-t="services.cta.title">Not Sure Which Is Right for You?</h2><p data-t="services.cta.desc">Our expert consultants can help you identify the most suitable certification pathway.</p><button class="btn-gold" onclick="navigate('contact')" data-t="services.cta.button">Book a Free Consultation</button></section>
     <footer class="footer"><div class="footer-grid"><div class="footer-brand"><img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663419719601/NdwjjiPRHbUkh95Lk8zgQg/logo-serif-final-1-XHhBsyoh8UzD6ssoLsGZ4U.png" alt="Avenor"/><p data-t="footer.desc">Professional green building consulting.</p></div><div class="footer-col"><strong data-t="footer.quickLinks">Quick Links</strong><a onclick="navigate('home')">Home</a><a onclick="navigate('about')">About</a><a onclick="navigate('services')">Services</a><a onclick="navigate('contact')">Contact</a></div><div class="footer-col"><strong data-t="footer.certifications">Certifications</strong><a onclick="navigate('services')">BEAM Plus</a><a onclick="navigate('services')">LEED</a><a onclick="navigate('services')">WELL</a></div><div class="footer-col"><strong data-t="footer.contact">Contact</strong><a href="mailto:info@avenorconsultantsltd.com">info@avenorconsultantsltd.com</a></div></div><div class="footer-bottom"><p>© 2026 Avenor Consultants Ltd.</p></div></footer>
   </div>
 
@@ -814,7 +801,7 @@
   <div class="page" id="page-blog">
     <section class="blog-hero">
       <div class="wrap">
-        <div class="eyebrow"><div class="eyebrow-line" style="width:30px"></div><span>Insights & Resources</span></div>
+        <div class="eyebrow"><div class="eyebrow-line" style="width:30px"></div><span data-t="blog.title">Insights & Resources</span></div>
         <h1 class="section-title light" style="font-size:clamp(2.5rem,5vw,4rem)" data-t="blog.title">Insights & Resources</h1>
         <p class="section-desc light" style="margin-top:1rem" data-t="blog.desc">Stay updated with the latest trends and best practices in green building certification.</p>
       </div>
@@ -849,7 +836,7 @@
         </div>
       </div>
     </section>
-    <section class="cta-band"><h2>Ready to Get Started?</h2><p>Contact us today to discuss your green building certification needs.</p><button class="btn-gold" onclick="navigate('contact')">Book a Free Consultation</button></section>
+    <section class="cta-band"><h2 data-t="home.cta.title">Ready to Get Started?</h2><p data-t="home.cta.desc">Contact us today to discuss your green building certification needs.</p><button class="btn-gold" onclick="navigate('contact')" data-t="services.cta.button">Book a Free Consultation</button></section>
     <footer class="footer"><div class="footer-grid"><div class="footer-brand"><img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663419719601/NdwjjiPRHbUkh95Lk8zgQg/logo-serif-final-1-XHhBsyoh8UzD6ssoLsGZ4U.png" alt="Avenor"/><p data-t="footer.desc">Professional green building consulting.</p></div><div class="footer-col"><strong data-t="footer.quickLinks">Quick Links</strong><a onclick="navigate('home')">Home</a><a onclick="navigate('about')">About</a><a onclick="navigate('services')">Services</a><a onclick="navigate('contact')">Contact</a></div><div class="footer-col"><strong data-t="footer.certifications">Certifications</strong><a onclick="navigate('services')">BEAM Plus</a><a onclick="navigate('services')">LEED</a><a onclick="navigate('services')">WELL</a></div><div class="footer-col"><strong data-t="footer.contact">Contact</strong><a href="mailto:info@avenorconsultantsltd.com">info@avenorconsultantsltd.com</a></div></div><div class="footer-bottom"><p>© 2026 Avenor Consultants Ltd.</p></div></footer>
   </div>
 
