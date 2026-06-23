@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Avenor Consultants Ltd. — Green Building Certification Hong Kong</title>
+  <meta name="description" content="Hong Kong's trusted green building consultants. BEAM Plus, LEED, and WELL certification specialists for schools and commercial buildings." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <a href="/" class="nav-logo">
+      <span class="logo-text">Avenor</span>
+      <span class="logo-sub">Consultants Ltd.</span>
+    </a>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact" class="nav-cta">Get in Touch</a>
+    </div>
+    <button class="nav-toggle" onclick="toggleMenu()">☰</button>
+  </nav>
+  <div class="nav-mobile" id="navMobile">
+    <a href="#about" onclick="toggleMenu()">About</a>
+    <a href="#services" onclick="toggleMenu()">Services</a>
+    <a href="#projects" onclick="toggleMenu()">Projects</a>
+    <a href="#contact" onclick="toggleMenu()">Contact</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <div class="hero-badge">Green Building Consultants · Hong Kong</div>
+      <h1 class="hero-title">Building a<br/><em>Sustainable Future</em><br/>for Hong Kong</h1>
+      <p class="hero-sub">We help schools and commercial buildings achieve BEAM Plus, LEED, and WELL certifications — making sustainability simple and stress-free.</p>
+      <div class="hero-actions">
+        <a href="#services" class="btn-primary">Our Services</a>
+        <a href="#contact" class="btn-outline">Get in Touch</a>
+      </div>
+      <div class="hero-certs">
+        <span>BEAM Plus</span>
+        <span class="divider">·</span>
+        <span>LEED</span>
+        <span class="divider">·</span>
+        <span>WELL</span>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="stats">
+    <div class="container">
+      <div class="stat">
+        <div class="stat-num">10+</div>
+        <div class="stat-label">Projects Delivered</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">3</div>
+        <div class="stat-label">Certification Types</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">100%</div>
+        <div class="stat-label">Platinum Ratio</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">HK</div>
+        <div class="stat-label">Local Expertise</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="container">
+      <div class="section-label">Who We Are</div>
+      <h2 class="section-title">A Clear Path<br/>to Certification</h2>
+      <p class="section-desc">We handle the complexity so you don't have to. Our proven process makes achieving green building certification straightforward — from initial assessment to final approval.</p>
+      <div class="process-grid">
+        <div class="process-step">
+          <div class="step-num">01</div>
+          <h3>Assessment</h3>
+          <p>We evaluate your building's current performance and identify opportunities for improvement.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-num">02</div>
+          <h3>Strategy</h3>
+          <p>We develop a tailored roadmap to achieve your target certification level efficiently.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-num">03</div>
+          <h3>Implementation</h3>
+          <p>We manage the process end-to-end, coordinating with contractors and handling all documentation.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-num">04</div>
+          <h3>Certification</h3>
+          <p>We submit your application and guide you through the final review to secure your certification.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services" id="services">
+    <div class="container">
+      <div class="section-label">What We Do</div>
+      <h2 class="section-title">International Green<br/>Building Standards</h2>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">🏢</div>
+          <h3>BEAM Plus</h3>
+          <p>Hong Kong's local green building standard. We handle New Buildings, Existing Buildings, and Interior certifications across all rating levels.</p>
+          <ul>
+            <li>New Buildings V2.0</li>
+            <li>Interior V1.0 & V2.0</li>
+            <li>All rating levels</li>
+          </ul>
+        </div>
+        <div class="service-card featured">
+          <div class="service-badge">Most Popular</div>
+          <div class="service-icon">🌿</div>
+          <h3>LEED</h3>
+          <p>The world's most widely used green building rating system. We specialise in BD+C, ID+C, and O+M certifications.</p>
+          <ul>
+            <li>BD+C New Construction</li>
+            <li>ID+C Commercial Interiors</li>
+            <li>ID+C Retail</li>
+          </ul>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">✨</div>
+          <h3>WELL</h3>
+          <p>The leading tool for advancing health and human wellbeing in buildings. We guide you through WELL V2 certification.</p>
+          <ul>
+            <li>WELL V2 Core</li>
+            <li>WELL V2 Full</li>
+            <li>Human-centric design</li>
+          </ul>
+        </div>
+      </div>
+      <div class="building-types">
+        <div class="btype">Commercial Buildings</div>
+        <div class="btype">Offices & Fit-outs</div>
+        <div class="btype">Schools & Education</div>
+        <div class="btype">Retail Spaces</div>
+        <div class="btype">Data Centres</div>
+        <div class="btype">Institutional</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="projects" id="projects">
+    <div class="container">
+      <div class="section-label">Track Record</div>
+      <h2 class="section-title">Projects Our Team<br/>Has Delivered</h2>
+      <p class="section-desc">Before founding Avenor Consultants, our team has delivered green building certifications across Hong Kong's education and commercial sectors.</p>
+      <div class="projects-grid">
+
+        <div class="project-card">
+          <div class="project-meta">
+            <span class="project-year">2025</span>
+            <span class="project-type">Office</span>
+          </div>
+          <h3>CLP Headquarters</h3>
+          <p>Whole Building. BEAM Plus New Buildings V2.0 Platinum · LEED V4 BD+C Platinum · WELL V2 Platinum.</p>
+          <div class="project-tags">
+            <span class="tag platinum">BEAM Plus Platinum</span>
+            <span class="tag platinum">LEED Platinum</span>
+            <span class="tag platinum">WELL Platinum</span>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-meta">
+            <span class="project-year">2025</span>
+            <span class="project-type">Food Space</span>
+          </div>
+          <h3>Jardine House Basehall 2&3</h3>
+          <p>BEAM Plus Interior V2.0 Platinum · LEED V4 ID+C Retail Platinum · WELL V2 Core Platinum.</p>
+          <div class="project-tags">
+            <span class="tag platinum">BEAM Plus Platinum</span>
+            <span class="tag platinum">LEED Platinum</span>
+            <span class="tag platinum">WELL Platinum</span>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-meta">
+            <span class="project-year">2025</span>
+            <span class="project-type">Office</span>
+          </div>
+          <h3>Philip Morris International</h3>
+          <p>Office Space. LEED V4 ID+C Commercial Interiors Platinum · WELL V2 Platinum.</p>
+          <div class="project-tags">
+            <span class="tag platinum">LEED Platinum</span>
+            <span class="tag platinum">WELL Platinum</span>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-meta">
+            <span class="project-year">2025</span>
+            <span class="project-type">Institutional</span>
+          </div>
+          <h3>Centre for Future Construction</h3>
+          <p>Work Space. BEAM Plus Interior V2.0 Platinum.</p>
+          <div class="project-tags">
+            <span class="tag platinum">BEAM Plus Platinum</span>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-meta">
+            <span class="project-year">2025</span>
+            <span class="project-type">Institutional</span>
+          </div>
+          <h3>Lingnan University LBY G01 & G02</h3>
+          <p>Lecture Theatre. BEAM Plus Interior V2.0 Gold.</p>
+          <div class="project-tags">
+            <span class="tag gold">BEAM Plus Gold</span>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-meta">
+            <span class="project-year">2025</span>
+            <span class="project-type">Office</span>
+          </div>
+          <h3>OCBC at L1 L10 ECP</h3>
+          <p>Retail & Office. LEED V4 ID+C Commercial Interiors Gold.</p>
+          <div class="project-tags">
+            <span class="tag gold">LEED Gold</span>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-meta">
+            <span class="project-year">2023</span>
+            <span class="project-type">Office</span>
+          </div>
+          <h3>Bank Julius Baer & Co Ltd</h3>
+          <p>Office Space. Human-centric lighting and thermal comfort design. LEED V4 ID+C Platinum.</p>
+          <div class="project-tags">
+            <span class="tag platinum">LEED Platinum</span>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-meta">
+            <span class="project-year">2023</span>
+            <span class="project-type">Office</span>
+          </div>
+          <h3>Apollo 36/F One Exchange Square</h3>
+          <p>Interior Fit-out. IAQ, waste and safety management. BEAM Plus Interior V1.0 Platinum.</p>
+          <div class="project-tags">
+            <span class="tag platinum">BEAM Plus Platinum</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="container">
+      <h2>Ready to Make Your<br/>Building Greener?</h2>
+      <p>Whether you're a school looking to improve your campus or a property owner seeking certification, we're here to help.</p>
+      <a href="#contact" class="btn-primary-lg">Start the Conversation</a>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="section-label">Contact Us</div>
+      <h2 class="section-title">Let's Work Together</h2>
+      <div class="contact-grid">
+        <div class="contact-info">
+          <div class="contact-item">
+            <div class="contact-icon">📍</div>
+            <div>
+              <strong>Location</strong>
+              <p>Hong Kong</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">✉️</div>
+            <div>
+              <strong>Email</strong>
+              <p><a href="mailto:info@avenorconsultantsltd.com">info@avenorconsultantsltd.com</a></p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">🏆</div>
+            <div>
+              <strong>Certifications</strong>
+              <p>BEAM Plus · LEED · WELL</p>
+            </div>
+          </div>
+        </div>
+        <form class="contact-form" onsubmit="handleSubmit(event)">
+          <div class="form-group">
+            <label>Name</label>
+            <input type="text" placeholder="Your name" required />
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" placeholder="your@email.com" required />
+          </div>
+          <div class="form-group">
+            <label>Building Type</label>
+            <select>
+              <option value="">Select building type</option>
+              <option>Commercial Office</option>
+              <option>School / Education</option>
+              <option>Retail</option>
+              <option>Data Centre</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Message</label>
+            <textarea placeholder="Tell us about your project..." rows="4"></textarea>
+          </div>
+          <button type="submit" class="btn-submit">Send Message →</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="logo-text">Avenor</div>
+          <div class="logo-sub">Consultants Ltd.</div>
+          <p>Professional green building consulting for schools and commercial buildings in Hong Kong.</p>
+        </div>
+        <div class="footer-links">
+          <div>
+            <strong>Quick Links</strong>
+            <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+          </div>
+          <div>
+            <strong>Certifications</strong>
+            <a href="#services">BEAM Plus</a>
+            <a href="#services">LEED</a>
+            <a href="#services">WELL</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Avenor Consultants Ltd. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Sticky nav
+    window.addEventListener('scroll', () => {
+      document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // Mobile menu
+    function toggleMenu() {
+      document.getElementById('navMobile').classList.toggle('open');
+    }
+
+    // Form submit
+    function handleSubmit(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('.btn-submit');
+      btn.textContent = '✓ Message Sent!';
+      btn.style.background = '#2d6a4f';
+      setTimeout(() => {
+        btn.textContent = 'Send Message →';
+        btn.style.background = '';
+        e.target.reset();
+      }, 3000);
+    }
+
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.process-step, .service-card, .project-card, .stat').forEach(el => {
+      el.classList.add('reveal');
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>
