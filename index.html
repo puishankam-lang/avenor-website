@@ -85,14 +85,16 @@
   --ls-label:    0.14em;
   --ls-eye:      0.18em;
 
-  /* ── Spacing — Gallery Rule ──
-     Sections: minimum 120px vertical padding
-     Container: max 1200px, centered
-     NO 8px/16px default spacing
+  /* ── Spacing — STRICT RULES ──
+     Rule 1: All sections 120px top/bottom
+     Rule 2: H2 → p gap > 32px (use 2.5rem = 40px)
+     Rule 3: Benefits list line-height = 2.5
   */
-  --section-pad: clamp(7.5rem, 10vw, 10rem); /* min ~120px */
+  --section-pad: 7.5rem;           /* 120px — no clamp, always 120px */
+  --h2-to-p:     2.5rem;           /* 40px gap: h2 → paragraph */
+  --list-lh:     2.5;              /* list items: 2.5 line-height */
   --container:   1200px;
-  --gutter:      5vw;
+  --gutter:      max(5vw, calc((100vw - 1200px) / 2 + 2rem)); /* 12-col aligned */
 
   /* ── Transitions ── */
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
@@ -103,8 +105,8 @@
 html { scroll-behavior: smooth; }
 body {
   font-family: 'Inter', sans-serif;
-  font-size: var(--f-body);
-  line-height: var(--lh-body);     /* RULE: 1.6 */
+  font-size: var(--f-body);       /* 18px */
+  line-height: 1.8;               /* RULE: body line-height 1.8 */
   letter-spacing: var(--ls-body);
   color: var(--ink);
   background: var(--cream);
@@ -142,15 +144,51 @@ body {
 .d3 { transition-delay: .36s; }
 .d4 { transition-delay: .48s; }
 
-/* ═══ LAYOUT ═══ */
+/* ═══ 12-COLUMN GRID SYSTEM ═══
+   All content aligns to same vertical axis.
+   Container = 1200px, 12 cols × 80px + 11 gaps × 24px = 1224px (approx)
+   In practice: CSS Grid with named columns for alignment.
+
+   Usage:
+     .col-8  = content (titles, body)
+     .col-4  = sidebar / metadata
+     .col-6  = 50/50 split
+     .col-full = full 12 cols
+
+   Rule: titles, body text, lists ALL left-align to column 1.
+   No element starts before the grid left edge.
+*/
 .wrap, .section-inner {
-  max-width: var(--container);   /* RULE: 1200px max */
+  max-width: var(--container);
   margin-inline: auto;
-  padding-inline: var(--gutter);
+  padding-inline: 2rem;
+  /* 12-column grid on all containers */
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 0 1.5rem;                   /* column gap only, no row gap */
 }
+/* Single-column sections: span all 12 */
+.wrap > *, .section-inner > * {
+  grid-column: 1 / -1;
+}
+/* Named column widths */
+.col-8  { grid-column: span 8; }
+.col-6  { grid-column: span 6; }
+.col-4  { grid-column: span 4; }
+.col-3  { grid-column: span 3; }
+
+/* Non-grid wrapper for full-width bg sections */
+.section-wrap {
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: 2rem;
+}
+
+/* ═══ SECTION ═══
+   RULE: ALL sections = 120px padding top + bottom. No exceptions.
+*/
 .section {
-  /* RULE: minimum 120px vertical padding */
-  padding-block: var(--section-pad);
+  padding-block: var(--section-pad); /* 7.5rem = 120px */
 }
 
 /* ═══ TYPOGRAPHIC COMPONENTS ═══ */
@@ -177,30 +215,36 @@ body {
   color: var(--gold);
 }
 
-/* Section titles */
+/* Section titles
+   RULE: line-height 1.1 (tight block)
+   RULE: font-weight 500 (stronger than before)
+   RULE: margin-bottom 2.5rem (40px) → gap to following p
+*/
 .section-title {
   font-family: 'Cormorant Garamond', serif;
   font-size: var(--f-h2-serif);
-  line-height: var(--lh-heading);
-  letter-spacing: var(--ls-heading);  /* RULE: -0.02em */
+  line-height: 1.1;               /* RULE: 1.1 tight */
+  letter-spacing: var(--ls-heading);
   color: var(--ink);
-  font-weight: 400;
-  margin-bottom: 1.5rem;
+  font-weight: 500;               /* RULE: stronger weight */
+  margin-bottom: var(--h2-to-p); /* RULE: 40px gap to next p */
 }
 .section-title em { color: var(--sage); font-style: italic; }
 .section-title.light { color: var(--on-dark); }
 .section-title.light em { color: var(--gold-lt); }
 
-/* Body copy */
+/* Body copy
+   RULE: 18px / line-height 1.8
+*/
 .section-desc {
-  font-size: var(--f-body);      /* RULE: 18px */
-  line-height: var(--lh-body);   /* RULE: 1.6 */
+  font-size: var(--f-body);      /* 18px */
+  line-height: 1.8;              /* RULE: body 1.8 */
   color: var(--ink-2);
-  max-width: 52ch;               /* optimal reading width */
+  max-width: 58ch;
   font-weight: 300;
 }
 .section-desc.light { color: var(--on-dark-2); }
-.section-desc + .section-desc { margin-top: 1.25rem; }
+.section-desc + .section-desc { margin-top: 1.5rem; }
 
 /* ═══ BUTTONS — Restraint ═══
    Primary: filled gold — single strong CTA
@@ -440,28 +484,31 @@ body {
   font-weight: 500;
 }
 
-/* Hero title: maximum visual weight, minimal complexity */
+/* Hero title
+   RULE: line-height 1.1 — headline is a solid visual block
+   RULE: font-weight 500 — stronger, more authoritative
+*/
 .hero-title {
   font-family: 'Cormorant Garamond', serif;
   font-size: var(--f-display-serif);
-  line-height: var(--lh-display);      /* 1.05: title is a block */
-  letter-spacing: var(--ls-heading);   /* RULE: -0.02em */
+  line-height: 1.1;              /* RULE: tight 1.1 */
+  letter-spacing: var(--ls-heading);
   color: var(--on-dark);
-  font-weight: 300;
-  margin-bottom: 2.5rem;
+  font-weight: 500;              /* RULE: heavier weight */
+  margin-bottom: var(--h2-to-p); /* 40px to subtitle */
 }
 .hero-title .hero-line1,
 .hero-title .hero-line2 { display: block; }
 .hero-title em {
   color: var(--gold-lt);
   font-style: italic;
-  font-weight: 300;
+  font-weight: 300;              /* italic stays light for contrast */
 }
 
-/* Hero body */
+/* Hero body — RULE: 1.8 line-height */
 .hero-sub {
-  font-size: var(--f-body);         /* RULE: 18px */
-  line-height: var(--lh-body);      /* RULE: 1.6 */
+  font-size: var(--f-body);
+  line-height: 1.8;              /* RULE: body 1.8 */
   color: var(--on-dark-2);
   max-width: 42ch;
   margin-bottom: 3.5rem;
@@ -539,12 +586,13 @@ body {
   color: var(--on-dark);
   letter-spacing: .03em;
   text-transform: uppercase;
-  margin-bottom: .875rem;
+  margin-bottom: 1.25rem;       /* > 32px gap to body */
+  line-height: 1.1;             /* RULE: heading 1.1 */
 }
 .process-card p {
   font-size: var(--f-sm);
   color: var(--on-dark-2);
-  line-height: var(--lh-loose);
+  line-height: 1.8;             /* RULE: body 1.8 */
   font-weight: 300;
 }
 
@@ -754,10 +802,10 @@ body {
   font-family: 'Cormorant Garamond', serif;
   font-size: var(--f-h2-serif);
   color: var(--on-dark);
-  font-weight: 300;
+  font-weight: 500;             /* RULE */
   letter-spacing: var(--ls-heading);
-  line-height: var(--lh-heading);
-  margin-bottom: 1.5rem;
+  line-height: 1.1;             /* RULE */
+  margin-bottom: var(--h2-to-p); /* RULE: 40px */
   max-width: 26ch;
   margin-inline: auto;
 }
@@ -923,32 +971,43 @@ body {
 .svc-content h2 {
   font-family: 'Cormorant Garamond', serif;
   font-size: var(--f-h2-serif);
-  line-height: var(--lh-heading);
+  line-height: 1.1;              /* RULE: 1.1 */
   letter-spacing: var(--ls-heading);
   color: var(--ink);
-  font-weight: 400;
-  margin-bottom: 1.25rem;
+  font-weight: 500;              /* RULE: stronger */
+  margin-bottom: var(--h2-to-p); /* RULE: 40px gap */
 }
 .svc-content p {
   font-size: var(--f-body);
   color: var(--ink-2);
-  line-height: var(--lh-body);
+  line-height: 1.8;              /* RULE: body 1.8 */
   margin-bottom: 2.5rem;
   font-weight: 300;
 }
-.benefits-list { list-style: none; display: flex; flex-direction: column; gap: .875rem; margin-bottom: 2.5rem; }
+.benefits-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0;                        /* gap = 0, line-height handles spacing */
+  margin-bottom: 2.5rem;
+}
 .benefits-list li {
-  display: flex; align-items: flex-start; gap: 1rem;
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
   font-size: var(--f-sm);
   color: var(--ink);
-  line-height: var(--lh-body);
+  line-height: var(--list-lh);  /* RULE: 2.5 — generous breathing room */
+  padding-block: .125rem;
+  /* Align to same vertical axis as title above */
 }
 .benefits-list li::before {
   content: '';
-  width: 20px; height: 1px;
+  width: 20px;
+  height: 1px;
   background: var(--gold);
   flex-shrink: 0;
-  margin-top: .6rem;
+  margin-top: .7rem;            /* optical alignment to text baseline */
 }
 /* RULE: service images in enforced aspect ratio */
 .svc-visual { position: relative; }
@@ -958,18 +1017,26 @@ body {
   object-fit: cover;
   display: block;
 }
+/* ═══ CERT IMAGES — RULE: uniform 60px, rounded card, aligned ═══ */
 .cert-imgs {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
+  gap: 1.25rem;
+  align-items: stretch;
 }
 .cert-imgs img {
   width: 100%;
-  aspect-ratio: 1 / 1;         /* RULE: enforced square */
-  object-fit: contain;
-  background: var(--cream);
-  padding: 1.25rem;
+  height: 60px;               /* RULE: fixed 60px — all same height */
+  object-fit: contain;        /* show full logo, no crop */
+  object-position: center;
   display: block;
+  /* Rounded card container effect */
+  background: #F0EEE8;        /* subtle warm grey card */
+  border-radius: 8px;         /* rounded corners */
+  padding: 1rem 1.5rem;       /* internal breathing room */
+  border: 1px solid rgba(24,24,22,.06);
+  /* All logos visually equal */
+  box-sizing: border-box;
 }
 .svc-visual-placeholder {
   background: var(--forest);
@@ -1087,10 +1154,10 @@ body {
 .blog-card h2 {
   font-family: 'Cormorant Garamond', serif;
   font-size: var(--f-h2-serif);
-  color: var(--ink); font-weight: 400;
-  line-height: var(--lh-heading);
+  color: var(--ink); font-weight: 500;  /* RULE */
+  line-height: 1.1;                      /* RULE */
   letter-spacing: var(--ls-heading);
-  margin-bottom: 1rem;
+  margin-bottom: var(--h2-to-p);        /* RULE: 40px */
 }
 .blog-card p {
   font-size: var(--f-body);
@@ -1241,12 +1308,13 @@ body {
 
 /* ═══ RESPONSIVE ═══ */
 @media (max-width: 1024px) {
-  :root { --section-pad: 5rem; }
+  :root { --section-pad: 7.5rem; }
+  .wrap, .section-inner { display: block; padding-inline: 1.5rem; }
   .nav-links { display: none; }
   .nav-toggle { display: block; }
   .hero { grid-template-columns: 1fr; min-height: auto; }
   .hero-right { display: none; }
-  .hero-left { padding: 7rem var(--gutter) 5rem; max-width: 100%; }
+  .hero-left { padding: 7rem 1.5rem 5rem; max-width: 100%; }
   .process-grid { grid-template-columns: 1fr 1fr; }
   .btype-grid { grid-template-columns: 1fr; gap: 1px; }
   .svc-grid { grid-template-columns: 1fr; }
@@ -1260,9 +1328,10 @@ body {
   .comp-panel.active { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 3rem; }
   .values-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .cert-imgs { grid-template-columns: repeat(3,1fr); }
 }
 @media (max-width: 600px) {
-  :root { --section-pad: 4rem; --gutter: 6vw; }
+  :root { --section-pad: 5rem; }
   .hero-title { font-size: clamp(2.5rem, 8vw, 3.5rem); }
   .frow { grid-template-columns: 1fr; }
   .process-grid { grid-template-columns: 1fr; }
@@ -1272,7 +1341,6 @@ body {
 }
 
   </style>
-</head>
 </head>
 <body>
 
