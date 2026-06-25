@@ -1248,51 +1248,47 @@ body {
           <button class="btn-green" onclick="navigate('contact')" data-t="services.enquire">Enquire Now →</button>
         </div>
         <div class="svc-visual">
-          <div class="cert-cards-stack">
-            <div class="cert-card-item">
-              <div class="cert-card-badge cert-card-beam">
-                <div class="cert-card-logo-text">BEAM<br/>Plus</div>
-                <div class="cert-card-levels">
-                  <span class="cert-level" style="background:#7a8c6e">Platinum</span>
-                  <span class="cert-level" style="background:#b8a060">Gold</span>
-                  <span class="cert-level" style="background:#9e9e9e">Silver</span>
-                  <span class="cert-level" style="background:#a0784a">Bronze</span>
-                </div>
-              </div>
-              <div class="cert-card-info">
-                <div class="cert-card-name">BEAM Plus</div>
-                <div class="cert-card-desc">Hong Kong Green Building Council</div>
-              </div>
+          <div class="cert-hero-img" style="aspect-ratio:4/3;overflow:hidden;border-radius:4px;margin-bottom:1rem">
+            <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663419719601/NdwjjiPRHbUkh95Lk8zgQg/hero-commercial-SoXaqxrZX3ApkAedbobnDo.webp" alt="Green Building" style="width:100%;height:100%;object-fit:cover;display:block" />
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0.75rem">
+
+            <!-- BEAM Plus badge -->
+            <div style="background:var(--paper);border:1px solid var(--rule-lt);border-radius:4px;padding:1.25rem;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.5rem;aspect-ratio:1/1">
+              <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="48" height="48" rx="6" fill="#1C3326"/>
+                <path d="M12 14h10c3 0 5 1.5 5 4s-2 4-5 4H12V14zm0 8h11c3.5 0 6 1.5 6 4.5S26.5 31 23 31H12V22z" fill="#B8935A"/>
+                <text x="24" y="42" text-anchor="middle" font-family="Inter,sans-serif" font-size="5" font-weight="600" fill="#B8935A" letter-spacing="1">PLUS</text>
+              </svg>
+              <span style="font-family:'Inter',sans-serif;font-size:0.55rem;font-weight:600;letter-spacing:0.12em;color:var(--ink);text-transform:uppercase;text-align:center">BEAM Plus</span>
+              <span style="font-family:'Inter',sans-serif;font-size:0.45rem;color:var(--ink-4);letter-spacing:0.06em;text-align:center">HKGBC</span>
             </div>
-            <div class="cert-card-item">
-              <div class="cert-card-badge cert-card-leed">
-                <div class="cert-card-logo-text">LEED</div>
-                <div class="cert-card-levels">
-                  <span class="cert-level" style="background:#5a8a5a">Certified</span>
-                  <span class="cert-level" style="background:#7ab0c8">Silver</span>
-                  <span class="cert-level" style="background:#c8a830">Gold</span>
-                  <span class="cert-level" style="background:#a0a0a0">Platinum</span>
-                </div>
-              </div>
-              <div class="cert-card-info">
-                <div class="cert-card-name">LEED</div>
-                <div class="cert-card-desc">U.S. Green Building Council</div>
-              </div>
+
+            <!-- LEED badge -->
+            <div style="background:var(--paper);border:1px solid var(--rule-lt);border-radius:4px;padding:1.25rem;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.5rem;aspect-ratio:1/1">
+              <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="24" cy="24" r="22" stroke="#4a7c59" stroke-width="2" fill="none"/>
+                <circle cx="24" cy="24" r="17" stroke="#4a7c59" stroke-width="1" fill="none"/>
+                <path d="M17 31V17h3v11h7v3H17z" fill="#4a7c59"/>
+                <path d="M28 31V17h3v14h-3z" fill="#4a7c59" opacity="0.4"/>
+                <text x="24" y="42" text-anchor="middle" font-family="Inter,sans-serif" font-size="4" font-weight="600" fill="#4a7c59" letter-spacing="1">USGBC</text>
+              </svg>
+              <span style="font-family:'Inter',sans-serif;font-size:0.55rem;font-weight:600;letter-spacing:0.12em;color:var(--ink);text-transform:uppercase;text-align:center">LEED</span>
+              <span style="font-family:'Inter',sans-serif;font-size:0.45rem;color:var(--ink-4);letter-spacing:0.06em;text-align:center">USGBC</span>
             </div>
-            <div class="cert-card-item">
-              <div class="cert-card-badge cert-card-well">
-                <div class="cert-card-logo-text">WELL</div>
-                <div class="cert-card-levels">
-                  <span class="cert-level" style="background:#9e9e9e">Silver</span>
-                  <span class="cert-level" style="background:#c8a830">Gold</span>
-                  <span class="cert-level" style="background:#a0a0a0">Platinum</span>
-                </div>
-              </div>
-              <div class="cert-card-info">
-                <div class="cert-card-name">WELL</div>
-                <div class="cert-card-desc">International WELL Building Institute</div>
-              </div>
+
+            <!-- WELL badge -->
+            <div style="background:var(--paper);border:1px solid var(--rule-lt);border-radius:4px;padding:1.25rem;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.5rem;aspect-ratio:1/1">
+              <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="24" cy="24" r="20" stroke="#8fa8b8" stroke-width="1.5" fill="none" stroke-dasharray="3 2"/>
+                <circle cx="24" cy="24" r="15" stroke="#8fa8b8" stroke-width="1" fill="none" stroke-dasharray="2 2"/>
+                <circle cx="24" cy="24" r="10" stroke="#8fa8b8" stroke-width="1" fill="none"/>
+                <text x="24" y="27" text-anchor="middle" font-family="Inter,sans-serif" font-size="6" font-weight="700" fill="#4a5e6e" letter-spacing="0.5">WELL</text>
+              </svg>
+              <span style="font-family:'Inter',sans-serif;font-size:0.55rem;font-weight:600;letter-spacing:0.12em;color:var(--ink);text-transform:uppercase;text-align:center">WELL</span>
+              <span style="font-family:'Inter',sans-serif;font-size:0.45rem;color:var(--ink-4);letter-spacing:0.06em;text-align:center">IWBI</span>
             </div>
+
           </div>
         </div>
       </div>
