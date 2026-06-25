@@ -262,7 +262,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1.5rem var(--gutter);
+  padding: 1rem var(--gutter);
   background: rgba(244,241,234,0.92);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
@@ -286,7 +286,7 @@ body {
 }
 .nav-logo-wordmark {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 1.5rem;
+  font-size: 1.35rem;
   font-weight: 500;
   letter-spacing: 0.14em;
   color: var(--forest);
@@ -295,12 +295,12 @@ body {
 }
 .nav-logo-sub {
   font-family: 'Inter', sans-serif;
-  font-size: 0.52rem;
+  font-size: 0.48rem;
   font-weight: 500;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.2em;
   color: var(--gold);
   text-transform: uppercase;
-  margin-top: 0.22rem;
+  margin-top: 0.18rem;
 }
 
 /* ── Footer logo text treatment ── */
@@ -365,6 +365,7 @@ body {
   border-radius: 0;
   cursor: pointer;
   background: none;
+  white-space: nowrap;
   transition: color .2s, border-color .2s;
 }
 .nav-lang:hover { color: var(--ink); border-color: rgba(24,24,22,.25); }
@@ -920,7 +921,7 @@ body {
       <a onclick="navigate('blog')" data-page="blog" data-t="nav.blog">Blog</a>
       <a onclick="navigate('comparison')" data-page="comparison" data-t="nav.comparison">Comparison</a>
       <a onclick="navigate('contact')" data-page="contact" data-t="nav.contact">Contact</a>
-      <button class="nav-lang" onclick="toggleLang()" id="langBtn">🌐 中文</button>
+      <button class="nav-lang" onclick="toggleLang()" id="langBtn">🌐&nbsp;中文</button>
       <a onclick="navigate('contact')" class="nav-cta" data-t="nav.getInTouch">Get in Touch</a>
     </div>
     <button class="nav-toggle" onclick="toggleMobile()">☰</button>
