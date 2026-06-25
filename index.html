@@ -1248,47 +1248,55 @@ body {
           <button class="btn-green" onclick="navigate('contact')" data-t="services.enquire">Enquire Now →</button>
         </div>
         <div class="svc-visual">
-          <!-- Hero image -->
-          <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663419719601/NdwjjiPRHbUkh95Lk8zgQg/hero-commercial-SoXaqxrZX3ApkAedbobnDo.webp" alt="Green Building" style="width:100%;aspect-ratio:4/3;object-fit:cover;display:block;border-radius:4px;margin-bottom:1rem" />
-          <!-- 3 cert logo cards below image -->
-          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem">
+          <div style="position:relative;border-radius:4px;overflow:hidden">
+            <!-- Hero image -->
+            <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663419719601/NdwjjiPRHbUkh95Lk8zgQg/hero-commercial-SoXaqxrZX3ApkAedbobnDo.webp" alt="Green Building" style="width:100%;aspect-ratio:4/3;object-fit:cover;display:block" />
+            <!-- Gradient -->
+            <div style="position:absolute;bottom:0;left:0;right:0;height:50%;background:linear-gradient(to top,rgba(0,0,0,0.7) 0%,transparent 100%)"></div>
+            <!-- Badge row overlaid at bottom -->
+            <div style="position:absolute;bottom:1rem;left:1rem;right:1rem;display:grid;grid-template-columns:repeat(3,1fr);gap:0.6rem">
 
-            <!-- BEAM Plus -->
-            <div style="background:var(--paper);border:1px solid var(--rule-lt);border-radius:4px;padding:1.5rem 1rem;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.75rem">
-              <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect width="60" height="60" rx="6" fill="#1C3326"/>
-                <text x="30" y="22" text-anchor="middle" font-family="Georgia,serif" font-size="13" font-weight="700" fill="#E8E4DA" letter-spacing="1">BEAM</text>
-                <text x="30" y="36" text-anchor="middle" font-family="Georgia,serif" font-size="10" font-weight="400" fill="#B8935A" letter-spacing="1">Plus</text>
-                <text x="30" y="50" text-anchor="middle" font-family="Inter,sans-serif" font-size="5" font-weight="500" fill="#B8935A" letter-spacing="1.5">HKGBC</text>
-              </svg>
-              <span style="font-family:'Inter',sans-serif;font-size:0.65rem;font-weight:600;letter-spacing:0.1em;color:var(--ink-2);text-transform:uppercase;text-align:center">BEAM Plus</span>
+              <!-- BEAM Plus badge -->
+              <div style="background:rgba(255,255,255,0.95);border-radius:4px;padding:0.875rem 0.5rem;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.4rem">
+                <svg width="52" height="52" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect width="60" height="60" rx="5" fill="#1C3326"/>
+                  <text x="30" y="21" text-anchor="middle" font-family="Georgia,serif" font-size="12" font-weight="700" fill="#E8E4DA" letter-spacing="0.5">BEAM</text>
+                  <text x="30" y="34" text-anchor="middle" font-family="Georgia,serif" font-size="10" font-weight="400" fill="#B8935A" letter-spacing="0.5">Plus</text>
+                  <line x1="10" y1="39" x2="50" y2="39" stroke="#B8935A" stroke-width="0.5" opacity="0.5"/>
+                  <text x="30" y="50" text-anchor="middle" font-family="Inter,sans-serif" font-size="5" font-weight="500" fill="#B8935A" letter-spacing="1.5">HKGBC</text>
+                </svg>
+                <span style="font-family:'Inter',sans-serif;font-size:0.55rem;font-weight:600;letter-spacing:0.08em;color:#333;text-transform:uppercase;text-align:center">BEAM Plus</span>
+              </div>
+
+              <!-- LEED badge — gold shield style -->
+              <div style="background:rgba(255,255,255,0.95);border-radius:4px;padding:0.875rem 0.5rem;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.4rem">
+                <svg width="52" height="52" viewBox="0 0 60 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <!-- Shield shape -->
+                  <path d="M30 2 L56 12 L56 34 C56 50 30 62 30 62 C30 62 4 50 4 34 L4 12 Z" fill="#c8a830" opacity="0.12"/>
+                  <path d="M30 2 L56 12 L56 34 C56 50 30 62 30 62 C30 62 4 50 4 34 L4 12 Z" stroke="#c8a830" stroke-width="2" fill="none"/>
+                  <!-- Inner shield -->
+                  <path d="M30 8 L50 16 L50 34 C50 46 30 56 30 56 C30 56 10 46 10 34 L10 16 Z" stroke="#c8a830" stroke-width="1" fill="none" opacity="0.5"/>
+                  <!-- Oak leaf -->
+                  <path d="M30 18 C26 21 24 25 26 29 C28 33 32 33 34 29 C36 25 34 21 30 18Z" fill="#c8a830" opacity="0.6"/>
+                  <path d="M30 18 L30 36" stroke="#c8a830" stroke-width="1.5" opacity="0.6"/>
+                  <!-- LEED text -->
+                  <text x="30" y="46" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" font-weight="800" fill="#8a6e1a" letter-spacing="1">LEED</text>
+                </svg>
+                <span style="font-family:'Inter',sans-serif;font-size:0.55rem;font-weight:600;letter-spacing:0.08em;color:#333;text-transform:uppercase;text-align:center">LEED</span>
+              </div>
+
+              <!-- WELL badge -->
+              <div style="background:rgba(255,255,255,0.95);border-radius:4px;padding:0.875rem 0.5rem;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.4rem">
+                <svg width="52" height="52" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="100" cy="100" r="90" stroke="#b0b8c1" stroke-width="9" stroke-dasharray="14 7" stroke-linecap="round" fill="none"/>
+                  <circle cx="100" cy="100" r="70" stroke="#b0b8c1" stroke-width="7" stroke-dasharray="11 6" stroke-linecap="round" fill="none"/>
+                  <circle cx="100" cy="100" r="50" stroke="#c8cfd6" stroke-width="5" stroke-dasharray="8 4" stroke-linecap="round" fill="none"/>
+                  <text x="100" y="112" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="34" font-weight="700" fill="#4a5560" letter-spacing="2">WELL</text>
+                </svg>
+                <span style="font-family:'Inter',sans-serif;font-size:0.55rem;font-weight:600;letter-spacing:0.08em;color:#333;text-transform:uppercase;text-align:center">WELL</span>
+              </div>
+
             </div>
-
-            <!-- LEED -->
-            <div style="background:var(--paper);border:1px solid var(--rule-lt);border-radius:4px;padding:1.5rem 1rem;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.75rem">
-              <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="30" cy="30" r="28" stroke="#4a7c59" stroke-width="2" fill="none"/>
-                <circle cx="30" cy="30" r="22" stroke="#4a7c59" stroke-width="1" fill="none"/>
-                <!-- Leaf shape -->
-                <path d="M30 12 C20 18 16 26 20 34 C24 42 36 42 40 34 C44 26 40 18 30 12Z" fill="#4a7c59" opacity="0.15"/>
-                <path d="M30 14 C22 20 19 28 23 35 C27 40 33 40 37 35 C41 28 38 20 30 14Z" stroke="#4a7c59" stroke-width="1.5" fill="none"/>
-                <text x="30" y="34" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" font-weight="800" fill="#4a7c59" letter-spacing="1">LEED</text>
-                <text x="30" y="52" text-anchor="middle" font-family="Inter,sans-serif" font-size="4" font-weight="500" fill="#4a7c59" letter-spacing="1">USGBC</text>
-              </svg>
-              <span style="font-family:'Inter',sans-serif;font-size:0.65rem;font-weight:600;letter-spacing:0.1em;color:var(--ink-2);text-transform:uppercase;text-align:center">LEED</span>
-            </div>
-
-            <!-- WELL -->
-            <div style="background:var(--paper);border:1px solid var(--rule-lt);border-radius:4px;padding:1.5rem 1rem;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.75rem">
-              <svg width="60" height="60" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="100" cy="100" r="90" stroke="#b0b8c1" stroke-width="8" stroke-dasharray="12 6" stroke-linecap="round" fill="none"/>
-                <circle cx="100" cy="100" r="72" stroke="#b0b8c1" stroke-width="6" stroke-dasharray="10 5" stroke-linecap="round" fill="none"/>
-                <circle cx="100" cy="100" r="54" stroke="#c8cfd6" stroke-width="4" stroke-dasharray="8 4" stroke-linecap="round" fill="none"/>
-                <text x="100" y="112" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="32" font-weight="700" fill="#4a5560" letter-spacing="2">WELL</text>
-              </svg>
-              <span style="font-family:'Inter',sans-serif;font-size:0.65rem;font-weight:600;letter-spacing:0.1em;color:var(--ink-2);text-transform:uppercase;text-align:center">WELL</span>
-            </div>
-
           </div>
         </div>
       </div>
