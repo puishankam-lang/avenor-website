@@ -1247,24 +1247,35 @@ body {
           </ul>
           <button class="btn-green" onclick="navigate('contact')" data-t="services.enquire">Enquire Now →</button>
         </div>
-        <div class="svc-visual">
-          <!-- Image: sits on top, no overlap -->
-          <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663419719601/NdwjjiPRHbUkh95Lk8zgQg/hero-commercial-SoXaqxrZX3ApkAedbobnDo.webp" alt="Green Building" style="width:100%;aspect-ratio:4/3;object-fit:cover;display:block;border-radius:4px" />
+        <div class="svc-visual" style="display:flex;flex-direction:column">
+          <!-- Main image — full width of left column -->
+          <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663419719601/NdwjjiPRHbUkh95Lk8zgQg/hero-commercial-SoXaqxrZX3ApkAedbobnDo.webp"
+               alt="Green Building"
+               style="width:100%;aspect-ratio:4/3;object-fit:cover;display:block;border-radius:8px" />
 
-          <!-- Badge row: grid-cols-3, gap-4, w-full h-auto -->
-          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:16px">
+          <!-- Badge row: 3 equal columns, margin-top 20px, full width aligned to image -->
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:20px;width:100%">
 
-            <img src="https://hkgbc.org.hk/eng/beam-plus/promotion/images/merged%20plaque%20_resized_v2.jpg"
-                 alt="BEAM Plus"
-                 style="width:100%;height:auto;display:block;border-radius:8px;box-shadow:0 10px 24px rgba(0,0,0,0.12);object-fit:cover" />
+            <!-- BEAM Plus -->
+            <div style="background:var(--paper);border:1px solid var(--rule-lt);border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,0.07);padding:1rem 0.5rem;display:flex;align-items:center;justify-content:center;overflow:hidden">
+              <img src="https://hkgbc.org.hk/eng/beam-plus/promotion/images/merged%20plaque%20_resized_v2.jpg"
+                   alt="BEAM Plus"
+                   style="max-height:80px;width:auto;display:block;object-fit:contain" />
+            </div>
 
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOgpoRMtklyhSkJxtBOhRDthCPrKEw6rPOaGlMUf3g_WWnbw7yuK-0yM1e&s=10"
-                 alt="LEED"
-                 style="width:100%;height:auto;display:block;border-radius:8px;box-shadow:0 10px 24px rgba(0,0,0,0.12);object-fit:cover" />
+            <!-- LEED -->
+            <div style="background:var(--paper);border:1px solid var(--rule-lt);border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,0.07);padding:1rem 0.5rem;display:flex;align-items:center;justify-content:center;overflow:hidden">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOgpoRMtklyhSkJxtBOhRDthCPrKEw6rPOaGlMUf3g_WWnbw7yuK-0yM1e&s=10"
+                   alt="LEED"
+                   style="max-height:80px;width:auto;display:block;object-fit:contain" />
+            </div>
 
-            <img src="https://cbe.berkeley.edu/wp-content/uploads/2024/01/well-certi.png"
-                 alt="WELL"
-                 style="width:100%;height:auto;display:block;border-radius:8px;box-shadow:0 10px 24px rgba(0,0,0,0.12);object-fit:cover" />
+            <!-- WELL -->
+            <div style="background:var(--paper);border:1px solid var(--rule-lt);border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,0.07);padding:1rem 0.5rem;display:flex;align-items:center;justify-content:center;overflow:hidden">
+              <img src="https://cbe.berkeley.edu/wp-content/uploads/2024/01/well-certi.png"
+                   alt="WELL"
+                   style="max-height:80px;width:auto;display:block;object-fit:contain" />
+            </div>
 
           </div>
         </div>
