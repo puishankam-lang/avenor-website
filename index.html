@@ -50,53 +50,36 @@
   --rule-lt:     rgba(24,24,22,0.08);
   --rule-dk:     rgba(232,228,218,0.08);
 
-  /* ── Typography — strict hierarchy ──
-     Body: 18px / 1.6 — readable, premium
-     Headings: letter-spacing -0.02em — grounded, architectural
-  */
-  --f-display: clamp(3.2rem, 6vw, 5.5rem);   /* hero */
-  --f-h1:      clamp(2.4rem, 4vw, 3.6rem);    /* page heroes */
-  --f-h2:      clamp(1.8rem, 3vw, 2.6rem);    /* section titles */
-  --f-h3:      1.25rem;                         /* card titles */
-  --f-body:    1.125rem;                        /* 18px body */
-  --f-sm:      1rem;                            /* 16px — RULE: minimum */
-  --f-xs:      1rem;                            /* RULE: minimum 16px, no smaller */
+  --f-display: clamp(3.2rem, 6vw, 5.5rem);
+  --f-h1:      clamp(2.4rem, 4vw, 3.6rem);
+  --f-h2:      clamp(1.8rem, 3vw, 2.6rem);
+  --f-h3:      1.25rem;
+  --f-body:    1.125rem;
+  --f-sm:      1rem;
+  --f-xs:      1rem;
 
-  /* Cormorant runs large — scale down slightly */
   --f-display-serif: clamp(3.5rem, 6.5vw, 6rem);
   --f-h1-serif:      clamp(2.6rem, 4.5vw, 4rem);
   --f-h2-serif:      clamp(2rem, 3.2vw, 3rem);
 
-  /* ── Line heights ── */
-  --lh-display: 1.05;  /* tight: headline is a visual block */
+  --lh-display: 1.05;
   --lh-heading: 1.18;
   --lh-sub:     1.32;
-  --lh-body:    1.6;   /* RULE: body always 1.6 */
+  --lh-body:    1.6;
   --lh-loose:   1.8;
 
-  /* ── Letter spacing ──
-     Headings: -0.02em RULE — grounded, premium
-     Body:     +0.01em — slightly open
-     Labels:   +0.14em — uppercase needs air
-  */
   --ls-display: -0.025em;
-  --ls-heading: -0.02em;   /* RULE: all headings */
+  --ls-heading: -0.02em;
   --ls-body:     0.01em;
   --ls-label:    0.14em;
   --ls-eye:      0.18em;
 
-  /* ── Spacing — STRICT RULES ──
-     Rule 1: All sections 120px top/bottom
-     Rule 2: H2 → p gap > 32px (use 2.5rem = 40px)
-     Rule 3: Benefits list line-height = 2.5
-  */
-  --section-pad: 7.5rem;           /* 120px — no clamp, always 120px */
-  --h2-to-p:     2.5rem;           /* 40px gap: h2 → paragraph */
-  --list-lh:     2.5;              /* list items: 2.5 line-height */
+  --section-pad: 7.5rem;
+  --h2-to-p:     2.5rem;
+  --list-lh:     2.5;
   --container:   1200px;
-  --gutter:      max(5vw, calc((100vw - 1200px) / 2 + 2rem)); /* 12-col aligned */
+  --gutter:      max(5vw, calc((100vw - 1200px) / 2 + 2rem));
 
-  /* ── Transitions ── */
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -105,8 +88,8 @@
 html { scroll-behavior: smooth; }
 body {
   font-family: 'Inter', sans-serif;
-  font-size: var(--f-body);       /* 18px */
-  line-height: 1.8;               /* RULE: body line-height 1.8 */
+  font-size: var(--f-body);
+  line-height: 1.8;
   letter-spacing: var(--ls-body);
   color: var(--ink);
   background: var(--cream);
@@ -144,56 +127,29 @@ body {
 .d3 { transition-delay: .36s; }
 .d4 { transition-delay: .48s; }
 
-/* ═══ 12-COLUMN GRID SYSTEM ═══
-   All content aligns to same vertical axis.
-   Container = 1200px, 12 cols × 80px + 11 gaps × 24px = 1224px (approx)
-   In practice: CSS Grid with named columns for alignment.
-
-   Usage:
-     .col-8  = content (titles, body)
-     .col-4  = sidebar / metadata
-     .col-6  = 50/50 split
-     .col-full = full 12 cols
-
-   Rule: titles, body text, lists ALL left-align to column 1.
-   No element starts before the grid left edge.
-*/
 .wrap, .section-inner {
   max-width: var(--container);
   margin-inline: auto;
   padding-inline: 2rem;
-  /* 12-column grid on all containers */
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  gap: 0 1.5rem;                   /* column gap only, no row gap */
+  gap: 0 1.5rem;
 }
-/* Single-column sections: span all 12 */
-.wrap > *, .section-inner > * {
-  grid-column: 1 / -1;
-}
-/* Named column widths */
+.wrap > *, .section-inner > * { grid-column: 1 / -1; }
 .col-8  { grid-column: span 8; }
 .col-6  { grid-column: span 6; }
 .col-4  { grid-column: span 4; }
 .col-3  { grid-column: span 3; }
 
-/* Non-grid wrapper for full-width bg sections */
 .section-wrap {
   max-width: var(--container);
   margin-inline: auto;
   padding-inline: 2rem;
 }
 
-/* ═══ SECTION ═══
-   RULE: ALL sections = 120px padding top + bottom. No exceptions.
-*/
-.section {
-  padding-block: var(--section-pad); /* 7.5rem = 120px */
-}
+.section { padding-block: var(--section-pad); }
 
 /* ═══ TYPOGRAPHIC COMPONENTS ═══ */
-
-/* Eyebrow: tiny rule + label — architectural precision */
 .eyebrow {
   display: flex;
   align-items: center;
@@ -201,7 +157,7 @@ body {
   margin-bottom: 2rem;
 }
 .eyebrow-line {
-  width: 0;                      /* animated in on reveal */
+  width: 0;
   height: 1px;
   background: var(--gold);
   flex-shrink: 0;
@@ -215,30 +171,22 @@ body {
   color: var(--gold);
 }
 
-/* Section titles
-   RULE: line-height 1.1 (tight block)
-   RULE: font-weight 500 (stronger than before)
-   RULE: margin-bottom 2.5rem (40px) → gap to following p
-*/
 .section-title {
   font-family: 'Cormorant Garamond', serif;
   font-size: var(--f-h2-serif);
-  line-height: 1.1;               /* RULE: 1.1 tight */
+  line-height: 1.1;
   letter-spacing: var(--ls-heading);
   color: var(--ink);
-  font-weight: 500;               /* RULE: stronger weight */
-  margin-bottom: var(--h2-to-p); /* RULE: 40px gap to next p */
+  font-weight: 500;
+  margin-bottom: var(--h2-to-p);
 }
 .section-title em { color: var(--sage); font-style: italic; }
 .section-title.light { color: var(--on-dark); }
 .section-title.light em { color: var(--gold-lt); }
 
-/* Body copy
-   RULE: 18px / line-height 1.8
-*/
 .section-desc {
-  font-size: var(--f-body);      /* 18px */
-  line-height: 1.8;              /* RULE: body 1.8 */
+  font-size: var(--f-body);
+  line-height: 1.8;
   color: var(--ink-2);
   max-width: 58ch;
   font-weight: 300;
@@ -246,18 +194,14 @@ body {
 .section-desc.light { color: var(--on-dark-2); }
 .section-desc + .section-desc { margin-top: 1.5rem; }
 
-/* ═══ BUTTONS — Restraint ═══
-   Primary: filled gold — single strong CTA
-   Ghost:   outline only — never compete with primary
-   No radius on buttons = architectural, not app-like
-*/
+/* ═══ BUTTONS ═══ */
 .btn-gold {
   display: inline-block;
   background: var(--gold);
   color: var(--forest);
   padding: .875rem 2.5rem;
   border: 1px solid var(--gold);
-  border-radius: 0;              /* architectural: no radius */
+  border-radius: 0;
   font-family: 'Inter', sans-serif;
   font-size: var(--f-xs);
   font-weight: 500;
@@ -311,10 +255,7 @@ body {
 }
 .btn-green:hover { background: var(--forest-lt); transform: translateY(-2px); }
 
-/* ═══ NAV ═══
-   Ultra-thin: transparent base, barely-visible rule
-   No heavy backgrounds. Nav should feel like it hovers.
-*/
+/* ═══ NAV ═══ */
 .nav {
   position: fixed; top: 0; left: 0; right: 0;
   z-index: 100;
@@ -328,17 +269,67 @@ body {
   border-bottom: 1px solid var(--rule-lt);
   transition: padding .4s var(--ease-out);
 }
+
+/* ── LOGO: CSS text treatment (replaces image) ── */
 .nav-logo {
-  flex-shrink: 0;               /* RULE: never shrink */
-  min-width: 160px;             /* RULE: minimum 160px */
+  flex-shrink: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
 }
-.nav-logo img {
-  height: 52px;                 /* fixed, not fluid */
-  width: auto;                  /* RULE: auto width */
-  min-width: 160px;             /* RULE: minimum 160px */
-  object-fit: contain;
-  display: block;
+.nav-logo-mark {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  line-height: 1;
 }
+.nav-logo-wordmark {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  color: var(--forest);
+  text-transform: uppercase;
+  line-height: 1;
+}
+.nav-logo-sub {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.52rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-top: 0.22rem;
+}
+
+/* ── Footer logo text treatment ── */
+.footer-brand-mark {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  line-height: 1;
+  margin-bottom: 1.5rem;
+}
+.footer-brand-wordmark {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.35rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  color: var(--on-dark);
+  text-transform: uppercase;
+  line-height: 1;
+}
+.footer-brand-sub {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.48rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-top: 0.22rem;
+}
+
 .nav-links {
   display: flex;
   align-items: center;
@@ -418,12 +409,7 @@ body {
 }
 .nav-mobile a:hover { color: var(--gold); }
 
-/* ═══ HERO ═══
-   Full viewport split: text left, image right.
-   Image wrapped in aspect-ratio container: 16/9 enforced.
-   Text NEVER full-width. Max ~580px for copy.
-   Gallery spacing: internal padding breathes.
-*/
+/* ═══ HERO ═══ */
 .hero {
   min-height: 100vh;
   display: grid;
@@ -435,7 +421,6 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* Asymmetric padding: left aligned, more top air */
   padding: 8rem var(--gutter) 6rem calc(var(--gutter) + max(0px, (100vw - var(--container)) / 2));
   max-width: calc(var(--container) / 2 + max(0px, (100vw - var(--container)) / 2));
   position: relative;
@@ -443,45 +428,31 @@ body {
 }
 .hero-right {
   position: relative;
-  /* RULE: image in aspect-ratio container, no distortion */
-  aspect-ratio: auto; /* full height override */
+  aspect-ratio: auto;
   overflow: hidden;
 }
-/* Enforce image fills container without distortion */
-.hero-img-wrap {
-  position: absolute;
-  inset: 0;
-}
+.hero-img-wrap { position: absolute; inset: 0; }
 .hero-img {
   width: 100%;
   height: 100%;
-  object-fit: cover;      /* RULE: cover, no distortion */
+  object-fit: cover;
   object-position: center;
   opacity: .58;
   display: block;
 }
 .hero-right-overlay {
   position: absolute; inset: 0;
-  background: linear-gradient(
-    100deg,
-    var(--forest) 0%,
-    rgba(11,28,19,.35) 40%,
-    transparent 100%
-  );
+  background: linear-gradient(100deg, var(--forest) 0%, rgba(11,28,19,.35) 40%, transparent 100%);
   z-index: 1;
 }
 
-/* Hero eyebrow */
 .hero-badge {
   display: inline-flex;
   align-items: center;
   gap: .875rem;
   margin-bottom: 3rem;
 }
-.hero-badge-line {
-  width: 36px; height: 1px;
-  background: var(--gold);
-}
+.hero-badge-line { width: 36px; height: 1px; background: var(--gold); }
 .hero-badge span {
   font-size: var(--f-xs);
   color: var(--gold);
@@ -490,31 +461,26 @@ body {
   font-weight: 500;
 }
 
-/* Hero title
-   RULE: line-height 1.1 — headline is a solid visual block
-   RULE: font-weight 500 — stronger, more authoritative
-*/
 .hero-title {
   font-family: 'Cormorant Garamond', serif;
   font-size: var(--f-display-serif);
-  line-height: 1.1;              /* RULE: tight 1.1 */
+  line-height: 1.1;
   letter-spacing: var(--ls-heading);
   color: var(--on-dark);
-  font-weight: 500;              /* RULE: heavier weight */
-  margin-bottom: var(--h2-to-p); /* 40px to subtitle */
+  font-weight: 500;
+  margin-bottom: var(--h2-to-p);
 }
 .hero-title .hero-line1,
 .hero-title .hero-line2 { display: block; }
 .hero-title em {
   color: var(--gold-lt);
   font-style: italic;
-  font-weight: 300;              /* italic stays light for contrast */
+  font-weight: 300;
 }
 
-/* Hero body — RULE: 1.8 line-height */
 .hero-sub {
   font-size: var(--f-body);
-  line-height: 1.8;              /* RULE: body 1.8 */
+  line-height: 1.8;
   color: var(--on-dark-2);
   max-width: 42ch;
   margin-bottom: 3.5rem;
@@ -527,7 +493,6 @@ body {
   margin-bottom: 5rem;
 }
 
-/* Cert pills: purely typographic, no fills */
 .hero-certs {
   display: flex;
   align-items: center;
@@ -541,16 +506,11 @@ body {
   letter-spacing: var(--ls-label);
   text-transform: uppercase;
   color: var(--on-dark-3);
-  /* No box, no fill: text alone */
   transition: color .2s;
 }
 .cert-pill:hover { color: var(--gold-lt); }
 
-/* ═══ PROCESS SECTION ═══
-   Dark ground: forest — contrast to surrounding cream pages
-   Numbers as structural elements, not decoration
-   Vertical rule separates columns invisibly
-*/
+/* ═══ PROCESS ═══ */
 .process-bg { background: var(--forest); }
 .process-grid {
   display: grid;
@@ -567,7 +527,6 @@ body {
 }
 .process-card:last-child { border-right: none; padding-right: 0; }
 .process-card:first-child { padding-left: 0; }
-/* Reveal gold rule on hover */
 .process-card::before {
   content: '';
   position: absolute; top: -1px; left: 0; right: 0;
@@ -592,13 +551,13 @@ body {
   color: var(--on-dark);
   letter-spacing: .03em;
   text-transform: uppercase;
-  margin-bottom: 1.25rem;       /* > 32px gap to body */
-  line-height: 1.1;             /* RULE: heading 1.1 */
+  margin-bottom: 1.25rem;
+  line-height: 1.1;
 }
 .process-card p {
   font-size: var(--f-sm);
   color: var(--on-dark-2);
-  line-height: 1.8;             /* RULE: body 1.8 */
+  line-height: 1.8;
   font-weight: 300;
 }
 
@@ -607,7 +566,7 @@ body {
 .btype-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 2px;                         /* hairline gap = cell grid */
+  gap: 2px;
   background: var(--rule-lt);
   border: 1px solid var(--rule-lt);
   margin-top: 5rem;
@@ -619,12 +578,7 @@ body {
   transition: background .35s;
 }
 .btype-card:hover { background: var(--paper); }
-.btype-icon {
-  font-size: 1.5rem;
-  margin-bottom: 1.5rem;
-  opacity: .6;
-  display: block;
-}
+.btype-icon { font-size: 1.5rem; margin-bottom: 1.5rem; opacity: .6; display: block; }
 .btype-card h4 {
   font-family: 'Cormorant Garamond', serif;
   font-size: var(--f-h3);
@@ -642,11 +596,7 @@ body {
   font-weight: 500;
 }
 
-/* ═══ SERVICES GRID (HOME) ═══
-   Cell grid via 1px gap on bg color
-   Dark featured card: visual anchor
-   No shadows. Contrast through color, not depth.
-*/
+/* ═══ SERVICES GRID ═══ */
 .svc-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -674,7 +624,6 @@ body {
 .svc-card.dark { background: var(--forest); }
 .svc-card.dark:hover { background: var(--forest-lt); }
 .svc-card.dark::before { background: var(--gold-lt); }
-
 .svc-num {
   font-family: 'Cormorant Garamond', serif;
   font-size: 4rem;
@@ -696,12 +645,7 @@ body {
   line-height: var(--lh-sub);
 }
 .svc-card.dark h3 { color: var(--on-dark); }
-.svc-card p {
-  font-size: var(--f-sm);
-  color: var(--ink-2);
-  line-height: var(--lh-body);
-  font-weight: 300;
-}
+.svc-card p { font-size: var(--f-sm); color: var(--ink-2); line-height: var(--lh-body); font-weight: 300; }
 .svc-card.dark p { color: var(--on-dark-2); }
 
 /* ═══ PROJECTS ═══ */
@@ -728,75 +672,19 @@ body {
 }
 .proj-card:hover { background: var(--cream); }
 .proj-card:hover::before { transform: scaleY(1); }
-
-.proj-meta {
-  display: flex;
-  align-items: center;
-  gap: .75rem;
-  margin-bottom: .875rem;
-}
-.proj-year {
-  font-size: var(--f-xs);
-  color: var(--gold);
-  font-weight: 600;
-  letter-spacing: .1em;
-}
-.proj-dot {
-  width: 2px; height: 2px;
-  background: var(--ink-4);
-  border-radius: 50%;
-  flex-shrink: 0;
-}
-.proj-type {
-  font-size: var(--f-xs);
-  color: var(--ink-4);
-  letter-spacing: .08em;
-  text-transform: uppercase;
-}
-.proj-card h3 {
-  font-family: 'Inter', sans-serif;
-  font-size: var(--f-sm);
-  color: var(--ink);
-  font-weight: 600;
-  margin-bottom: .625rem;
-  letter-spacing: .01em;
-  line-height: var(--lh-sub);
-}
-.proj-card p {
-  font-size: var(--f-sm);
-  color: var(--ink-2);
-  line-height: var(--lh-body);
-  margin-bottom: 1.25rem;
-  font-weight: 300;
-}
+.proj-meta { display: flex; align-items: center; gap: .75rem; margin-bottom: .875rem; }
+.proj-year { font-size: var(--f-xs); color: var(--gold); font-weight: 600; letter-spacing: .1em; }
+.proj-dot { width: 2px; height: 2px; background: var(--ink-4); border-radius: 50%; flex-shrink: 0; }
+.proj-type { font-size: var(--f-xs); color: var(--ink-4); letter-spacing: .08em; text-transform: uppercase; }
+.proj-card h3 { font-family: 'Inter', sans-serif; font-size: var(--f-sm); color: var(--ink); font-weight: 600; margin-bottom: .625rem; letter-spacing: .01em; line-height: var(--lh-sub); }
+.proj-card p { font-size: var(--f-sm); color: var(--ink-2); line-height: var(--lh-body); margin-bottom: 1.25rem; font-weight: 300; }
 .proj-tags { display: flex; flex-wrap: wrap; gap: .375rem; }
-.ptag {
-  font-size: .6875rem;
-  letter-spacing: .08em;
-  text-transform: uppercase;
-  padding: .2rem .7rem;
-  font-weight: 500;
-}
-.ptag.pl {
-  background: rgba(58,99,73,.07);
-  color: var(--sage);
-  border: 1px solid rgba(58,99,73,.16);
-}
-.ptag.go {
-  background: rgba(158,120,64,.07);
-  color: var(--gold);
-  border: 1px solid rgba(158,120,64,.18);
-}
+.ptag { font-size: .6875rem; letter-spacing: .08em; text-transform: uppercase; padding: .2rem .7rem; font-weight: 500; }
+.ptag.pl { background: rgba(58,99,73,.07); color: var(--sage); border: 1px solid rgba(58,99,73,.16); }
+.ptag.go { background: rgba(158,120,64,.07); color: var(--gold); border: 1px solid rgba(158,120,64,.18); }
 
-/* ═══ CTA BAND ═══
-   Maximum restraint: text, rule, button.
-   No gradients. No glow. Space = luxury.
-*/
-.cta-band {
-  background: var(--forest);
-  padding-block: var(--section-pad);
-  text-align: center;
-}
+/* ═══ CTA BAND ═══ */
+.cta-band { background: var(--forest); padding-block: var(--section-pad); text-align: center; }
 .cta-band::before {
   content: '';
   display: block;
@@ -808,10 +696,10 @@ body {
   font-family: 'Cormorant Garamond', serif;
   font-size: var(--f-h2-serif);
   color: var(--on-dark);
-  font-weight: 500;             /* RULE */
+  font-weight: 500;
   letter-spacing: var(--ls-heading);
-  line-height: 1.1;             /* RULE */
-  margin-bottom: var(--h2-to-p); /* RULE: 40px */
+  line-height: 1.1;
+  margin-bottom: var(--h2-to-p);
   max-width: 26ch;
   margin-inline: auto;
 }
@@ -826,450 +714,92 @@ body {
 }
 
 /* ═══ ABOUT PAGE ═══ */
-.about-hero {
-  background: var(--forest);
-  padding: 8rem var(--gutter) 5rem;
-}
+.about-hero { background: var(--forest); padding: 8rem var(--gutter) 5rem; }
 .about-story { background: var(--paper); }
-.about-story-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 6rem;
-  align-items: center;
-}
-/* RULE: image in aspect-ratio container */
-.about-story-grid .img-wrap {
-  aspect-ratio: 4 / 3;
-  overflow: hidden;
-}
+.about-story-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
+.about-story-grid .img-wrap { aspect-ratio: 4 / 3; overflow: hidden; }
 .about-story-grid .img-wrap img,
-.about-story-grid img {
-  width: 100%; height: 100%;
-  object-fit: cover;
-  display: block;
-}
-.about-story-grid > div:first-child img {
-  width: 100%; height: 420px;
-  object-fit: cover; display: block;
-}
+.about-story-grid img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.about-story-grid > div:first-child img { width: 100%; height: 420px; object-fit: cover; display: block; }
 .about-values { background: var(--cream); }
-.values-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 4rem;
-  margin-top: 5rem;
-}
-.value-card {}
-.value-icon {
-  width: 40px; height: 40px;
-  background: var(--forest);
-  display: flex; align-items: center; justify-content: center;
-  margin-bottom: 1.75rem;
-  font-size: 1rem;
-  color: var(--on-dark);
-}
-.value-card h3 {
-  font-size: var(--f-sm);
-  font-weight: 600;
-  color: var(--ink);
-  margin-bottom: .75rem;
-  letter-spacing: .02em;
-  text-transform: uppercase;
-}
-.value-card p {
-  font-size: var(--f-sm);
-  color: var(--ink-2);
-  line-height: var(--lh-body);
-  font-weight: 300;
-}
+.values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4rem; margin-top: 5rem; }
+.value-icon { width: 40px; height: 40px; background: var(--forest); display: flex; align-items: center; justify-content: center; margin-bottom: 1.75rem; font-size: 1rem; color: var(--on-dark); }
+.value-card h3 { font-size: var(--f-sm); font-weight: 600; color: var(--ink); margin-bottom: .75rem; letter-spacing: .02em; text-transform: uppercase; }
+.value-card p { font-size: var(--f-sm); color: var(--ink-2); line-height: var(--lh-body); font-weight: 300; }
 .cert-expertise { background: var(--paper); }
-.cert-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 6rem;
-  align-items: center;
-}
-.cert-grid img {
-  width: 100%; height: 420px;
-  object-fit: cover; display: block;
-}
-.cert-list {
-  display: flex;
-  flex-direction: column;
-  gap: 2.25rem;
-  margin-top: 2.5rem;
-}
+.cert-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
+.cert-grid img { width: 100%; height: 420px; object-fit: cover; display: block; }
+.cert-list { display: flex; flex-direction: column; gap: 2.25rem; margin-top: 2.5rem; }
 .cert-item { display: flex; gap: 1.25rem; }
-.cert-bar {
-  width: 1px;            /* single pixel rule: invisible until you see it */
-  background: var(--sage);
-  flex-shrink: 0;
-}
-.cert-item h4 {
-  font-size: var(--f-sm);
-  font-weight: 600;
-  color: var(--ink);
-  margin-bottom: .375rem;
-  letter-spacing: .01em;
-}
-.cert-item p {
-  font-size: var(--f-sm);
-  color: var(--ink-2);
-  line-height: var(--lh-body);
-  font-weight: 300;
-}
+.cert-bar { width: 1px; background: var(--sage); flex-shrink: 0; }
+.cert-item h4 { font-size: var(--f-sm); font-weight: 600; color: var(--ink); margin-bottom: .375rem; letter-spacing: .01em; }
+.cert-item p { font-size: var(--f-sm); color: var(--ink-2); line-height: var(--lh-body); font-weight: 300; }
 
 /* ═══ SERVICES PAGE ═══ */
 .services-hero { background: var(--forest); padding: 8rem var(--gutter) 5rem; }
 .services-hero .section-title { font-size: var(--f-h1-serif); }
-
-.svc-nav {
-  background: var(--cream);
-  padding: 2rem var(--gutter);
-  border-bottom: 1px solid var(--rule-lt);
-}
-.svc-nav-inner {
-  max-width: var(--container);
-  margin: auto;
-  display: flex; flex-wrap: wrap;
-  gap: .75rem; justify-content: center;
-}
-.svc-pill {
-  display: inline-flex; align-items: center; gap: .5rem;
-  padding: .5rem 1.25rem;
-  border: 1px solid var(--rule-lt);
-  font-size: var(--f-xs);
-  font-weight: 500;
-  letter-spacing: .06em;
-  color: var(--ink-2);
-  text-decoration: none; cursor: pointer;
-  transition: border-color .2s, color .2s;
-  background: var(--paper);
-}
+.svc-nav { background: var(--cream); padding: 2rem var(--gutter); border-bottom: 1px solid var(--rule-lt); }
+.svc-nav-inner { max-width: var(--container); margin: auto; display: flex; flex-wrap: wrap; gap: .75rem; justify-content: center; }
+.svc-pill { display: inline-flex; align-items: center; gap: .5rem; padding: .5rem 1.25rem; border: 1px solid var(--rule-lt); font-size: var(--f-xs); font-weight: 500; letter-spacing: .06em; color: var(--ink-2); text-decoration: none; cursor: pointer; transition: border-color .2s, color .2s; background: var(--paper); }
 .svc-pill:hover { border-color: var(--gold-rule); color: var(--ink); }
-
 .svc-detail { padding-block: var(--section-pad); }
 .svc-detail:nth-child(odd) { background: var(--paper); }
 .svc-detail:nth-child(even) { background: var(--cream); }
-.svc-detail-inner {
-  max-width: var(--container);
-  margin: auto;
-  padding-inline: var(--gutter);
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 6rem;
-  align-items: center;
-}
+.svc-detail-inner { max-width: var(--container); margin: auto; padding-inline: var(--gutter); display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
 .svc-detail-inner.rev .svc-content { order: 2; }
 .svc-detail-inner.rev .svc-visual { order: 1; }
-.svc-content {}
-.svc-subtitle {
-  display: flex; align-items: center; gap: .8rem;
-  margin-bottom: 1.25rem;
-}
-.svc-subtitle span {
-  font-size: var(--f-xs);
-  color: var(--gold);
-  letter-spacing: var(--ls-eye);
-  text-transform: uppercase;
-  font-weight: 500;
-}
-.svc-content h2 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: var(--f-h2-serif);
-  line-height: 1.1;              /* RULE: 1.1 */
-  letter-spacing: var(--ls-heading);
-  color: var(--ink);
-  font-weight: 500;              /* RULE: stronger */
-  margin-bottom: var(--h2-to-p); /* RULE: 40px gap */
-}
-.svc-content p {
-  font-size: var(--f-body);
-  color: var(--ink-2);
-  line-height: 1.8;              /* RULE: body 1.8 */
-  margin-bottom: 2.5rem;
-  font-weight: 300;
-}
-.benefits-list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  margin-bottom: 2.5rem;
-}
-.benefits-list li {
-  display: flex;
-  align-items: flex-start;
-  gap: 1rem;
-  font-size: 1rem;
-  color: var(--ink);
-  line-height: 1.6;
-}
-.benefits-list li::before {
-  content: '';
-  width: 20px;
-  height: 1px;
-  background: var(--gold);
-  flex-shrink: 0;
-  margin-top: 0.65rem;
-}
-/* RULE: service images in enforced aspect ratio */
+.svc-subtitle { display: flex; align-items: center; gap: .8rem; margin-bottom: 1.25rem; }
+.svc-subtitle span { font-size: var(--f-xs); color: var(--gold); letter-spacing: var(--ls-eye); text-transform: uppercase; font-weight: 500; }
+.svc-content h2 { font-family: 'Cormorant Garamond', serif; font-size: var(--f-h2-serif); line-height: 1.1; letter-spacing: var(--ls-heading); color: var(--ink); font-weight: 500; margin-bottom: var(--h2-to-p); }
+.svc-content p { font-size: var(--f-body); color: var(--ink-2); line-height: 1.8; margin-bottom: 2.5rem; font-weight: 300; }
+.benefits-list { list-style: none; display: flex; flex-direction: column; gap: 1rem; margin-bottom: 2.5rem; }
+.benefits-list li { display: flex; align-items: flex-start; gap: 1rem; font-size: 1rem; color: var(--ink); line-height: 1.6; }
+.benefits-list li::before { content: ''; width: 20px; height: 1px; background: var(--gold); flex-shrink: 0; margin-top: 0.65rem; }
 .svc-visual { position: relative; }
-.svc-visual img {
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
-  display: block;
-}
-/* ═══ CERT VISUAL STACK — image top, icons bottom ═══ */
-.cert-visual-stack {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-.cert-hero-img {
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  overflow: hidden;
-  border-radius: 4px;
-}
-.cert-hero-img img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: transform .6s var(--ease-out);
-}
+.svc-visual img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block; }
+
+.cert-visual-stack { display: flex; flex-direction: column; gap: 1rem; }
+.cert-hero-img { width: 100%; aspect-ratio: 4 / 3; overflow: hidden; border-radius: 4px; }
+.cert-hero-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .6s var(--ease-out); }
 .cert-hero-img:hover img { transform: scale(1.03); }
-
-.cert-icons-row {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0.75rem;
-}
-.cert-icon-card {
-  background: var(--paper);
-  border: 1px solid var(--rule-lt);
-  border-radius: 4px;
-  padding: 1.25rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  aspect-ratio: 1 / 1;
-  transition: border-color .25s;
-}
+.cert-icons-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; }
+.cert-icon-card { background: var(--paper); border: 1px solid var(--rule-lt); border-radius: 4px; padding: 1.25rem; display: flex; align-items: center; justify-content: center; aspect-ratio: 1 / 1; transition: border-color .25s; }
 .cert-icon-card:hover { border-color: var(--gold-rule); }
-.cert-icon-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  display: block;
-}
-.svc-visual-placeholder {
-  display: none; /* replaced by svc-panel */
-}
+.cert-icon-card img { width: 100%; height: 100%; object-fit: contain; display: block; }
 
-/* ═══ SERVICE VISUAL PANELS — typographic, no ugly charts ═══ */
-.svc-panel {
-  aspect-ratio: 4 / 3;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 3.5rem;
-  position: relative;
-  overflow: hidden;
-}
+/* ═══ SERVICE VISUAL PANELS ═══ */
+.svc-panel { aspect-ratio: 4 / 3; display: flex; flex-direction: column; justify-content: center; padding: 3.5rem; position: relative; overflow: hidden; }
 .svc-panel--dark { background: var(--forest); }
 .svc-panel--sage { background: var(--forest-mid); }
-
-/* Subtle corner accent */
-.svc-panel::before {
-  content: '';
-  position: absolute;
-  top: 0; right: 0;
-  width: 80px; height: 80px;
-  border-top: 1px solid var(--gold-rule);
-  border-right: 1px solid var(--gold-rule);
-}
-.svc-panel::after {
-  content: '';
-  position: absolute;
-  bottom: 0; left: 0;
-  width: 80px; height: 80px;
-  border-bottom: 1px solid rgba(232,228,218,0.06);
-  border-left: 1px solid rgba(232,228,218,0.06);
-}
-
-.svc-panel__eyebrow {
-  font-size: 0.7rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--gold);
-  font-weight: 500;
-  margin-bottom: 2rem;
-}
-
-/* Big stat number */
+.svc-panel::before { content: ''; position: absolute; top: 0; right: 0; width: 80px; height: 80px; border-top: 1px solid var(--gold-rule); border-right: 1px solid var(--gold-rule); }
+.svc-panel::after { content: ''; position: absolute; bottom: 0; left: 0; width: 80px; height: 80px; border-bottom: 1px solid rgba(232,228,218,0.06); border-left: 1px solid rgba(232,228,218,0.06); }
+.svc-panel__eyebrow { font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); font-weight: 500; margin-bottom: 2rem; }
 .svc-panel__stat { margin-bottom: 1rem; }
-.svc-panel__num {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 5rem;
-  color: var(--on-dark);
-  font-weight: 300;
-  letter-spacing: -0.03em;
-  line-height: 1;
-}
-.svc-panel__unit {
-  font-size: 2.5rem;
-  color: var(--gold-lt);
-}
-.svc-panel__label {
-  display: block;
-  font-size: 0.85rem;
-  color: var(--on-dark-2);
-  letter-spacing: 0.08em;
-  margin-top: 0.5rem;
-  text-transform: uppercase;
-}
+.svc-panel__num { font-family: 'Cormorant Garamond', serif; font-size: 5rem; color: var(--on-dark); font-weight: 300; letter-spacing: -0.03em; line-height: 1; }
+.svc-panel__unit { font-size: 2.5rem; color: var(--gold-lt); }
+.svc-panel__label { display: block; font-size: 0.85rem; color: var(--on-dark-2); letter-spacing: 0.08em; margin-top: 0.5rem; text-transform: uppercase; }
+.svc-panel__divider { width: 32px; height: 1px; background: var(--gold-rule); margin: 1.75rem 0; }
+.svc-panel__metrics { display: flex; gap: 2.5rem; }
+.svc-panel__metric { display: flex; flex-direction: column; gap: 0.3rem; }
+.svc-panel__metric-val { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; color: var(--on-dark); font-weight: 400; letter-spacing: -0.01em; }
+.svc-panel__metric-key { font-size: 0.65rem; color: var(--on-dark-3); letter-spacing: 0.1em; text-transform: uppercase; }
+.svc-panel__tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.5rem; }
+.svc-tag { font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--on-dark-2); border: 1px solid rgba(232,228,218,0.12); padding: 0.35rem 0.8rem; white-space: nowrap; }
+.svc-panel__checklist { display: flex; flex-direction: column; gap: 0.75rem; }
+.svc-check { font-size: 0.875rem; color: var(--on-dark-2); letter-spacing: 0.02em; padding-left: 1.25rem; position: relative; }
+.svc-check--done::before { content: ''; position: absolute; left: 0; top: 50%; transform: translateY(-50%); width: 6px; height: 1px; background: var(--gold); }
+.svc-panel__quote { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--on-dark-2); font-style: italic; line-height: 1.7; font-weight: 300; }
+.svc-panel__seal { display: flex; justify-content: flex-start; margin: 0.5rem 0; }
+.svc-panel__seal-ring { width: 100px; height: 100px; border: 1px solid var(--gold-rule); border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.2rem; }
+.svc-panel__seal-text { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; color: var(--gold-lt); font-weight: 400; letter-spacing: 0.05em; }
+.svc-panel__seal-sub { font-size: 0.55rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--on-dark-3); }
+.svc-panel__badge { display: inline-block; font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); border: 1px solid var(--gold-rule); padding: 0.4rem 1rem; }
 
-/* Divider */
-.svc-panel__divider {
-  width: 32px;
-  height: 1px;
-  background: var(--gold-rule);
-  margin: 1.75rem 0;
-}
-
-/* Metric row */
-.svc-panel__metrics {
-  display: flex;
-  gap: 2.5rem;
-}
-.svc-panel__metric {
-  display: flex;
-  flex-direction: column;
-  gap: 0.3rem;
-}
-.svc-panel__metric-val {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.5rem;
-  color: var(--on-dark);
-  font-weight: 400;
-  letter-spacing: -0.01em;
-}
-.svc-panel__metric-key {
-  font-size: 0.65rem;
-  color: var(--on-dark-3);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
-/* Tags */
-.svc-panel__tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-bottom: 0.5rem;
-}
-.svc-tag {
-  font-size: 0.7rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--on-dark-2);
-  border: 1px solid rgba(232,228,218,0.12);
-  padding: 0.35rem 0.8rem;
-  white-space: nowrap;
-}
-
-/* Checklist */
-.svc-panel__checklist {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-.svc-check {
-  font-size: 0.875rem;
-  color: var(--on-dark-2);
-  letter-spacing: 0.02em;
-  padding-left: 1.25rem;
-  position: relative;
-}
-.svc-check--done::before {
-  content: '';
-  position: absolute;
-  left: 0; top: 50%;
-  transform: translateY(-50%);
-  width: 6px; height: 1px;
-  background: var(--gold);
-}
-
-/* Quote */
-.svc-panel__quote {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.1rem;
-  color: var(--on-dark-2);
-  font-style: italic;
-  line-height: 1.7;
-  font-weight: 300;
-}
-
-/* Seal */
-.svc-panel__seal {
-  display: flex;
-  justify-content: flex-start;
-  margin: 0.5rem 0;
-}
-.svc-panel__seal-ring {
-  width: 100px; height: 100px;
-  border: 1px solid var(--gold-rule);
-  border-radius: 50%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 0.2rem;
-}
-.svc-panel__seal-text {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.4rem;
-  color: var(--gold-lt);
-  font-weight: 400;
-  letter-spacing: 0.05em;
-}
-.svc-panel__seal-sub {
-  font-size: 0.55rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--on-dark-3);
-}
-
-/* Badge */
-.svc-panel__badge {
-  display: inline-block;
-  font-size: 0.7rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--gold);
-  border: 1px solid var(--gold-rule);
-  padding: 0.4rem 1rem;
-}
-
-/* Comparison table in services */
+/* ═══ COMPARISON TABLE ═══ */
 .comp-table-wrap { overflow-x: auto; }
 .comp-table { width: 100%; border-collapse: collapse; }
-.comp-table th {
-  background: var(--forest); color: var(--on-dark);
-  padding: 1.125rem 1.5rem; text-align: left;
-  font-size: var(--f-xs); letter-spacing: var(--ls-label);
-  text-transform: uppercase; font-weight: 500;
-}
-.comp-table td {
-  padding: 1.125rem 1.5rem;
-  border-bottom: 1px solid var(--rule-lt);
-  font-size: var(--f-sm);
-  color: var(--ink);
-  line-height: var(--lh-body);
-}
+.comp-table th { background: var(--forest); color: var(--on-dark); padding: 1.125rem 1.5rem; text-align: left; font-size: var(--f-xs); letter-spacing: var(--ls-label); text-transform: uppercase; font-weight: 500; }
+.comp-table td { padding: 1.125rem 1.5rem; border-bottom: 1px solid var(--rule-lt); font-size: var(--f-sm); color: var(--ink); line-height: var(--lh-body); }
 .comp-table tr:nth-child(even) td { background: rgba(244,241,234,.6); }
 .comp-table tr:last-child td { font-weight: 500; color: var(--ink); }
 .comp-table td:first-child { font-weight: 600; color: var(--sage); font-size: var(--f-xs); letter-spacing: .06em; text-transform: uppercase; }
@@ -1278,243 +808,68 @@ body {
 /* ═══ COMPARISON PAGE ═══ */
 .comp-hero { background: var(--forest); padding: 8rem var(--gutter) 5rem; }
 .comp-tabs { display: flex; gap: 0; border-bottom: 1px solid var(--rule-lt); margin-bottom: 4rem; }
-.comp-tab {
-  padding: 1.25rem 2.75rem;
-  font-size: var(--f-xs);
-  font-weight: 500;
-  letter-spacing: var(--ls-label);
-  text-transform: uppercase;
-  color: var(--ink-3);
-  border: none;
-  border-bottom: 2px solid transparent;
-  margin-bottom: -1px;
-  cursor: pointer;
-  background: none;
-  font-family: 'Inter', sans-serif;
-  transition: color .2s, border-color .2s;
-}
+.comp-tab { padding: 1.25rem 2.75rem; font-size: var(--f-xs); font-weight: 500; letter-spacing: var(--ls-label); text-transform: uppercase; color: var(--ink-3); border: none; border-bottom: 2px solid transparent; margin-bottom: -1px; cursor: pointer; background: none; font-family: 'Inter', sans-serif; transition: color .2s, border-color .2s; }
 .comp-tab.active { color: var(--ink); border-bottom-color: var(--gold); }
 .comp-tab:hover { color: var(--ink); }
 .comp-panel { display: none; }
 .comp-panel.active { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
-.comp-info-card {
-  background: var(--paper);
-  border: 1px solid var(--rule-lt);
-  padding: 3rem;
-}
+.comp-info-card { background: var(--paper); border: 1px solid var(--rule-lt); padding: 3rem; }
 .comp-info-card + .comp-info-card { margin-top: 1.5rem; }
 .comp-field { margin-bottom: 2rem; }
 .comp-field:last-child { margin-bottom: 0; }
-.comp-field-label {
-  font-size: var(--f-xs); color: var(--gold);
-  letter-spacing: var(--ls-eye); text-transform: uppercase;
-  margin-bottom: .5rem; font-weight: 500;
-}
-.comp-field-value {
-  font-size: var(--f-body);
-  color: var(--ink);
-  font-weight: 400;
-  line-height: var(--lh-sub);
-}
-.comp-recommend {
-  background: transparent;
-  border: 1px solid var(--gold-rule);
-  padding: 2.5rem;
-}
-.comp-recommend-label {
-  font-size: var(--f-xs); color: var(--gold);
-  letter-spacing: var(--ls-eye); text-transform: uppercase;
-  margin-bottom: 1rem; font-weight: 500;
-}
-.comp-recommend p {
-  font-size: var(--f-body);
-  color: var(--ink);
-  font-weight: 400;
-  line-height: var(--lh-body);
-}
+.comp-field-label { font-size: var(--f-xs); color: var(--gold); letter-spacing: var(--ls-eye); text-transform: uppercase; margin-bottom: .5rem; font-weight: 500; }
+.comp-field-value { font-size: var(--f-body); color: var(--ink); font-weight: 400; line-height: var(--lh-sub); }
+.comp-recommend { background: transparent; border: 1px solid var(--gold-rule); padding: 2.5rem; }
+.comp-recommend-label { font-size: var(--f-xs); color: var(--gold); letter-spacing: var(--ls-eye); text-transform: uppercase; margin-bottom: 1rem; font-weight: 500; }
+.comp-recommend p { font-size: var(--f-body); color: var(--ink); font-weight: 400; line-height: var(--lh-body); }
 .benefits-dark { list-style: none; display: flex; flex-direction: column; gap: .75rem; }
-.benefits-dark li {
-  display: flex; align-items: flex-start; gap: .875rem;
-  font-size: var(--f-sm); color: var(--ink-2);
-  line-height: var(--lh-body);
-}
+.benefits-dark li { display: flex; align-items: flex-start; gap: .875rem; font-size: var(--f-sm); color: var(--ink-2); line-height: var(--lh-body); }
 .benefits-dark li::before { content: '–'; color: var(--gold); flex-shrink: 0; }
 
 /* ═══ BLOG PAGE ═══ */
 .blog-hero { background: var(--forest); padding: 8rem var(--gutter) 5rem; }
 .blog-grid { display: flex; flex-direction: column; gap: 0; margin-top: 4rem; border: 1px solid var(--rule-lt); }
-.blog-card {
-  background: var(--paper);
-  border-bottom: 1px solid var(--rule-lt);
-  transition: background .3s;
-}
+.blog-card { background: var(--paper); border-bottom: 1px solid var(--rule-lt); transition: background .3s; }
 .blog-card:last-child { border-bottom: none; }
 .blog-card:hover { background: var(--cream); }
 .blog-content { padding: 3.5rem; }
-.blog-cat {
-  display: inline-flex; align-items: center; gap: .5rem;
-  font-size: var(--f-xs); color: var(--sage); font-weight: 500;
-  letter-spacing: .08em; text-transform: uppercase; margin-bottom: 1.25rem;
-}
-.blog-card h2 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: var(--f-h2-serif);
-  color: var(--ink); font-weight: 500;  /* RULE */
-  line-height: 1.1;                      /* RULE */
-  letter-spacing: var(--ls-heading);
-  margin-bottom: var(--h2-to-p);        /* RULE: 40px */
-}
-.blog-card p {
-  font-size: var(--f-body);
-  color: var(--ink-2);
-  line-height: var(--lh-body);
-  margin-bottom: 2rem;
-  font-weight: 300;
-  max-width: 72ch;
-}
-.blog-meta {
-  display: flex; align-items: center;
-  justify-content: space-between;
-  padding-top: 1.5rem;
-  border-top: 1px solid var(--rule-lt);
-}
+.blog-cat { display: inline-flex; align-items: center; gap: .5rem; font-size: var(--f-xs); color: var(--sage); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 1.25rem; }
+.blog-card h2 { font-family: 'Cormorant Garamond', serif; font-size: var(--f-h2-serif); color: var(--ink); font-weight: 500; line-height: 1.1; letter-spacing: var(--ls-heading); margin-bottom: var(--h2-to-p); }
+.blog-card p { font-size: var(--f-body); color: var(--ink-2); line-height: var(--lh-body); margin-bottom: 2rem; font-weight: 300; max-width: 72ch; }
+.blog-meta { display: flex; align-items: center; justify-content: space-between; padding-top: 1.5rem; border-top: 1px solid var(--rule-lt); }
 .blog-date { font-size: var(--f-xs); color: var(--ink-4); letter-spacing: .06em; }
-.blog-read {
-  font-size: var(--f-xs); color: var(--sage); font-weight: 500;
-  letter-spacing: var(--ls-label); text-transform: uppercase;
-}
+.blog-read { font-size: var(--f-xs); color: var(--sage); font-weight: 500; letter-spacing: var(--ls-label); text-transform: uppercase; }
 
 /* ═══ CONTACT PAGE ═══ */
 .contact-hero { background: var(--forest); padding: 8rem var(--gutter) 5rem; }
-.contact-grid {
-  display: grid;
-  grid-template-columns: 1.5fr 1fr;
-  gap: 6rem;
-  margin-top: 5rem;
-}
+.contact-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 6rem; margin-top: 5rem; }
 .contact-form { display: flex; flex-direction: column; gap: 1.5rem; }
 .frow { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
 .fgrp { display: flex; flex-direction: column; gap: .5rem; }
-.fgrp label {
-  font-size: var(--f-xs);
-  letter-spacing: var(--ls-label);
-  text-transform: uppercase;
-  color: var(--ink);
-  font-weight: 500;
-}
-.fgrp input, .fgrp select, .fgrp textarea {
-  padding: 1rem 1.125rem;
-  border: 1px solid var(--rule-lt);
-  background: var(--paper);
-  font-family: 'Inter', sans-serif;
-  font-size: var(--f-sm);
-  color: var(--ink);
-  outline: none;
-  transition: border-color .2s, box-shadow .2s;
-  border-radius: 0;
-}
-.fgrp input:focus,
-.fgrp select:focus,
-.fgrp textarea:focus {
-  border-color: rgba(58,99,73,.4);
-  box-shadow: 0 0 0 3px rgba(58,99,73,.06);
-}
-.contact-info-panel {
-  background: var(--forest);
-  padding: 3.5rem;
-}
-.contact-info-panel h3 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.75rem;
-  color: var(--on-dark);
-  font-weight: 400;
-  letter-spacing: var(--ls-heading);
-  margin-bottom: 2.5rem;
-}
+.fgrp label { font-size: var(--f-xs); letter-spacing: var(--ls-label); text-transform: uppercase; color: var(--ink); font-weight: 500; }
+.fgrp input, .fgrp select, .fgrp textarea { padding: 1rem 1.125rem; border: 1px solid var(--rule-lt); background: var(--paper); font-family: 'Inter', sans-serif; font-size: var(--f-sm); color: var(--ink); outline: none; transition: border-color .2s, box-shadow .2s; border-radius: 0; }
+.fgrp input:focus, .fgrp select:focus, .fgrp textarea:focus { border-color: rgba(58,99,73,.4); box-shadow: 0 0 0 3px rgba(58,99,73,.06); }
+.contact-info-panel { background: var(--forest); padding: 3.5rem; }
+.contact-info-panel h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.75rem; color: var(--on-dark); font-weight: 400; letter-spacing: var(--ls-heading); margin-bottom: 2.5rem; }
 .cinfo-item { display: flex; gap: 1.25rem; margin-bottom: 2.25rem; }
-.cinfo-icon {
-  width: 36px; height: 36px;
-  background: rgba(232,228,218,.07);
-  display: flex; align-items: center; justify-content: center;
-  font-size: .9rem; flex-shrink: 0;
-}
-.cinfo-label {
-  font-size: var(--f-xs); color: var(--on-dark-3);
-  letter-spacing: var(--ls-eye); text-transform: uppercase;
-  margin-bottom: .375rem; font-weight: 500;
-}
+.cinfo-icon { width: 36px; height: 36px; background: rgba(232,228,218,.07); display: flex; align-items: center; justify-content: center; font-size: .9rem; flex-shrink: 0; }
+.cinfo-label { font-size: var(--f-xs); color: var(--on-dark-3); letter-spacing: var(--ls-eye); text-transform: uppercase; margin-bottom: .375rem; font-weight: 500; }
 .cinfo-value { font-size: var(--f-sm); color: var(--on-dark-2); line-height: var(--lh-body); }
 .cinfo-value a { color: var(--on-dark-2); text-decoration: none; transition: color .2s; }
 .cinfo-value a:hover { color: var(--gold-lt); }
 .hours-block { border-top: 1px solid var(--rule-dk); padding-top: 2rem; margin-top: 2rem; }
-.hours-block h4 {
-  font-size: var(--f-xs); color: var(--gold);
-  letter-spacing: var(--ls-eye); text-transform: uppercase;
-  margin-bottom: 1rem; font-weight: 500;
-}
+.hours-block h4 { font-size: var(--f-xs); color: var(--gold); letter-spacing: var(--ls-eye); text-transform: uppercase; margin-bottom: 1rem; font-weight: 500; }
 .hours-block p { font-size: var(--f-sm); color: var(--on-dark-3); line-height: 1.9; }
 
 /* ═══ FOOTER ═══ */
-.footer {
-  background: var(--forest);
-  padding: 6rem var(--gutter) 3rem;
-  border-top: 1px solid var(--rule-dk);
-}
-.footer-grid {
-  max-width: var(--container);
-  margin: auto;
-  display: grid;
-  grid-template-columns: 1.8fr 1fr 1fr 1fr;
-  gap: 4rem;
-  margin-bottom: 5rem;
-}
-.footer-brand img {
-  height: 44px;
-  width: auto;
-  min-width: 160px;             /* RULE: minimum 160px */
-  margin-bottom: 1.5rem;
-  display: block;
-  filter: brightness(0) invert(1);
-  flex-shrink: 0;
-}
-.footer-brand p {
-  font-size: var(--f-sm);
-  color: var(--on-dark-3);
-  line-height: var(--lh-body);
-  max-width: 28ch;
-  font-weight: 300;
-}
-.footer-col strong {
-  display: block;
-  font-size: var(--f-xs);
-  letter-spacing: var(--ls-eye);
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 1.5rem;
-  font-weight: 500;
-}
-.footer-col a {
-  display: block;
-  color: var(--on-dark-3);
-  text-decoration: none;
-  font-size: var(--f-sm);
-  margin-bottom: .75rem;
-  transition: color .2s;
-  cursor: pointer;
-  font-weight: 300;
-}
+.footer { background: var(--forest); padding: 6rem var(--gutter) 3rem; border-top: 1px solid var(--rule-dk); }
+.footer-grid { max-width: var(--container); margin: auto; display: grid; grid-template-columns: 1.8fr 1fr 1fr 1fr; gap: 4rem; margin-bottom: 5rem; }
+.footer-brand p { font-size: var(--f-sm); color: var(--on-dark-3); line-height: var(--lh-body); max-width: 28ch; font-weight: 300; }
+.footer-col strong { display: block; font-size: var(--f-xs); letter-spacing: var(--ls-eye); text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; font-weight: 500; }
+.footer-col a { display: block; color: var(--on-dark-3); text-decoration: none; font-size: var(--f-sm); margin-bottom: .75rem; transition: color .2s; cursor: pointer; font-weight: 300; }
 .footer-col a:hover { color: var(--on-dark); }
-.footer-bottom {
-  max-width: var(--container); margin: auto;
-  border-top: 1px solid var(--rule-dk);
-  padding-top: 2rem;
-  display: flex; justify-content: space-between; align-items: center;
-}
-.footer-bottom p {
-  font-size: var(--f-xs);
-  color: var(--on-dark-3);
-  letter-spacing: .04em;
-}
+.footer-bottom { max-width: var(--container); margin: auto; border-top: 1px solid var(--rule-dk); padding-top: 2rem; display: flex; justify-content: space-between; align-items: center; }
+.footer-bottom p { font-size: var(--f-xs); color: var(--on-dark-3); letter-spacing: .04em; }
 
 /* ═══ RESPONSIVE ═══ */
 @media (max-width: 1024px) {
@@ -1529,16 +884,11 @@ body {
   .btype-grid { grid-template-columns: 1fr; gap: 1px; }
   .svc-grid { grid-template-columns: 1fr; }
   .proj-grid { grid-template-columns: 1fr; }
-  .about-story-grid,
-  .cert-grid,
-  .svc-detail-inner,
-  .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
-  .svc-detail-inner.rev .svc-content,
-  .svc-detail-inner.rev .svc-visual { order: unset; }
+  .about-story-grid, .cert-grid, .svc-detail-inner, .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .svc-detail-inner.rev .svc-content, .svc-detail-inner.rev .svc-visual { order: unset; }
   .comp-panel.active { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 3rem; }
   .values-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-  /* RULE: keep 3 cols on tablet, maintain min-width */
   .cert-imgs { grid-template-columns: repeat(3, minmax(120px, 200px)); }
 }
 @media (max-width: 600px) {
@@ -1548,10 +898,7 @@ body {
   .process-grid { grid-template-columns: 1fr; }
   .comp-tabs { overflow-x: auto; }
   .footer-grid { grid-template-columns: 1fr; }
-  /* RULE: on mobile allow wrap but keep min-width */
-  .cert-imgs {
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  }
+  .cert-imgs { grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); }
 }
 
   </style>
@@ -1561,7 +908,10 @@ body {
   <!-- NAV -->
   <nav class="nav" id="mainNav">
     <a class="nav-logo" onclick="navigate('home')" style="cursor:pointer">
-      <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663419719601/NdwjjiPRHbUkh95Lk8zgQg/logo-serif-final-1-XHhBsyoh8UzD6ssoLsGZ4U.png" alt="Avenor Consultants Ltd." />
+      <div class="nav-logo-mark">
+        <span class="nav-logo-wordmark">Avenor</span>
+        <span class="nav-logo-sub">Consultants Ltd.</span>
+      </div>
     </a>
     <div class="nav-links">
       <a onclick="navigate('home')" data-page="home" data-t="nav.home">Home</a>
@@ -1618,8 +968,6 @@ body {
         <div class="hero-right-overlay"></div>
       </div>
     </section>
-
-
 
     <!-- Process -->
     <section class="section process-bg">
@@ -1706,7 +1054,7 @@ body {
     <!-- Footer -->
     <footer class="footer" id="footer-home">
       <div class="footer-grid">
-        <div class="footer-brand"><img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663419719601/NdwjjiPRHbUkh95Lk8zgQg/logo-serif-final-1-XHhBsyoh8UzD6ssoLsGZ4U.png" alt="Avenor"/><p data-t="footer.desc">Professional green building consulting for schools and commercial buildings in Hong Kong.</p></div>
+        <div class="footer-brand"><div class="footer-brand-mark"><span class="footer-brand-wordmark">Avenor</span><span class="footer-brand-sub">Consultants Ltd.</span></div><p data-t="footer.desc">Professional green building consulting for schools and commercial buildings in Hong Kong.</p></div>
         <div class="footer-col"><strong data-t="footer.quickLinks">Quick Links</strong><a onclick="navigate('home')">Home</a><a onclick="navigate('about')">About</a><a onclick="navigate('services')">Services</a><a onclick="navigate('contact')">Contact</a></div>
         <div class="footer-col"><strong data-t="footer.certifications">Certifications</strong><a onclick="navigate('services')">BEAM Plus</a><a onclick="navigate('services')">LEED</a><a onclick="navigate('services')">WELL</a></div>
         <div class="footer-col"><strong data-t="footer.contact">Contact</strong><a href="mailto:info@avenorconsultantsltd.com">info@avenorconsultantsltd.com</a><a href="https://wa.me/85257947791">+852 5794 7791</a><a>Hong Kong</a></div>
@@ -1778,7 +1126,7 @@ body {
       <p data-t="about.cta.desc">Whether you're exploring certification for the first time or looking for a partner to manage the process.</p>
       <button class="btn-gold" onclick="navigate('contact')" data-t="nav.getInTouch">Get in Touch</button>
     </section>
-    <footer class="footer"><div class="footer-grid"><div class="footer-brand"><img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663419719601/NdwjjiPRHbUkh95Lk8zgQg/logo-serif-final-1-XHhBsyoh8UzD6ssoLsGZ4U.png" alt="Avenor"/><p data-t="footer.desc">Professional green building consulting for schools and commercial buildings in Hong Kong.</p></div><div class="footer-col"><strong data-t="footer.quickLinks">Quick Links</strong><a onclick="navigate('home')">Home</a><a onclick="navigate('about')">About</a><a onclick="navigate('services')">Services</a><a onclick="navigate('contact')">Contact</a></div><div class="footer-col"><strong data-t="footer.certifications">Certifications</strong><a onclick="navigate('services')">BEAM Plus</a><a onclick="navigate('services')">LEED</a><a onclick="navigate('services')">WELL</a></div><div class="footer-col"><strong data-t="footer.contact">Contact</strong><a href="mailto:info@avenorconsultantsltd.com">info@avenorconsultantsltd.com</a><a href="https://wa.me/85257947791">+852 5794 7791</a></div></div><div class="footer-bottom"><p>© 2026 Avenor Consultants Ltd. <span data-t="footer.rights">All rights reserved.</span></p></div></footer>
+    <footer class="footer"><div class="footer-grid"><div class="footer-brand"><div class="footer-brand-mark"><span class="footer-brand-wordmark">Avenor</span><span class="footer-brand-sub">Consultants Ltd.</span></div><p data-t="footer.desc">Professional green building consulting for schools and commercial buildings in Hong Kong.</p></div><div class="footer-col"><strong data-t="footer.quickLinks">Quick Links</strong><a onclick="navigate('home')">Home</a><a onclick="navigate('about')">About</a><a onclick="navigate('services')">Services</a><a onclick="navigate('contact')">Contact</a></div><div class="footer-col"><strong data-t="footer.certifications">Certifications</strong><a onclick="navigate('services')">BEAM Plus</a><a onclick="navigate('services')">LEED</a><a onclick="navigate('services')">WELL</a></div><div class="footer-col"><strong data-t="footer.contact">Contact</strong><a href="mailto:info@avenorconsultantsltd.com">info@avenorconsultantsltd.com</a><a href="https://wa.me/85257947791">+852 5794 7791</a></div></div><div class="footer-bottom"><p>© 2026 Avenor Consultants Ltd. <span data-t="footer.rights">All rights reserved.</span></p></div></footer>
   </div>
 
   <!-- ════════════════════════════════
@@ -1805,7 +1153,6 @@ body {
       </div>
     </div>
 
-    <!-- BEAM Plus Schools -->
     <div class="svc-detail" id="svc-beam-schools">
       <div class="svc-detail-inner">
         <div class="svc-content">
@@ -1826,13 +1173,12 @@ body {
       </div>
     </div>
 
-    <!-- Green Certification -->
     <div class="svc-detail" id="svc-green-cert">
       <div class="svc-detail-inner rev">
         <div class="svc-content">
           <div class="svc-subtitle"><span data-t="services.greencert.subtitle">International Green Building Standards</span></div>
           <h2 data-t="services.greencert.title">BEAM Plus · LEED · WELL Certification</h2>
-          <p data-t="services.greencert.desc">Achieve multiple international certifications with our comprehensive consulting. We guide you through BEAM Plus for local recognition, LEED for global standards, and WELL for occupant health and wellness.</p>
+          <p data-t="services.greencert.desc">Achieve multiple international certifications with our comprehensive consulting.</p>
           <ul class="benefits-list">
             <li data-t="services.greencert.b1">Triple certification pathway for maximum market advantage</li>
             <li data-t="services.greencert.b2">Internationally recognized credentials across 180+ countries</li>
@@ -1843,27 +1189,19 @@ body {
           </ul>
           <button class="btn-green" onclick="navigate('contact')" data-t="services.enquire">Enquire Now →</button>
         </div>
-        <!-- Visual: hero image + cert icons stacked below -->
         <div class="svc-visual cert-visual-stack">
           <div class="cert-hero-img">
             <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663419719601/NdwjjiPRHbUkh95Lk8zgQg/hero-commercial-SoXaqxrZX3ApkAedbobnDo.webp" alt="Green Building" />
           </div>
           <div class="cert-icons-row">
-            <div class="cert-icon-card">
-              <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663419719601/NdwjjiPRHbUkh95Lk8zgQg/ZW8Qt8jHjOCc_4f8ff60e.jpg" alt="BEAM Plus" />
-            </div>
-            <div class="cert-icon-card">
-              <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663419719601/NdwjjiPRHbUkh95Lk8zgQg/6JxAlB9iC0NK_aaf689fd.jpg" alt="LEED" />
-            </div>
-            <div class="cert-icon-card">
-              <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663419719601/NdwjjiPRHbUkh95Lk8zgQg/pkYDsEJHUbCm_214075a7.png" alt="WELL" />
-            </div>
+            <div class="cert-icon-card"><img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663419719601/NdwjjiPRHbUkh95Lk8zgQg/ZW8Qt8jHjOCc_4f8ff60e.jpg" alt="BEAM Plus" /></div>
+            <div class="cert-icon-card"><img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663419719601/NdwjjiPRHbUkh95Lk8zgQg/6JxAlB9iC0NK_aaf689fd.jpg" alt="LEED" /></div>
+            <div class="cert-icon-card"><img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663419719601/NdwjjiPRHbUkh95Lk8zgQg/pkYDsEJHUbCm_214075a7.png" alt="WELL" /></div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Energy Audit -->
     <div class="svc-detail" id="svc-energy">
       <div class="svc-detail-inner">
         <div class="svc-content">
@@ -1889,25 +1227,15 @@ body {
             </div>
             <div class="svc-panel__divider"></div>
             <div class="svc-panel__metrics">
-              <div class="svc-panel__metric">
-                <span class="svc-panel__metric-val">412</span>
-                <span class="svc-panel__metric-key">kWh/m²/yr</span>
-              </div>
-              <div class="svc-panel__metric">
-                <span class="svc-panel__metric-val">LCA</span>
-                <span class="svc-panel__metric-key">Life-Cycle</span>
-              </div>
-              <div class="svc-panel__metric">
-                <span class="svc-panel__metric-val">ESG</span>
-                <span class="svc-panel__metric-key">Compliance</span>
-              </div>
+              <div class="svc-panel__metric"><span class="svc-panel__metric-val">412</span><span class="svc-panel__metric-key">kWh/m²/yr</span></div>
+              <div class="svc-panel__metric"><span class="svc-panel__metric-val">LCA</span><span class="svc-panel__metric-key">Life-Cycle</span></div>
+              <div class="svc-panel__metric"><span class="svc-panel__metric-val">ESG</span><span class="svc-panel__metric-key">Compliance</span></div>
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Environmental -->
     <div class="svc-detail" id="svc-environmental">
       <div class="svc-detail-inner rev">
         <div class="svc-content">
@@ -1928,23 +1256,15 @@ body {
           <div class="svc-panel svc-panel--sage">
             <div class="svc-panel__eyebrow">Environmental</div>
             <div class="svc-panel__tags">
-              <span class="svc-tag">Noise</span>
-              <span class="svc-tag">Air Quality</span>
-              <span class="svc-tag">Water</span>
-              <span class="svc-tag">Waste</span>
-              <span class="svc-tag">EIA</span>
-              <span class="svc-tag">Vibration</span>
+              <span class="svc-tag">Noise</span><span class="svc-tag">Air Quality</span><span class="svc-tag">Water</span><span class="svc-tag">Waste</span><span class="svc-tag">EIA</span><span class="svc-tag">Vibration</span>
             </div>
             <div class="svc-panel__divider"></div>
-            <div class="svc-panel__quote">
-              "Comprehensive monitoring<br/>across all environmental<br/>parameters."
-            </div>
+            <div class="svc-panel__quote">"Comprehensive monitoring<br/>across all environmental<br/>parameters."</div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Testing -->
     <div class="svc-detail" id="svc-testing">
       <div class="svc-detail-inner">
         <div class="svc-content">
@@ -1977,7 +1297,6 @@ body {
       </div>
     </div>
 
-    <!-- IAQ -->
     <div class="svc-detail" id="svc-iaq">
       <div class="svc-detail-inner rev">
         <div class="svc-content">
@@ -1998,18 +1317,9 @@ body {
           <div class="svc-panel svc-panel--sage">
             <div class="svc-panel__eyebrow">Indoor Air Quality</div>
             <div class="svc-panel__metrics">
-              <div class="svc-panel__metric">
-                <span class="svc-panel__metric-val">412</span>
-                <span class="svc-panel__metric-key">CO₂ ppm</span>
-              </div>
-              <div class="svc-panel__metric">
-                <span class="svc-panel__metric-val">8</span>
-                <span class="svc-panel__metric-key">PM2.5 μg/m³</span>
-              </div>
-              <div class="svc-panel__metric">
-                <span class="svc-panel__metric-val">0.2</span>
-                <span class="svc-panel__metric-key">TVOC mg/m³</span>
-              </div>
+              <div class="svc-panel__metric"><span class="svc-panel__metric-val">412</span><span class="svc-panel__metric-key">CO₂ ppm</span></div>
+              <div class="svc-panel__metric"><span class="svc-panel__metric-val">8</span><span class="svc-panel__metric-key">PM2.5 μg/m³</span></div>
+              <div class="svc-panel__metric"><span class="svc-panel__metric-val">0.2</span><span class="svc-panel__metric-key">TVOC mg/m³</span></div>
             </div>
             <div class="svc-panel__divider"></div>
             <div class="svc-panel__badge">WELL IAQ Compliant</div>
@@ -2018,7 +1328,6 @@ body {
       </div>
     </div>
 
-    <!-- iCxA -->
     <div class="svc-detail" id="svc-icxa">
       <div class="svc-detail-inner">
         <div class="svc-content">
@@ -2045,15 +1354,12 @@ body {
               </div>
             </div>
             <div class="svc-panel__divider"></div>
-            <div class="svc-panel__quote">
-              "Verified system performance<br/>independently certified."
-            </div>
+            <div class="svc-panel__quote">"Verified system performance<br/>independently certified."</div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Comparison Table -->
     <section class="section" style="background:var(--cream)">
       <div class="section-inner">
         <div class="reveal">
@@ -2079,7 +1385,7 @@ body {
     </section>
 
     <section class="cta-band"><h2 data-t="services.cta.title">Not Sure Which Certification Is Right?</h2><p data-t="services.cta.desc">Every building is different. We'll help you identify the most suitable pathway.</p><button class="btn-gold" onclick="navigate('contact')" data-t="services.cta.button">Book a Free Consultation</button></section>
-    <footer class="footer"><div class="footer-grid"><div class="footer-brand"><img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663419719601/NdwjjiPRHbUkh95Lk8zgQg/logo-serif-final-1-XHhBsyoh8UzD6ssoLsGZ4U.png" alt="Avenor"/><p data-t="footer.desc">Professional green building consulting.</p></div><div class="footer-col"><strong data-t="footer.quickLinks">Quick Links</strong><a onclick="navigate('home')">Home</a><a onclick="navigate('about')">About</a><a onclick="navigate('services')">Services</a><a onclick="navigate('contact')">Contact</a></div><div class="footer-col"><strong data-t="footer.certifications">Certifications</strong><a onclick="navigate('services')">BEAM Plus</a><a onclick="navigate('services')">LEED</a><a onclick="navigate('services')">WELL</a></div><div class="footer-col"><strong data-t="footer.contact">Contact</strong><a href="mailto:info@avenorconsultantsltd.com">info@avenorconsultantsltd.com</a></div></div><div class="footer-bottom"><p>© 2026 Avenor Consultants Ltd.</p></div></footer>
+    <footer class="footer"><div class="footer-grid"><div class="footer-brand"><div class="footer-brand-mark"><span class="footer-brand-wordmark">Avenor</span><span class="footer-brand-sub">Consultants Ltd.</span></div><p data-t="footer.desc">Professional green building consulting.</p></div><div class="footer-col"><strong data-t="footer.quickLinks">Quick Links</strong><a onclick="navigate('home')">Home</a><a onclick="navigate('about')">About</a><a onclick="navigate('services')">Services</a><a onclick="navigate('contact')">Contact</a></div><div class="footer-col"><strong data-t="footer.certifications">Certifications</strong><a onclick="navigate('services')">BEAM Plus</a><a onclick="navigate('services')">LEED</a><a onclick="navigate('services')">WELL</a></div><div class="footer-col"><strong data-t="footer.contact">Contact</strong><a href="mailto:info@avenorconsultantsltd.com">info@avenorconsultantsltd.com</a></div></div><div class="footer-bottom"><p>© 2026 Avenor Consultants Ltd.</p></div></footer>
   </div>
 
   <!-- ════════════════════════════════
@@ -2100,7 +1406,6 @@ body {
           <button class="comp-tab" onclick="switchTab('leed',this)">LEED</button>
           <button class="comp-tab" onclick="switchTab('well',this)">WELL</button>
         </div>
-        <!-- BEAM Panel -->
         <div class="comp-panel active" id="tab-beam">
           <div>
             <div class="comp-info-card"><div class="comp-field"><div class="comp-field-label" data-t="comparison.origin">Origin</div><div class="comp-field-value" data-t="comparison.originBeam">HK Green Building Council</div></div><div class="comp-field"><div class="comp-field-label" data-t="comparison.focus">Focus</div><div class="comp-field-value" data-t="comparison.focusBeam">Environmental performance</div></div><div class="comp-field"><div class="comp-field-label" data-t="comparison.geography">Geography</div><div class="comp-field-value" data-t="comparison.geographyBeam">HK & Asia-Pacific</div></div></div>
@@ -2111,7 +1416,6 @@ body {
             <div class="comp-recommend" style="margin-top:1.5rem"><div class="comp-recommend-label" data-t="comparison.recommendation">Recommendation</div><p data-t="comparison.recommendationBeam">Ideal for schools and local projects seeking government support and cost efficiency</p></div>
           </div>
         </div>
-        <!-- LEED Panel -->
         <div class="comp-panel" id="tab-leed">
           <div>
             <div class="comp-info-card"><div class="comp-field"><div class="comp-field-label" data-t="comparison.origin">Origin</div><div class="comp-field-value" data-t="comparison.originLeed">U.S. Green Building Council</div></div><div class="comp-field"><div class="comp-field-label" data-t="comparison.focus">Focus</div><div class="comp-field-value" data-t="comparison.focusLeed">Environmental design & operations</div></div><div class="comp-field"><div class="comp-field-label" data-t="comparison.geography">Geography</div><div class="comp-field-value" data-t="comparison.geographyLeed">Global (180+ countries)</div></div></div>
@@ -2122,7 +1426,6 @@ body {
             <div class="comp-recommend" style="margin-top:1.5rem"><div class="comp-recommend-label" data-t="comparison.recommendation">Recommendation</div><p data-t="comparison.recommendationLeed">Best for international projects, premium positioning, and global market appeal</p></div>
           </div>
         </div>
-        <!-- WELL Panel -->
         <div class="comp-panel" id="tab-well">
           <div>
             <div class="comp-info-card"><div class="comp-field"><div class="comp-field-label" data-t="comparison.origin">Origin</div><div class="comp-field-value" data-t="comparison.originWell">International WELL Building Institute</div></div><div class="comp-field"><div class="comp-field-label" data-t="comparison.focus">Focus</div><div class="comp-field-value" data-t="comparison.focusWell">Occupant health & wellness</div></div><div class="comp-field"><div class="comp-field-label" data-t="comparison.geography">Geography</div><div class="comp-field-value" data-t="comparison.geographyWell">Global (100+ countries)</div></div></div>
@@ -2136,7 +1439,7 @@ body {
       </div>
     </section>
     <section class="cta-band"><h2 data-t="services.cta.title">Not Sure Which Is Right for You?</h2><p data-t="services.cta.desc">Our expert consultants can help you identify the most suitable certification pathway.</p><button class="btn-gold" onclick="navigate('contact')" data-t="services.cta.button">Book a Free Consultation</button></section>
-    <footer class="footer"><div class="footer-grid"><div class="footer-brand"><img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663419719601/NdwjjiPRHbUkh95Lk8zgQg/logo-serif-final-1-XHhBsyoh8UzD6ssoLsGZ4U.png" alt="Avenor"/><p data-t="footer.desc">Professional green building consulting.</p></div><div class="footer-col"><strong data-t="footer.quickLinks">Quick Links</strong><a onclick="navigate('home')">Home</a><a onclick="navigate('about')">About</a><a onclick="navigate('services')">Services</a><a onclick="navigate('contact')">Contact</a></div><div class="footer-col"><strong data-t="footer.certifications">Certifications</strong><a onclick="navigate('services')">BEAM Plus</a><a onclick="navigate('services')">LEED</a><a onclick="navigate('services')">WELL</a></div><div class="footer-col"><strong data-t="footer.contact">Contact</strong><a href="mailto:info@avenorconsultantsltd.com">info@avenorconsultantsltd.com</a></div></div><div class="footer-bottom"><p>© 2026 Avenor Consultants Ltd.</p></div></footer>
+    <footer class="footer"><div class="footer-grid"><div class="footer-brand"><div class="footer-brand-mark"><span class="footer-brand-wordmark">Avenor</span><span class="footer-brand-sub">Consultants Ltd.</span></div><p data-t="footer.desc">Professional green building consulting.</p></div><div class="footer-col"><strong data-t="footer.quickLinks">Quick Links</strong><a onclick="navigate('home')">Home</a><a onclick="navigate('about')">About</a><a onclick="navigate('services')">Services</a><a onclick="navigate('contact')">Contact</a></div><div class="footer-col"><strong data-t="footer.certifications">Certifications</strong><a onclick="navigate('services')">BEAM Plus</a><a onclick="navigate('services')">LEED</a><a onclick="navigate('services')">WELL</a></div><div class="footer-col"><strong data-t="footer.contact">Contact</strong><a href="mailto:info@avenorconsultantsltd.com">info@avenorconsultantsltd.com</a></div></div><div class="footer-bottom"><p>© 2026 Avenor Consultants Ltd.</p></div></footer>
   </div>
 
   <!-- ════════════════════════════════
@@ -2181,7 +1484,7 @@ body {
       </div>
     </section>
     <section class="cta-band"><h2 data-t="home.cta.title">Ready to Get Started?</h2><p data-t="home.cta.desc">Contact us today to discuss your green building certification needs.</p><button class="btn-gold" onclick="navigate('contact')" data-t="services.cta.button">Book a Free Consultation</button></section>
-    <footer class="footer"><div class="footer-grid"><div class="footer-brand"><img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663419719601/NdwjjiPRHbUkh95Lk8zgQg/logo-serif-final-1-XHhBsyoh8UzD6ssoLsGZ4U.png" alt="Avenor"/><p data-t="footer.desc">Professional green building consulting.</p></div><div class="footer-col"><strong data-t="footer.quickLinks">Quick Links</strong><a onclick="navigate('home')">Home</a><a onclick="navigate('about')">About</a><a onclick="navigate('services')">Services</a><a onclick="navigate('contact')">Contact</a></div><div class="footer-col"><strong data-t="footer.certifications">Certifications</strong><a onclick="navigate('services')">BEAM Plus</a><a onclick="navigate('services')">LEED</a><a onclick="navigate('services')">WELL</a></div><div class="footer-col"><strong data-t="footer.contact">Contact</strong><a href="mailto:info@avenorconsultantsltd.com">info@avenorconsultantsltd.com</a></div></div><div class="footer-bottom"><p>© 2026 Avenor Consultants Ltd.</p></div></footer>
+    <footer class="footer"><div class="footer-grid"><div class="footer-brand"><div class="footer-brand-mark"><span class="footer-brand-wordmark">Avenor</span><span class="footer-brand-sub">Consultants Ltd.</span></div><p data-t="footer.desc">Professional green building consulting.</p></div><div class="footer-col"><strong data-t="footer.quickLinks">Quick Links</strong><a onclick="navigate('home')">Home</a><a onclick="navigate('about')">About</a><a onclick="navigate('services')">Services</a><a onclick="navigate('contact')">Contact</a></div><div class="footer-col"><strong data-t="footer.certifications">Certifications</strong><a onclick="navigate('services')">BEAM Plus</a><a onclick="navigate('services')">LEED</a><a onclick="navigate('services')">WELL</a></div><div class="footer-col"><strong data-t="footer.contact">Contact</strong><a href="mailto:info@avenorconsultantsltd.com">info@avenorconsultantsltd.com</a></div></div><div class="footer-bottom"><p>© 2026 Avenor Consultants Ltd.</p></div></footer>
   </div>
 
   <!-- ════════════════════════════════
@@ -2242,11 +1545,10 @@ body {
         </div>
       </div>
     </section>
-    <footer class="footer"><div class="footer-grid"><div class="footer-brand"><img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663419719601/NdwjjiPRHbUkh95Lk8zgQg/logo-serif-final-1-XHhBsyoh8UzD6ssoLsGZ4U.png" alt="Avenor"/><p data-t="footer.desc">Professional green building consulting.</p></div><div class="footer-col"><strong data-t="footer.quickLinks">Quick Links</strong><a onclick="navigate('home')">Home</a><a onclick="navigate('about')">About</a><a onclick="navigate('services')">Services</a><a onclick="navigate('contact')">Contact</a></div><div class="footer-col"><strong data-t="footer.certifications">Certifications</strong><a onclick="navigate('services')">BEAM Plus</a><a onclick="navigate('services')">LEED</a><a onclick="navigate('services')">WELL</a></div><div class="footer-col"><strong data-t="footer.contact">Contact</strong><a href="mailto:info@avenorconsultantsltd.com">info@avenorconsultantsltd.com</a><a href="https://wa.me/85257947791">+852 5794 7791</a></div></div><div class="footer-bottom"><p>© 2026 Avenor Consultants Ltd.</p></div></footer>
+    <footer class="footer"><div class="footer-grid"><div class="footer-brand"><div class="footer-brand-mark"><span class="footer-brand-wordmark">Avenor</span><span class="footer-brand-sub">Consultants Ltd.</span></div><p data-t="footer.desc">Professional green building consulting.</p></div><div class="footer-col"><strong data-t="footer.quickLinks">Quick Links</strong><a onclick="navigate('home')">Home</a><a onclick="navigate('about')">About</a><a onclick="navigate('services')">Services</a><a onclick="navigate('contact')">Contact</a></div><div class="footer-col"><strong data-t="footer.certifications">Certifications</strong><a onclick="navigate('services')">BEAM Plus</a><a onclick="navigate('services')">LEED</a><a onclick="navigate('services')">WELL</a></div><div class="footer-col"><strong data-t="footer.contact">Contact</strong><a href="mailto:info@avenorconsultantsltd.com">info@avenorconsultantsltd.com</a><a href="https://wa.me/85257947791">+852 5794 7791</a></div></div><div class="footer-bottom"><p>© 2026 Avenor Consultants Ltd.</p></div></footer>
   </div>
 
   <script>
-  /* ════════ TRANSLATIONS ════════ */
   const t = {
     en: {
       "nav.home":"Home","nav.about":"About","nav.services":"Services","nav.blog":"Blog","nav.comparison":"Comparison","nav.contact":"Contact","nav.getInTouch":"Get in Touch",
@@ -2416,11 +1718,9 @@ body {
     }
   };
 
-  /* ════════ STATE ════════ */
   let lang = 'en';
   let currentPage = 'home';
 
-  /* ════════ NAV ════════ */
   function navigate(page) {
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     document.getElementById('page-' + page).classList.add('active');
@@ -2436,7 +1736,6 @@ body {
     document.getElementById('navMobile').classList.toggle('open');
   }
 
-  /* ════════ LANGUAGE ════════ */
   function toggleLang() {
     lang = lang === 'en' ? 'zh' : 'en';
     document.getElementById('langBtn').textContent = lang === 'en' ? '🌐 中文' : '🌐 EN';
@@ -2458,7 +1757,6 @@ body {
     });
   }
 
-  /* ════════ SCROLL REVEAL ════════ */
   function initReveal() {
     const obs = new IntersectionObserver(entries => {
       entries.forEach(e => { if(e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }});
@@ -2468,7 +1766,6 @@ body {
     });
   }
 
-  /* ════════ COMPARISON TABS ════════ */
   function switchTab(id, btn) {
     document.querySelectorAll('.comp-tab').forEach(b => b.classList.remove('active'));
     document.querySelectorAll('.comp-panel').forEach(p => p.classList.remove('active'));
@@ -2476,7 +1773,6 @@ body {
     document.getElementById('tab-' + id).classList.add('active');
   }
 
-  /* ════════ CONTACT FORM ════════ */
   function handleContact(e) {
     e.preventDefault();
     const btn = document.getElementById('contactBtn');
@@ -2485,7 +1781,6 @@ body {
     setTimeout(() => { btn.textContent = tr('contact.form.submit'); btn.style.background = ''; e.target.reset(); }, 3000);
   }
 
-  /* ════════ INIT ════════ */
   applyTranslations();
   initReveal();
   </script>
