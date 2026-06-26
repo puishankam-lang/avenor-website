@@ -1879,6 +1879,7 @@ html[lang="zh"] .section-desc {
       a.classList.toggle('active', a.dataset.page === page);
     });
     currentPage = page;
+    history.pushState(null, '', '/');
     window.scrollTo(0,0);
     setTimeout(initReveal, 100);
   }
