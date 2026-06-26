@@ -819,26 +819,29 @@ body {
   width: 100%;
 }
 .cert-item-svc {
-  text-align: center;
-  flex: 1;
-  max-width: 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
+  flex: none;
 }
 .cert-item-svc img {
-  width: 100px;
-  height: 100px;
+  width: 100%;
+  height: 80px;
   object-fit: contain;
-  display: block;
-  margin: 0 auto;
+  background: transparent !important;
   mix-blend-mode: multiply;
 }
 .cert-item-svc p {
-  margin-top: 0.6rem;
+  margin-top: 10px;
   font-family: 'Inter', sans-serif;
   font-size: 0.6rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--ink-3);
   font-weight: 600;
+  text-align: center;
 }
 
 /* ═══ CERT CARDS STACK ═══ */
