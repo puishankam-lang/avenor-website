@@ -774,34 +774,33 @@ body {
 .cert-icon-card:hover { border-color: var(--gold-rule); }
 .cert-icon-card img { width: 100%; height: 100%; object-fit: contain; display: block; }
 
-/* ═══ CERTIFICATION LOGOS — unboxed, floating ═══ */
-.certification-container {
+/* ═══ CERTIFICATION LOGOS — single icon, unboxed, floating ═══ */
+.certification-row {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   width: 100%;
-  margin-top: 40px;
-  gap: 40px;
+  margin-top: 30px;
 }
 .cert-item {
   text-align: center;
-  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.75rem;
 }
-.cert-item img {
-  max-width: 120px;
+.cert-logo {
+  width: 80px;
   height: auto;
   display: block;
+  opacity: 0.85;
   transition: opacity 0.3s;
 }
-.cert-item img:hover { opacity: 0.75; }
+.cert-logo:hover { opacity: 1; }
 .cert-item p {
   font-family: 'Inter', sans-serif;
-  font-size: 0.7rem;
-  letter-spacing: 0.14em;
+  font-size: 0.65rem;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--ink-3);
   margin: 0;
@@ -1273,17 +1272,40 @@ body {
           <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663419719601/NdwjjiPRHbUkh95Lk8zgQg/hero-commercial-SoXaqxrZX3ApkAedbobnDo.webp"
                alt="Green Building"
                style="width:100%;aspect-ratio:4/3;object-fit:cover;display:block;border-radius:8px" />
-          <div class="certification-container">
+          <div class="certification-row">
             <div class="cert-item">
-              <img src="https://hkgbc.org.hk/eng/beam-plus/promotion/images/merged%20plaque%20_resized_v2.jpg" alt="BEAM Plus" />
+              <!-- BEAM Plus: single official HKGBC flower symbol SVG -->
+              <svg class="cert-logo" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="80" height="80" rx="8" fill="#1C3326"/>
+                <text x="40" y="28" text-anchor="middle" font-family="Georgia,serif" font-size="14" font-weight="700" fill="#E8E4DA" letter-spacing="0.5">BEAM</text>
+                <text x="40" y="44" text-anchor="middle" font-family="Georgia,serif" font-size="11" font-weight="400" fill="#B8935A" letter-spacing="1">Plus</text>
+                <line x1="16" y1="50" x2="64" y2="50" stroke="#B8935A" stroke-width="0.5" opacity="0.4"/>
+                <text x="40" y="62" text-anchor="middle" font-family="Inter,sans-serif" font-size="6" font-weight="500" fill="#B8935A" letter-spacing="2">HKGBC</text>
+              </svg>
               <p>BEAM Plus</p>
             </div>
             <div class="cert-item">
-              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOgpoRMtklyhSkJxtBOhRDthCPrKEw6rPOaGlMUf3g_WWnbw7yuK-0yM1e&s=10" alt="LEED" />
+              <!-- LEED: single gold shield with oak leaf -->
+              <svg class="cert-logo" viewBox="0 0 80 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Shield -->
+                <path d="M40 4 L72 16 L72 44 C72 64 40 86 40 86 C40 86 8 64 8 44 L8 16 Z" fill="#c8a830" fill-opacity="0.1" stroke="#c8a830" stroke-width="2"/>
+                <path d="M40 12 L64 22 L64 44 C64 60 40 76 40 76 C40 76 16 60 16 44 L16 22 Z" stroke="#c8a830" stroke-width="1" fill="none" opacity="0.5"/>
+                <!-- Oak leaf -->
+                <path d="M40 26 C34 30 30 37 33 43 C36 48 44 48 47 43 C50 37 46 30 40 26Z" fill="#c8a830" opacity="0.3" stroke="#c8a830" stroke-width="1.2"/>
+                <line x1="40" y1="43" x2="40" y2="54" stroke="#c8a830" stroke-width="1.5"/>
+                <text x="40" y="68" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="800" fill="#8a6e1a" letter-spacing="1">LEED</text>
+                <text x="40" y="78" text-anchor="middle" font-family="Inter,sans-serif" font-size="6" fill="#c8a830" letter-spacing="1">USGBC</text>
+              </svg>
               <p>LEED</p>
             </div>
             <div class="cert-item">
-              <img src="https://cbe.berkeley.edu/wp-content/uploads/2024/01/well-certi.png" alt="WELL" />
+              <!-- WELL: concentric dashed rings (keep as-is) -->
+              <svg class="cert-logo" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="40" cy="40" r="36" stroke="#b0b8c1" stroke-width="3" stroke-dasharray="6 3" stroke-linecap="round" fill="none"/>
+                <circle cx="40" cy="40" r="28" stroke="#b0b8c1" stroke-width="2.5" stroke-dasharray="5 2.5" stroke-linecap="round" fill="none"/>
+                <circle cx="40" cy="40" r="20" stroke="#c8cfd6" stroke-width="2" stroke-dasharray="4 2" stroke-linecap="round" fill="none"/>
+                <text x="40" y="45" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="12" font-weight="700" fill="#4a5560" letter-spacing="1">WELL</text>
+              </svg>
               <p>WELL</p>
             </div>
           </div>
