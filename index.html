@@ -752,12 +752,13 @@ body {
 .svc-detail { padding-block: var(--section-pad); }
 .svc-detail:nth-child(odd) { background: var(--paper); }
 .svc-detail:nth-child(even) { background: var(--cream); }
-.svc-detail-inner { max-width: var(--container); margin: auto; padding-inline: var(--gutter); display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
+.svc-detail-inner { max-width: var(--container); margin: auto; padding-inline: var(--gutter); display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; min-width: 0; }
 .svc-detail-inner.rev .svc-content { order: 2; }
 .svc-detail-inner.rev .svc-visual { order: 1; }
 .svc-subtitle { display: flex; align-items: center; gap: .8rem; margin-bottom: 1.25rem; }
 .svc-subtitle span { font-size: var(--f-xs); color: var(--gold); letter-spacing: var(--ls-eye); text-transform: uppercase; font-weight: 500; }
-.svc-content h2 { font-family: 'Cormorant Garamond', serif; font-size: var(--f-h2-serif); line-height: 1.1; letter-spacing: var(--ls-heading); color: var(--ink); font-weight: 500; margin-bottom: var(--h2-to-p); }
+.svc-content { min-width: 0; overflow-wrap: break-word; word-break: break-word; }
+.svc-content h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.4rem, 2.2vw, 2.2rem); line-height: 1.2; letter-spacing: var(--ls-heading); color: var(--ink); font-weight: 500; margin-bottom: var(--h2-to-p); word-break: break-word; }
 .svc-content p { font-size: var(--f-body); color: var(--ink-2); line-height: 1.8; margin-bottom: 2.5rem; font-weight: 300; }
 .benefits-list { list-style: none; display: flex; flex-direction: column; gap: 1rem; margin-bottom: 2.5rem; }
 .benefits-list li { display: flex; align-items: flex-start; gap: 1rem; font-size: 1rem; color: var(--ink); line-height: 1.6; }
@@ -1016,6 +1017,19 @@ body {
 .footer-col a:hover { color: var(--on-dark); }
 .footer-bottom { max-width: var(--container); margin: auto; border-top: 1px solid var(--rule-dk); padding-top: 2rem; display: flex; justify-content: space-between; align-items: center; }
 .footer-bottom p { font-size: var(--f-xs); color: var(--on-dark-3); letter-spacing: .04em; }
+
+/* ═══ CHINESE LANGUAGE FIXES ═══ */
+html[lang="zh"] .svc-content h2,
+html[lang="zh"] .section-title,
+html[lang="zh"] .hero-title {
+  font-size: clamp(1.4rem, 2.5vw, 2.2rem);
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+html[lang="zh"] .svc-content p,
+html[lang="zh"] .section-desc {
+  word-break: keep-all;
+}
 
 /* ═══ RESPONSIVE ═══ */
 @media (max-width: 1024px) {
@@ -1277,7 +1291,7 @@ body {
         <a class="svc-pill" href="#svc-energy">⚡ Energy Audit</a>
         <a class="svc-pill" href="#svc-environmental">🌿 Environmental</a>
         <a class="svc-pill" href="#svc-testing">🔧 Testing & Commissioning</a>
-        <a class="svc-pill" href="#svc-IAQ">💨 IAQ</a>
+        <a class="svc-pill" href="#svc-iaq">💨 IAQ</a>
         <a class="svc-pill" href="#svc-icxa">🔍 iCxA</a>
       </div>
     </div>
@@ -1306,20 +1320,20 @@ body {
       <div style="max-width:var(--container);margin:auto;padding-inline:var(--gutter);display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:start">
 
         <!-- LEFT: image on top, badge row below -->
-        <div class="svc-visual" style="display:flex;flex-direction:column;gap:0">
+        <div class="svc-visual" style="display:flex;flex-direction:column;gap:0;min-width:0;width:100%">
           <!-- Main image -->
           <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663419719601/NdwjjiPRHbUkh95Lk8zgQg/hero-commercial-SoXaqxrZX3ApkAedbobnDo.webp"
                alt="Commercial Building"
                style="width:100%;height:auto;border-radius:8px;box-shadow:0 10px 15px rgba(0,0,0,0.1);object-fit:cover;display:block" />
 
           <!-- Cert logo row — strict spec -->
-          <div style="display:flex;flex-direction:row;justify-content:center;align-items:center;flex-wrap:nowrap;gap:32px;margin-top:24px;background:transparent">
+          <div style="display:flex;flex-direction:row;justify-content:center;align-items:center;flex-wrap:nowrap;gap:32px;margin-top:24px;background:transparent;width:100%">
 
             <!-- BEAM Plus -->
             <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center">
               <img src="https://hkgbc.org.hk/eng/beam-plus/promotion/images/merged%20plaque%20_resized_v2.jpg"
                    alt="BEAM Plus"
-                   style="width:260px;height:260px;object-fit:contain;mix-blend-mode:multiply" />
+                   style="width:150px;height:120px;object-fit:contain;mix-blend-mode:multiply" />
               <p style="margin-top:12px;font-family:'Inter',sans-serif;font-size:0.65rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-3);text-align:center">BEAM Plus</p>
             </div>
 
@@ -1327,7 +1341,7 @@ body {
             <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center">
               <img src="https://montecoworking.me/wp-content/uploads/2025/04/certs.jpg"
                    alt="LEED"
-                   style="width:260px;height:260px;object-fit:contain;mix-blend-mode:multiply" />
+                   style="width:150px;height:120px;object-fit:contain;mix-blend-mode:multiply" />
               <p style="margin-top:12px;font-family:'Inter',sans-serif;font-size:0.65rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-3);text-align:center">LEED</p>
             </div>
 
@@ -1335,7 +1349,7 @@ body {
             <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center">
               <img src="https://cbe.berkeley.edu/wp-content/uploads/2024/01/well-certi.png"
                    alt="WELL"
-                   style="width:260px;height:260px;object-fit:contain;mix-blend-mode:multiply" />
+                   style="width:150px;height:120px;object-fit:contain;mix-blend-mode:multiply" />
               <p style="margin-top:12px;font-family:'Inter',sans-serif;font-size:0.65rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-3);text-align:center">WELL</p>
             </div>
 
@@ -1456,19 +1470,19 @@ body {
       </div>
     </div>
 
-    <div class="svc-detail" id="svc-IAQ">
+    <div class="svc-detail" id="svc-iaq">
       <div class="svc-detail-inner rev">
         <div class="svc-content">
-          <div class="svc-subtitle"><span>💨</span><span data-t="services.IAQ.subtitle">Occupant Health & Wellness</span></div>
-          <h2 data-t="services.IAQ.title">Indoor Air Quality Consultant</h2>
-          <p data-t="services.IAQ.desc">Comprehensive indoor air quality consulting to ensure healthy, compliant building environments.</p>
+          <div class="svc-subtitle"><span>💨</span><span data-t="services.iaq.subtitle">Occupant Health & Wellness</span></div>
+          <h2 data-t="services.iaq.title">Indoor Air Quality Consultant</h2>
+          <p data-t="services.iaq.desc">Comprehensive indoor air quality consulting to ensure healthy, compliant building environments.</p>
           <ul class="benefits-list">
-            <li data-t="services.IAQ.b1">Indoor air quality assessments and testing</li>
-            <li data-t="services.IAQ.b2">Ventilation system design and optimization</li>
-            <li data-t="services.IAQ.b3">Air filtration and purification recommendations</li>
-            <li data-t="services.IAQ.b4">Compliance with WELL and BEAM Plus IAQ standards</li>
-            <li data-t="services.IAQ.b5">Ongoing monitoring and maintenance planning</li>
-            <li data-t="services.IAQ.b6">Occupant health and productivity improvements</li>
+            <li data-t="services.iaq.b1">Indoor air quality assessments and testing</li>
+            <li data-t="services.iaq.b2">Ventilation system design and optimization</li>
+            <li data-t="services.iaq.b3">Air filtration and purification recommendations</li>
+            <li data-t="services.iaq.b4">Compliance with WELL and BEAM Plus IAQ standards</li>
+            <li data-t="services.iaq.b5">Ongoing monitoring and maintenance planning</li>
+            <li data-t="services.iaq.b6">Occupant health and productivity improvements</li>
           </ul>
           <button class="btn-green" onclick="navigate('contact')" data-t="services.enquire">Enquire Now</button>
         </div>
@@ -1706,7 +1720,7 @@ body {
       "home.services.greenCert.title":"Green Building Certification","home.services.greenCert.desc":"End-to-end consultancy for BEAM Plus, LEED, and WELL certifications for schools, commercial buildings, and mixed-use developments.",
       "home.services.tc.title":"Testing & Commissioning","home.services.tc.desc":"Testing and commissioning of M&E systems including air-conditioning, ventilation, electrical, lighting, and plumbing installations.",
       "home.services.acoustic.title":"Acoustic Consultant","home.services.acoustic.desc":"Professional acoustic assessment and design consultancy to ensure optimal sound control, noise reduction, and acoustic comfort in buildings.",
-      "home.services.IAQ.title":"IAQ Consultant & iCxA","home.services.IAQ.desc":"Independent Commissioning Authority (iCxA) services and comprehensive indoor air quality consulting to ensure healthy, compliant building environments.",
+      "home.services.iaq.title":"IAQ Consultant & iCxA","home.services.iaq.desc":"Independent Commissioning Authority (iCxA) services and comprehensive indoor air quality consulting to ensure healthy, compliant building environments.",
       "home.services.viewAll":"View All Services",
       "home.projects.tag":"Selected Experience","home.projects.title":"Projects Our Team Has Delivered","home.projects.desc":"Before founding Avenor Consultants, our team has been involved in delivering green building certifications across Hong Kong's education and commercial sectors.",
       "home.projects.p1.title":"Apollo 36/F One Exchange Square","home.projects.p1.type":"Office Building","home.projects.p1.desc":"Interior Fit-out. Implemented best construction practices (IAQ, waste, safety management). BEAM Plus Interior V1.0 Platinum (2023).",
@@ -1746,8 +1760,8 @@ body {
       "services.environmental.b1":"Comprehensive noise and vibration assessments","services.environmental.b2":"Air quality monitoring and pollution control","services.environmental.b3":"Water quality testing and wastewater management","services.environmental.b4":"Waste management planning and optimization","services.environmental.b5":"Environmental impact assessments for new projects","services.environmental.b6":"Regulatory compliance and reporting support",
       "services.testing.title":"Testing & Commissioning","services.testing.subtitle":"M&E Systems Verification","services.testing.desc":"Testing and commissioning of M&E systems including air-conditioning, ventilation, electrical, lighting, and plumbing installations.",
       "services.testing.b1":"Comprehensive HVAC system testing and balancing","services.testing.b2":"Electrical and lighting system verification","services.testing.b3":"Plumbing and water system commissioning","services.testing.b4":"Performance optimization and efficiency tuning","services.testing.b5":"Documentation and compliance certification","services.testing.b6":"Handover training and maintenance support",
-      "services.IAQ.title":"Indoor Air Quality Consultant","services.IAQ.subtitle":"Occupant Health & Wellness","services.IAQ.desc":"Comprehensive indoor air quality consulting to ensure healthy, compliant building environments with optimal ventilation and air filtration.",
-      "services.IAQ.b1":"Indoor air quality assessments and testing","services.IAQ.b2":"Ventilation system design and optimization","services.IAQ.b3":"Air filtration and purification recommendations","services.IAQ.b4":"Compliance with WELL and BEAM Plus IAQ standards","services.IAQ.b5":"Ongoing monitoring and maintenance planning","services.IAQ.b6":"Occupant health and productivity improvements",
+      "services.iaq.title":"Indoor Air Quality Consultant","services.iaq.subtitle":"Occupant Health & Wellness","services.iaq.desc":"Comprehensive indoor air quality consulting to ensure healthy, compliant building environments with optimal ventilation and air filtration.",
+      "services.iaq.b1":"Indoor air quality assessments and testing","services.iaq.b2":"Ventilation system design and optimization","services.iaq.b3":"Air filtration and purification recommendations","services.iaq.b4":"Compliance with WELL and BEAM Plus IAQ standards","services.iaq.b5":"Ongoing monitoring and maintenance planning","services.iaq.b6":"Occupant health and productivity improvements",
       "services.icxa.title":"iCxA (Independent Commissioning Authority)","services.icxa.subtitle":"Independent Commissioning Authority","services.icxa.desc":"Independent Commissioning Authority (iCxA) services ensuring building systems operate as designed, with comprehensive verification and oversight.",
       "services.icxa.b1":"Independent commissioning authority certification and oversight","services.icxa.b2":"Verification of HVAC and ventilation system performance","services.icxa.b3":"Building automation system testing and optimization","services.icxa.b4":"Compliance with iCxA standards and building codes","services.icxa.b5":"Support for WELL, BEAM Plus, and LEED requirements","services.icxa.b6":"Ongoing monitoring and performance verification",
       "comparison.title":"Certification Comparison","comparison.subtitle":"Choose the Right Certification for Your Building","comparison.desc":"Compare BEAM Plus, LEED, and WELL certifications to understand which standards best fit your building type, goals, and location.",
@@ -1789,7 +1803,7 @@ body {
       "home.services.greenCert.title":"綠色建築認證","home.services.greenCert.desc":"為學校、商業建築及綜合用途發展項目提供 BEAM Plus、LEED 及 WELL 認證的全程顧問服務。",
       "home.services.tc.title":"測試及調試","home.services.tc.desc":"機電系統的測試及調試，包括空調、通風、電氣、照明及管道裝置。",
       "home.services.acoustic.title":"聲學顧問","home.services.acoustic.desc":"專業聲學評估及設計顧問服務，確保建築物的最佳聲音控制、噪音減少及聲學舒適度。",
-      "home.services.IAQ.title":"室內空氣質素顧問及獨立調試認證","home.services.IAQ.desc":"獨立調試認證 (iCxA) 服務及全面的室內空氣質素顧問，確保健康、合規的建築環境。",
+      "home.services.iaq.title":"室內空氣質素顧問及獨立調試認證","home.services.iaq.desc":"獨立調試認證 (iCxA) 服務及全面的室內空氣質素顧問，確保健康、合規的建築環境。",
       "home.services.viewAll":"查看所有服務",
       "home.projects.tag":"精選項目經驗","home.projects.title":"我們團隊曾參與的項目","home.projects.desc":"在創立 Avenor Consultants 之前，我們的團隊曾參與香港教育及商業領域的多個綠色建築認證項目。",
       "home.projects.p1.title":"阿波羅 36樓 交易廣場","home.projects.p1.type":"辦公大樓","home.projects.p1.desc":"室內裝修。採用最佳建築實踐（室內空氣質素、廢物、安全管理）。BEAM Plus 室內 V1.0 白金級（2023）。",
@@ -1821,7 +1835,7 @@ body {
       "services.enquire":"立即查詢","services.cta.title":"不確定哪項認證適合您？","services.cta.desc":"每棟建築都不同。我們會根據您的目標、預算及時間表，協助您找出最合適的認證途徑。","services.cta.button":"預約免費諮詢",
       "services.beam.schools.title":"BEAM Plus 學校認證","services.beam.schools.subtitle":"綠色學校認證","services.beam.schools.desc":"將您的校園轉化為認證綠色學習環境。我們引導學校完成整個 BEAM Plus 認證流程，從初步評估到最終認證。",
       "services.beam.schools.b1":"改善學生的室內空氣質素及自然採光","services.beam.schools.b2":"減少能源及用水量，降低營運成本","services.beam.schools.b3":"提升學校聲譽及公眾認可","services.beam.schools.b4":"獲取政府補貼及公用事業優惠","services.beam.schools.b5":"更健康、更高效的學習環境","services.beam.schools.b6":"過程中對教學零干擾",
-      "services.greencert.title":"BEAM Plus · LEED · WELL 綠色建築認證","services.greencert.subtitle":"國際綠色建築標準","services.greencert.desc":"通過我們的全面顧問服務取得多項國際認證。我們引導您取得本地認可的 BEAM Plus、全球標準的 LEED 及重視使用者健康的 WELL。",
+      "services.greencert.title":"BEAM Plus · LEED · WELL 綠色建築認證","services.greencert.subtitle":"國際綠色建築標準","services.greencert.desc":"通過全面顧問服務取得 BEAM Plus、LEED 及 WELL 多項國際認證。",
       "services.greencert.b1":"三重認證途徑以獲得最大市場優勢","services.greencert.b2":"在180多個國家獲國際認可的認證","services.greencert.b3":"提升物業價值及租戶吸引力","services.greencert.b4":"全面評估涵蓋能源、水資源、材料及福祉","services.greencert.b5":"靈活的認證級別及度身訂造的途徑","services.greencert.b6":"符合您的可持續發展及 ESG 報告目標",
       "services.energy.title":"能源及碳審計 / 生命週期評估","services.energy.subtitle":"能源效率及碳減排","services.energy.desc":"全面的能源及碳審計、生命週期評估及碳足跡顧問服務，減少排放及營運成本。",
       "services.energy.b1":"詳細的能源消耗分析及基準設定","services.energy.b2":"碳足跡評估及減排策略","services.energy.b3":"生命週期評估以選擇可持續材料","services.energy.b4":"通過效率改進降低營運成本","services.energy.b5":"符合能源法規及 ESG 標準","services.energy.b6":"可再生能源整合建議",
@@ -1829,8 +1843,8 @@ body {
       "services.environmental.b1":"全面的噪音及振動評估","services.environmental.b2":"空氣質素監測及污染控制","services.environmental.b3":"水質測試及廢水管理","services.environmental.b4":"廢物管理規劃及優化","services.environmental.b5":"新項目的環境影響評估","services.environmental.b6":"監管合規及報告支持",
       "services.testing.title":"測試及調試","services.testing.subtitle":"機電系統驗證","services.testing.desc":"機電系統的測試及調試，包括空調、通風、電氣、照明及管道裝置。",
       "services.testing.b1":"全面的空調系統測試及平衡","services.testing.b2":"電氣及照明系統驗證","services.testing.b3":"管道及水系統調試","services.testing.b4":"性能優化及效率調整","services.testing.b5":"文件編制及合規認證","services.testing.b6":"交接培訓及維護支持",
-      "services.IAQ.title":"室內空氣質素顧問","services.IAQ.subtitle":"使用者健康及福祉","services.IAQ.desc":"全面的室內空氣質素顧問，確保健康、合規的建築環境，具有最佳通風及空氣過濾。",
-      "services.IAQ.b1":"室內空氣質素評估及測試","services.IAQ.b2":"通風系統設計及優化","services.IAQ.b3":"空氣過濾及淨化建議","services.IAQ.b4":"符合 WELL 及 BEAM Plus 室內空氣質素標準","services.IAQ.b5":"持續監測及維護規劃","services.IAQ.b6":"改善使用者健康及生產力",
+      "services.iaq.title":"室內空氣質素顧問","services.iaq.subtitle":"使用者健康及福祉","services.iaq.desc":"全面的室內空氣質素顧問，確保健康、合規的建築環境，具有最佳通風及空氣過濾。",
+      "services.iaq.b1":"室內空氣質素評估及測試","services.iaq.b2":"通風系統設計及優化","services.iaq.b3":"空氣過濾及淨化建議","services.iaq.b4":"符合 WELL 及 BEAM Plus 室內空氣質素標準","services.iaq.b5":"持續監測及維護規劃","services.iaq.b6":"改善使用者健康及生產力",
       "services.icxa.title":"iCxA（獨立調試認證）","services.icxa.subtitle":"獨立調試認證","services.icxa.desc":"獨立調試認證 (iCxA) 服務，確保建築系統按設計運作，提供全面驗證及監督。",
       "services.icxa.b1":"獨立調試認證及監督","services.icxa.b2":"驗證空調及通風系統表現","services.icxa.b3":"建築自動化系統測試及優化","services.icxa.b4":"符合 iCxA 標準及建築法規","services.icxa.b5":"支持 WELL、BEAM Plus 及 LEED 要求","services.icxa.b6":"持續監測及性能驗證",
       "comparison.title":"認證對比","comparison.subtitle":"為您的建築選擇合適的認證","comparison.desc":"比較 BEAM Plus、LEED 及 WELL 認證，了解哪些標準最適合您的建築類型、目標及地點。",
