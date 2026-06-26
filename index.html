@@ -809,6 +809,37 @@ body {
   font-weight: 500;
 }
 
+/* ═══ CERT LOGOS (Services page) ═══ */
+.cert-container-svc {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 2rem;
+  margin-top: 1.5rem;
+  width: 100%;
+}
+.cert-item-svc {
+  text-align: center;
+  flex: 1;
+  max-width: 120px;
+}
+.cert-item-svc img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  background: transparent;
+  display: block;
+}
+.cert-item-svc p {
+  margin-top: 0.6rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  font-weight: 600;
+}
+
 /* ═══ CERT CARDS STACK ═══ */
 .cert-cards-stack {
   display: flex;
@@ -1270,72 +1301,26 @@ body {
       <div style="max-width:var(--container);margin:auto;padding-inline:var(--gutter);display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:start">
 
         <!-- LEFT: image on top, badge row below -->
-        <div style="display:flex;flex-direction:column">
+        <div class="svc-visual">
+          <!-- Hero image -->
           <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663419719601/NdwjjiPRHbUkh95Lk8zgQg/hero-commercial-SoXaqxrZX3ApkAedbobnDo.webp"
                alt="Green Building"
                style="width:100%;aspect-ratio:4/3;object-fit:cover;display:block;border-radius:8px" />
-          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:1.25rem">
 
-            <!-- BEAM Plus: square badge, star/snowflake motif like HKGBC -->
-            <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.75rem">
-              <svg width="90" height="90" viewBox="0 0 90 90" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <!-- Outer square with rounded corners -->
-                <rect x="4" y="4" width="82" height="82" rx="10" stroke="#555" stroke-width="2.5" fill="none"/>
-                <!-- Inner square -->
-                <rect x="12" y="12" width="66" height="66" rx="6" stroke="#555" stroke-width="1.2" fill="none"/>
-                <!-- HKGBC-style 6-point star/snowflake -->
-                <line x1="45" y1="20" x2="45" y2="52" stroke="#555" stroke-width="2.2" stroke-linecap="round"/>
-                <line x1="45" y1="20" x2="35" y2="36" stroke="#555" stroke-width="2.2" stroke-linecap="round"/>
-                <line x1="45" y1="20" x2="55" y2="36" stroke="#555" stroke-width="2.2" stroke-linecap="round"/>
-                <line x1="45" y1="52" x2="35" y2="36" stroke="#555" stroke-width="2.2" stroke-linecap="round"/>
-                <line x1="45" y1="52" x2="55" y2="36" stroke="#555" stroke-width="2.2" stroke-linecap="round"/>
-                <line x1="35" y1="36" x2="55" y2="36" stroke="#555" stroke-width="2.2" stroke-linecap="round"/>
-                <!-- BEAM Plus text -->
-                <text x="45" y="66" text-anchor="middle" font-family="Inter,sans-serif" font-size="7.5" font-weight="700" fill="#555" letter-spacing="1">BEAM Plus</text>
-                <!-- HKGBC -->
-                <text x="45" y="76" text-anchor="middle" font-family="Inter,sans-serif" font-size="5.5" font-weight="400" fill="#888" letter-spacing="0.8">HKGBC</text>
-              </svg>
-              <span style="font-family:'Inter',sans-serif;font-size:0.58rem;font-weight:600;letter-spacing:0.12em;color:var(--ink-3);text-transform:uppercase;text-align:center">BEAM Plus</span>
+          <!-- Cert logos below image — from Claude Design -->
+          <div class="cert-container-svc">
+            <div class="cert-item-svc">
+              <img src="https://hkgbc.org.hk/eng/beam-plus/promotion/images/merged%20plaque%20_resized_v2.jpg" alt="BEAM Plus" />
+              <p>BEAM Plus</p>
             </div>
-
-            <!-- LEED: circular badge with oak leaf, USGBC style -->
-            <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.75rem">
-              <svg width="90" height="90" viewBox="0 0 90 90" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <!-- Outer ring -->
-                <circle cx="45" cy="45" r="41" stroke="#555" stroke-width="2.5" fill="none"/>
-                <!-- Inner ring -->
-                <circle cx="45" cy="45" r="34" stroke="#555" stroke-width="1.2" fill="none"/>
-                <!-- Oak leaf shape -->
-                <path d="M45 18 C38 23 33 30 35 37 C37 43 41 46 45 46 C49 46 53 43 55 37 C57 30 52 23 45 18Z" stroke="#555" stroke-width="1.8" fill="none" stroke-linejoin="round"/>
-                <!-- Leaf veins -->
-                <line x1="45" y1="18" x2="45" y2="46" stroke="#555" stroke-width="1" stroke-dasharray="2 1.5"/>
-                <line x1="38" y1="30" x2="45" y2="36" stroke="#555" stroke-width="0.8"/>
-                <line x1="52" y1="30" x2="45" y2="36" stroke="#555" stroke-width="0.8"/>
-                <!-- Stem -->
-                <line x1="45" y1="46" x2="45" y2="54" stroke="#555" stroke-width="1.8" stroke-linecap="round"/>
-                <!-- LEED text -->
-                <text x="45" y="65" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" font-weight="800" fill="#555" letter-spacing="1.5">LEED</text>
-                <!-- USGBC -->
-                <text x="45" y="74" text-anchor="middle" font-family="Inter,sans-serif" font-size="5.5" font-weight="400" fill="#888" letter-spacing="0.8">USGBC</text>
-              </svg>
-              <span style="font-family:'Inter',sans-serif;font-size:0.58rem;font-weight:600;letter-spacing:0.12em;color:var(--ink-3);text-transform:uppercase;text-align:center">LEED</span>
+            <div class="cert-item-svc">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOgpoRMtklyhSkJxtBOhRDthCPrKEw6rPOaGlMUf3g_WWnbw7yuK-0yM1e&s=10" alt="LEED" />
+              <p>LEED</p>
             </div>
-
-            <!-- WELL: concentric dashed arcs, official style -->
-            <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.75rem">
-              <svg width="90" height="90" viewBox="0 0 90 90" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <!-- Outer dashed arc -->
-                <circle cx="45" cy="45" r="41" stroke="#555" stroke-width="2.5" stroke-dasharray="6 3" stroke-linecap="round" fill="none"/>
-                <!-- Middle dashed arc -->
-                <circle cx="45" cy="45" r="32" stroke="#777" stroke-width="2" stroke-dasharray="5 2.5" stroke-linecap="round" fill="none"/>
-                <!-- Inner dashed arc -->
-                <circle cx="45" cy="45" r="23" stroke="#999" stroke-width="1.5" stroke-dasharray="4 2" stroke-linecap="round" fill="none"/>
-                <!-- WELL text -->
-                <text x="45" y="50" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="13" font-weight="700" fill="#555" letter-spacing="1.5">WELL</text>
-              </svg>
-              <span style="font-family:'Inter',sans-serif;font-size:0.58rem;font-weight:600;letter-spacing:0.12em;color:var(--ink-3);text-transform:uppercase;text-align:center">WELL</span>
+            <div class="cert-item-svc">
+              <img src="https://cbe.berkeley.edu/wp-content/uploads/2024/01/well-certi.png" alt="WELL" />
+              <p>WELL</p>
             </div>
-
           </div>
         </div>
 
