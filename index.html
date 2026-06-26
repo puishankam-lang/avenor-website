@@ -1638,14 +1638,14 @@ body {
         <div class="contact-grid">
           <div class="contact-form-wrap">
             <h2 class="section-title" style="font-size:var(--lg);margin-bottom:2rem" data-t="contact.form.title">Send Us an Enquiry</h2>
-            <form class="contact-form" onsubmit="handleContact(event)">
+            <form class="contact-form" action="https://formspree.io/f/maqgowyb" method="POST">
               <div class="frow">
-                <div class="fgrp"><label data-t="contact.form.name">Full Name</label><input type="text" required placeholder="Your name" data-ph="contact.form.namePlaceholder"/></div>
-                <div class="fgrp"><label data-t="contact.form.email">Email</label><input type="email" required placeholder="you@example.com" data-ph="contact.form.emailPlaceholder"/></div>
+                <div class="fgrp"><label data-t="contact.form.name">Full Name</label><input type="text" name="name" required placeholder="Your name" data-ph="contact.form.namePlaceholder"/></div>
+                <div class="fgrp"><label data-t="contact.form.email">Email</label><input type="email" name="email" required placeholder="you@example.com" data-ph="contact.form.emailPlaceholder"/></div>
               </div>
               <div class="frow">
-                <div class="fgrp"><label data-t="contact.form.phone">Phone</label><input type="tel" placeholder="+852 XXXX XXXX" data-ph="contact.form.phonePlaceholder"/></div>
-                <div class="fgrp"><label data-t="contact.form.org">Organisation</label><input type="text" placeholder="School or company name" data-ph="contact.form.orgPlaceholder"/></div>
+                <div class="fgrp"><label data-t="contact.form.phone">Phone</label><input type="tel" name="phone" placeholder="+852 XXXX XXXX" data-ph="contact.form.phonePlaceholder"/></div>
+                <div class="fgrp"><label data-t="contact.form.org">Organisation</label><input type="text" name="organisation" placeholder="School or company name" data-ph="contact.form.orgPlaceholder"/></div>
               </div>
               <div class="fgrp"><label data-t="contact.form.service">Service of Interest</label>
                 <select>
@@ -1657,7 +1657,7 @@ body {
                   <option data-t="contact.form.serviceMultiple">Multiple / Not Sure</option>
                 </select>
               </div>
-              <div class="fgrp"><label data-t="contact.form.message">Message</label><textarea rows="5" placeholder="Tell us about your project..." data-ph="contact.form.messagePlaceholder"></textarea></div>
+              <div class="fgrp"><label data-t="contact.form.message">Message</label><textarea rows="5" name="message" placeholder="Tell us about your project..." data-ph="contact.form.messagePlaceholder"></textarea></div>
               <button type="submit" class="btn-green" id="contactBtn" data-t="contact.form.submit">Send Enquiry</button>
             </form>
           </div>
