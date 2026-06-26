@@ -1306,26 +1306,45 @@ body {
       <div style="max-width:var(--container);margin:auto;padding-inline:var(--gutter);display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:start">
 
         <!-- LEFT: image on top, badge row below -->
-        <div class="svc-visual">
-          <!-- Hero image -->
+        <div class="svc-visual" style="display:flex;flex-direction:column;gap:2rem">
+          <!-- Main image -->
           <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663419719601/NdwjjiPRHbUkh95Lk8zgQg/hero-commercial-SoXaqxrZX3ApkAedbobnDo.webp"
-               alt="Green Building"
-               style="width:100%;aspect-ratio:4/3;object-fit:cover;display:block;border-radius:8px" />
+               alt="Commercial Building"
+               style="width:100%;height:auto;border-radius:8px;box-shadow:0 10px 15px rgba(0,0,0,0.1);object-fit:cover;display:block" />
 
-          <!-- Cert logos below image — original Cloudfront URLs -->
-          <div class="cert-container-svc">
-            <div class="cert-item-svc">
-              <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663419719601/NdwjjiPRHbUkh95Lk8zgQg/ZW8Qt8jHjOCc_4f8ff60e.jpg" alt="BEAM Plus" />
-              <p>BEAM Plus</p>
+          <!-- Cert logo row — converted from Manus JSX -->
+          <div style="display:flex;flex-direction:row;justify-content:center;align-items:center;gap:1.5rem;padding-top:0.5rem">
+
+            <!-- BEAM Plus -->
+            <div style="display:flex;flex-direction:column;align-items:center;flex:1">
+              <div style="height:80px;width:100%;display:flex;align-items:center;justify-content:center">
+                <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663419719601/NdwjjiPRHbUkh95Lk8zgQg/ZW8Qt8jHjOCc_4f8ff60e.jpg"
+                     alt="BEAM Plus"
+                     style="max-height:100%;width:auto;object-fit:contain;mix-blend-mode:multiply" />
+              </div>
+              <p style="margin-top:0.5rem;font-family:'Inter',sans-serif;font-size:0.625rem;font-weight:600;color:var(--ink-3);letter-spacing:0.08em;text-transform:uppercase;text-align:center">BEAM Plus</p>
             </div>
-            <div class="cert-item-svc">
-              <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663419719601/NdwjjiPRHbUkh95Lk8zgQg/6JxAlB9iC0NK_aaf689fd.jpg" alt="LEED" />
-              <p>LEED</p>
+
+            <!-- LEED -->
+            <div style="display:flex;flex-direction:column;align-items:center;flex:1">
+              <div style="height:80px;width:100%;display:flex;align-items:center;justify-content:center">
+                <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663419719601/NdwjjiPRHbUkh95Lk8zgQg/6JxAlB9iC0NK_aaf689fd.jpg"
+                     alt="LEED"
+                     style="max-height:100%;width:auto;object-fit:contain;mix-blend-mode:multiply" />
+              </div>
+              <p style="margin-top:0.5rem;font-family:'Inter',sans-serif;font-size:0.625rem;font-weight:600;color:var(--ink-3);letter-spacing:0.08em;text-transform:uppercase;text-align:center">LEED</p>
             </div>
-            <div class="cert-item-svc">
-              <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663419719601/NdwjjiPRHbUkh95Lk8zgQg/pkYDsEJHUbCm_214075a7.png" alt="WELL" />
-              <p>WELL</p>
+
+            <!-- WELL -->
+            <div style="display:flex;flex-direction:column;align-items:center;flex:1">
+              <div style="height:80px;width:100%;display:flex;align-items:center;justify-content:center">
+                <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663419719601/NdwjjiPRHbUkh95Lk8zgQg/pkYDsEJHUbCm_214075a7.png"
+                     alt="WELL"
+                     style="max-height:100%;width:auto;object-fit:contain;mix-blend-mode:multiply" />
+              </div>
+              <p style="margin-top:0.5rem;font-family:'Inter',sans-serif;font-size:0.625rem;font-weight:600;color:var(--ink-3);letter-spacing:0.08em;text-transform:uppercase;text-align:center">WELL</p>
             </div>
+
           </div>
         </div>
 
