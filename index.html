@@ -1306,43 +1306,34 @@ body {
       <div style="max-width:var(--container);margin:auto;padding-inline:var(--gutter);display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:start">
 
         <!-- LEFT: image on top, badge row below -->
-        <div class="svc-visual" style="display:flex;flex-direction:column;gap:2rem">
+        <div class="svc-visual" style="display:flex;flex-direction:column;gap:0">
           <!-- Main image -->
           <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663419719601/NdwjjiPRHbUkh95Lk8zgQg/hero-commercial-SoXaqxrZX3ApkAedbobnDo.webp"
                alt="Commercial Building"
                style="width:100%;height:auto;border-radius:8px;box-shadow:0 10px 15px rgba(0,0,0,0.1);object-fit:cover;display:block" />
 
-          <!-- Cert logo row — converted from Manus JSX -->
-          <div style="display:flex;flex-direction:row;justify-content:center;align-items:center;gap:1.5rem;padding-top:0.5rem">
+          <!-- Cert logo row — exact Manus spec -->
+          <div style="display:flex;flex-direction:row;justify-content:center;align-items:center;flex-wrap:nowrap;background:transparent;padding:0;gap:32px;margin-top:24px">
 
-            <!-- BEAM Plus -->
-            <div style="display:flex;flex-direction:column;align-items:center;flex:1">
-              <div style="height:80px;width:100%;display:flex;align-items:center;justify-content:center">
-                <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663419719601/NdwjjiPRHbUkh95Lk8zgQg/ZW8Qt8jHjOCc_4f8ff60e.jpg"
-                     alt="BEAM Plus"
-                     style="max-height:100%;width:auto;object-fit:contain;mix-blend-mode:multiply" />
-              </div>
-              <p style="margin-top:0.5rem;font-family:'Inter',sans-serif;font-size:0.625rem;font-weight:600;color:var(--ink-3);letter-spacing:0.08em;text-transform:uppercase;text-align:center">BEAM Plus</p>
+            <!-- BEAM Plus — certImages[1] -->
+            <div style="flex:1;max-width:200px;display:flex;justify-content:center;align-items:center;height:80px;background:transparent">
+              <img src="https://hkgbc.org.hk/eng/beam-plus/promotion/images/merged%20plaque%20_resized_v2.jpg"
+                   alt="BEAM Plus"
+                   style="height:80px;object-fit:contain;width:auto" />
             </div>
 
-            <!-- LEED -->
-            <div style="display:flex;flex-direction:column;align-items:center;flex:1">
-              <div style="height:80px;width:100%;display:flex;align-items:center;justify-content:center">
-                <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663419719601/NdwjjiPRHbUkh95Lk8zgQg/6JxAlB9iC0NK_aaf689fd.jpg"
-                     alt="LEED"
-                     style="max-height:100%;width:auto;object-fit:contain;mix-blend-mode:multiply" />
-              </div>
-              <p style="margin-top:0.5rem;font-family:'Inter',sans-serif;font-size:0.625rem;font-weight:600;color:var(--ink-3);letter-spacing:0.08em;text-transform:uppercase;text-align:center">LEED</p>
+            <!-- WELL — certImages[0] -->
+            <div style="flex:1;max-width:200px;display:flex;justify-content:center;align-items:center;height:80px;background:transparent">
+              <img src="https://cbe.berkeley.edu/wp-content/uploads/2024/01/well-certi.png"
+                   alt="WELL"
+                   style="height:80px;object-fit:contain;width:auto" />
             </div>
 
-            <!-- WELL -->
-            <div style="display:flex;flex-direction:column;align-items:center;flex:1">
-              <div style="height:80px;width:100%;display:flex;align-items:center;justify-content:center">
-                <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663419719601/NdwjjiPRHbUkh95Lk8zgQg/pkYDsEJHUbCm_214075a7.png"
-                     alt="WELL"
-                     style="max-height:100%;width:auto;object-fit:contain;mix-blend-mode:multiply" />
-              </div>
-              <p style="margin-top:0.5rem;font-family:'Inter',sans-serif;font-size:0.625rem;font-weight:600;color:var(--ink-3);letter-spacing:0.08em;text-transform:uppercase;text-align:center">WELL</p>
+            <!-- Combined Certs — certImages[2] -->
+            <div style="flex:1;max-width:200px;display:flex;justify-content:center;align-items:center;height:80px;background:transparent">
+              <img src="https://montecoworking.me/wp-content/uploads/2025/04/certs.jpg"
+                   alt="Combined Certifications"
+                   style="height:80px;object-fit:contain;width:auto" />
             </div>
 
           </div>
