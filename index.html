@@ -835,8 +835,8 @@ body {
   gap: 0.4rem;
   border: 2px solid var(--rule-lt);
 }
-.cert-card-beam { border-color: rgba(100,120,160,0.3); background: rgba(100,120,160,0.04); }
-.cert-card-leed { border-color: rgba(100,120,160,0.3); background: rgba(100,120,160,0.04); }
+.cert-card-beam { border-color: rgba(58,99,73,0.3); background: rgba(58,99,73,0.04); }
+.cert-card-leed { border-color: rgba(90,138,90,0.3); background: rgba(90,138,90,0.04); }
 .cert-card-well { border-color: rgba(100,120,160,0.3); background: rgba(100,120,160,0.04); }
 .cert-card-logo-text {
   font-family: 'Inter', sans-serif;
@@ -1274,19 +1274,32 @@ body {
           <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663419719601/NdwjjiPRHbUkh95Lk8zgQg/hero-commercial-SoXaqxrZX3ApkAedbobnDo.webp"
                alt="Green Building"
                style="width:100%;aspect-ratio:4/3;object-fit:cover;display:block;border-radius:8px" />
-          <div class="certification-row">
-            <div class="cert-item">
-              <img src="https://hkgbc.org.hk/eng/beam-plus/promotion/images/merged%20plaque%20_resized_v2.jpg" alt="BEAM Plus" class="cert-logo" />
-              <p>BEAM Plus</p>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:1.25rem">
+
+            <!-- BEAM Plus — grayscale floating -->
+            <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.6rem">
+              <img src="https://hkgbc.org.hk/eng/beam-plus/promotion/images/merged%20plaque%20_resized_v2.jpg"
+                   alt="BEAM Plus"
+                   style="width:80px;height:80px;object-fit:contain;filter:grayscale(100%) brightness(0.45);opacity:0.9;display:block" />
+              <span style="font-family:'Inter',sans-serif;font-size:0.58rem;font-weight:600;letter-spacing:0.1em;color:var(--ink-3);text-transform:uppercase;text-align:center">BEAM Plus</span>
             </div>
-            <div class="cert-item">
-              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOgpoRMtklyhSkJxtBOhRDthCPrKEw6rPOaGlMUf3g_WWnbw7yuK-0yM1e&s=10" alt="LEED" class="cert-logo" />
-              <p>LEED</p>
+
+            <!-- LEED — grayscale floating -->
+            <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.6rem">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOgpoRMtklyhSkJxtBOhRDthCPrKEw6rPOaGlMUf3g_WWnbw7yuK-0yM1e&s=10"
+                   alt="LEED"
+                   style="width:80px;height:80px;object-fit:contain;filter:grayscale(100%) brightness(0.45);opacity:0.9;display:block" />
+              <span style="font-family:'Inter',sans-serif;font-size:0.58rem;font-weight:600;letter-spacing:0.1em;color:var(--ink-3);text-transform:uppercase;text-align:center">LEED</span>
             </div>
-            <div class="cert-item">
-              <img src="https://cbe.berkeley.edu/wp-content/uploads/2024/01/well-certi.png" alt="WELL" class="cert-logo" />
-              <p>WELL</p>
+
+            <!-- WELL — grayscale floating -->
+            <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.6rem">
+              <img src="https://cbe.berkeley.edu/wp-content/uploads/2024/01/well-certi.png"
+                   alt="WELL"
+                   style="width:80px;height:80px;object-fit:contain;filter:grayscale(100%) brightness(0.45);opacity:0.9;display:block" />
+              <span style="font-family:'Inter',sans-serif;font-size:0.58rem;font-weight:600;letter-spacing:0.1em;color:var(--ink-3);text-transform:uppercase;text-align:center">WELL</span>
             </div>
+
           </div>
         </div>
 
