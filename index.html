@@ -812,9 +812,10 @@ body {
 /* ═══ CERT LOGOS (Services page) ═══ */
 .cert-container-svc {
   display: flex;
+  flex-direction: row;
   justify-content: center;
   align-items: flex-start;
-  gap: 2rem;
+  gap: 32px;
   margin-top: 1.5rem;
   width: 100%;
 }
@@ -823,8 +824,8 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 120px;
-  flex: none;
+  flex: 1;
+  max-width: 200px;
 }
 .cert-item-svc img {
   width: 100%;
@@ -1311,18 +1312,18 @@ body {
                alt="Green Building"
                style="width:100%;aspect-ratio:4/3;object-fit:cover;display:block;border-radius:8px" />
 
-          <!-- Cert logos below image — from Claude Design -->
+          <!-- Cert logos below image — original Cloudfront URLs -->
           <div class="cert-container-svc">
             <div class="cert-item-svc">
-              <img src="https://hkgbc.org.hk/eng/beam-plus/promotion/images/merged%20plaque%20_resized_v2.jpg" alt="BEAM Plus" />
+              <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663419719601/NdwjjiPRHbUkh95Lk8zgQg/ZW8Qt8jHjOCc_4f8ff60e.jpg" alt="BEAM Plus" />
               <p>BEAM Plus</p>
             </div>
             <div class="cert-item-svc">
-              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOgpoRMtklyhSkJxtBOhRDthCPrKEw6rPOaGlMUf3g_WWnbw7yuK-0yM1e&s=10" alt="LEED" />
+              <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663419719601/NdwjjiPRHbUkh95Lk8zgQg/6JxAlB9iC0NK_aaf689fd.jpg" alt="LEED" />
               <p>LEED</p>
             </div>
             <div class="cert-item-svc">
-              <img src="https://cbe.berkeley.edu/wp-content/uploads/2024/01/well-certi.png" alt="WELL" />
+              <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663419719601/NdwjjiPRHbUkh95Lk8zgQg/pkYDsEJHUbCm_214075a7.png" alt="WELL" />
               <p>WELL</p>
             </div>
           </div>
