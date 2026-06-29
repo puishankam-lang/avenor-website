@@ -1509,14 +1509,14 @@ html[lang="zh"] .section-desc {
         </div>
         <div class="svc-visual">
           <div class="svc-panel svc-panel--dark">
-            <div class="svc-panel__eyebrow">Testing & Commissioning</div>
+            <div class="svc-panel__eyebrow" data-t="panel.tc.eyebrow">Testing & Commissioning</div>
             <div class="svc-panel__checklist">
-              <div class="svc-check svc-check--done">HVAC Systems</div>
-              <div class="svc-check svc-check--done">Electrical</div>
-              <div class="svc-check svc-check--done">Lighting</div>
-              <div class="svc-check svc-check--done">Plumbing</div>
-              <div class="svc-check svc-check--done">Ventilation</div>
-              <div class="svc-check svc-check--done">BMS Integration</div>
+              <div class="svc-check svc-check--done" data-t="panel.tc.hvac">HVAC Systems</div>
+              <div class="svc-check svc-check--done" data-t="panel.tc.electrical">Electrical</div>
+              <div class="svc-check svc-check--done" data-t="panel.tc.lighting">Lighting</div>
+              <div class="svc-check svc-check--done" data-t="panel.tc.plumbing">Plumbing</div>
+              <div class="svc-check svc-check--done" data-t="panel.tc.ventilation">Ventilation</div>
+              <div class="svc-check svc-check--done" data-t="panel.tc.bms">BMS Integration</div>
             </div>
           </div>
         </div>
@@ -1541,14 +1541,14 @@ html[lang="zh"] .section-desc {
         </div>
         <div class="svc-visual">
           <div class="svc-panel svc-panel--sage">
-            <div class="svc-panel__eyebrow">Indoor Air Quality</div>
+            <div class="svc-panel__eyebrow" data-t="panel.iaq.eyebrow">Indoor Air Quality</div>
             <div class="svc-panel__metrics">
               <div class="svc-panel__metric"><span class="svc-panel__metric-val">720</span><span class="svc-panel__metric-key">CO₂ ppm</span></div>
               <div class="svc-panel__metric"><span class="svc-panel__metric-val">8</span><span class="svc-panel__metric-key">PM2.5 μg/m³</span></div>
               <div class="svc-panel__metric"><span class="svc-panel__metric-val">0.2</span><span class="svc-panel__metric-key">TVOC mg/m³</span></div>
             </div>
             <div class="svc-panel__divider"></div>
-            <div class="svc-panel__badge">WELL IAQ Compliant</div>
+            <div class="svc-panel__badge" data-t="panel.iaq.badge">WELL IAQ Compliant</div>
           </div>
         </div>
       </div>
@@ -1572,15 +1572,15 @@ html[lang="zh"] .section-desc {
         </div>
         <div class="svc-visual">
           <div class="svc-panel svc-panel--dark">
-            <div class="svc-panel__eyebrow">Independent Commissioning</div>
+            <div class="svc-panel__eyebrow" data-t="panel.icxa.eyebrow">Independent Commissioning</div>
             <div class="svc-panel__seal">
               <div class="svc-panel__seal-ring">
                 <span class="svc-panel__seal-text">iCxA</span>
-                <span class="svc-panel__seal-sub">Authority</span>
+                <span class="svc-panel__seal-sub" data-t="panel.icxa.authority">Authority</span>
               </div>
             </div>
             <div class="svc-panel__divider"></div>
-            <div class="svc-panel__quote">"Verified system performance<br/>independently certified."</div>
+            <div class="svc-panel__quote" data-t="panel.icxa.quote">"Verified system performance<br/>independently certified."</div>
           </div>
         </div>
       </div>
@@ -1837,7 +1837,10 @@ html[lang="zh"] .section-desc {
       "contact.info.title":"Contact Information","contact.info.email":"Email","contact.info.whatsapp":"WhatsApp","contact.info.location":"Location","contact.info.locationValue":"Hong Kong","contact.info.hours":"Office Hours","contact.info.weekday":"Monday – Friday: 9:00 AM – 6:00 PM","contact.info.saturday":"Saturday: By appointment","contact.info.sunday":"Sunday & Public Holidays: Closed","contact.info.response":"Response Time","contact.info.responseDesc":"We aim to respond to all enquiries within one business day. For urgent matters, please indicate so in your message.",
       "footer.desc":"Professional green building consulting for schools and commercial buildings in Hong Kong.","footer.quickLinks":"Quick Links","footer.certifications":"Certifications","footer.contact":"Contact","footer.rights":"All rights reserved.",
       "panel.energy.eyebrow":"Energy & Carbon","panel.energy.label":"Carbon Reduction","panel.energy.unit":"kWh/m\u00b2/yr","panel.energy.lca":"Life-Cycle","panel.energy.esg":"Compliance",
-      "panel.env.eyebrow":"Environmental","panel.env.noise":"Noise","panel.env.air":"Air Quality","panel.env.water":"Water","panel.env.waste":"Waste","panel.env.eia":"EIA","panel.env.vibration":"Vibration","panel.env.quote":"\"Comprehensive monitoring<br/>across all environmental<br/>parameters.\""
+      "panel.env.eyebrow":"Environmental","panel.env.noise":"Noise","panel.env.air":"Air Quality","panel.env.water":"Water","panel.env.waste":"Waste","panel.env.eia":"EIA","panel.env.vibration":"Vibration","panel.env.quote":"\"Comprehensive monitoring<br/>across all environmental<br/>parameters.\"",
+      "panel.tc.eyebrow":"Testing & Commissioning","panel.tc.hvac":"HVAC Systems","panel.tc.electrical":"Electrical","panel.tc.lighting":"Lighting","panel.tc.plumbing":"Plumbing","panel.tc.ventilation":"Ventilation","panel.tc.bms":"BMS Integration",
+      "panel.iaq.eyebrow":"Indoor Air Quality","panel.iaq.badge":"WELL IAQ Compliant",
+      "panel.icxa.eyebrow":"Independent Commissioning","panel.icxa.authority":"Authority","panel.icxa.quote":"\"Verified system performance<br/>independently certified.\""
     },
     zh: {
       "nav.home":"首頁","nav.about":"關於我們","nav.services":"服務","nav.blog":"網誌","nav.comparison":"比較","nav.contact":"聯絡我們","nav.getInTouch":"聯絡我們",
@@ -1922,7 +1925,10 @@ html[lang="zh"] .section-desc {
       "contact.info.title":"聯絡資訊","contact.info.email":"電郵","contact.info.whatsapp":"WhatsApp","contact.info.location":"地點","contact.info.locationValue":"香港","contact.info.hours":"辦公時間","contact.info.weekday":"星期一至五：上午9:00 – 下午6:00","contact.info.saturday":"星期六：預約制","contact.info.sunday":"星期日及公眾假期：休息","contact.info.response":"回覆時間","contact.info.responseDesc":"我們致力於在一個工作天內回覆所有查詢。如有緊急事項，請在訊息中註明。",
       "footer.desc":"為香港學校及商業建築提供專業綠色建築顧問服務。","footer.quickLinks":"快速連結","footer.certifications":"認證服務","footer.contact":"聯絡","footer.rights":"版權所有。",
       "panel.energy.eyebrow":"能源及碳排放","panel.energy.label":"碳減排","panel.energy.unit":"千瓦時/平方米/年","panel.energy.lca":"生命週期","panel.energy.esg":"合規認證",
-      "panel.env.eyebrow":"環境評估","panel.env.noise":"噪音","panel.env.air":"空氣質素","panel.env.water":"水質","panel.env.waste":"廢物","panel.env.eia":"環評","panel.env.vibration":"振動","panel.env.quote":"「全面監測各項環境參數。」"
+      "panel.env.eyebrow":"環境評估","panel.env.noise":"噪音","panel.env.air":"空氣質素","panel.env.water":"水質","panel.env.waste":"廢物","panel.env.eia":"環評","panel.env.vibration":"振動","panel.env.quote":"「全面監測各項環境參數。」",
+      "panel.tc.eyebrow":"測試及調試","panel.tc.hvac":"空調系統","panel.tc.electrical":"電氣系統","panel.tc.lighting":"照明系統","panel.tc.plumbing":"管道系統","panel.tc.ventilation":"通風系統","panel.tc.bms":"樓宇管理系統整合",
+      "panel.iaq.eyebrow":"室內空氣質素","panel.iaq.badge":"符合 WELL 室內空氣質素標準",
+      "panel.icxa.eyebrow":"獨立調試認證","panel.icxa.authority":"認證機構","panel.icxa.quote":"「系統表現經獨立核實認證。」"
     }
   };
 
