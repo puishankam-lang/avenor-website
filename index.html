@@ -1031,6 +1031,45 @@ html[lang="zh"] .section-desc {
   word-break: keep-all;
 }
 
+/* ═══ MARQUEE TICKER ═══ */
+.marquee-wrap {
+  background: var(--forest);
+  overflow: hidden;
+  white-space: nowrap;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--rule-dk);
+}
+.marquee-track {
+  display: inline-flex;
+  gap: 0;
+  animation: marquee 24s linear infinite;
+}
+.marquee-track:hover { animation-play-state: paused; }
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.marquee-item {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--on-dark-2);
+  padding: 0 2.5rem;
+}
+.marquee-item span {
+  color: var(--gold);
+  margin: 0 0.5rem;
+}
+
+/* ═══ SERVICE NAV ACTIVE STATE ═══ */
+.svc-pill.active {
+  border-color: var(--gold);
+  color: var(--ink);
+  background: var(--cream);
+}
+
 /* ═══ RESPONSIVE ═══ */
 @media (max-width: 1024px) {
   :root { --section-pad: 7.5rem; }
@@ -1092,6 +1131,20 @@ html[lang="zh"] .section-desc {
     <a onclick="navigate('blog');toggleMobile()" data-t="nav.blog">Blog</a>
     <a onclick="navigate('comparison');toggleMobile()" data-t="nav.comparison">Comparison</a>
     <a onclick="navigate('contact');toggleMobile()">Contact</a>
+  </div>
+
+  <!-- ═══ MARQUEE TICKER ═══ -->
+  <div class="marquee-wrap" id="marqueeBar">
+    <div class="marquee-track">
+      <span class="marquee-item">BEAM Plus <span>·</span> LEED <span>·</span> WELL</span>
+      <span class="marquee-item">Green Building Certification <span>·</span> Hong Kong</span>
+      <span class="marquee-item">Schools <span>·</span> Commercial Buildings <span>·</span> Offices</span>
+      <span class="marquee-item">Sustainable Future <span>·</span> Avenor Consultants</span>
+      <span class="marquee-item">BEAM Plus <span>·</span> LEED <span>·</span> WELL</span>
+      <span class="marquee-item">Green Building Certification <span>·</span> Hong Kong</span>
+      <span class="marquee-item">Schools <span>·</span> Commercial Buildings <span>·</span> Offices</span>
+      <span class="marquee-item">Sustainable Future <span>·</span> Avenor Consultants</span>
+    </div>
   </div>
 
   <!-- ════════════════════════════════
@@ -1285,14 +1338,14 @@ html[lang="zh"] .section-desc {
     </section>
 
     <div class="svc-nav">
-      <div class="svc-nav-inner">
-        <a class="svc-pill" onclick="event.preventDefault();document.getElementById('svc-beam-schools').scrollIntoView({behavior:'smooth'})">🎓 BEAM Plus Schools</a>
-        <a class="svc-pill" onclick="event.preventDefault();document.getElementById('svc-green-cert').scrollIntoView({behavior:'smooth'})">🏆 Green Certification</a>
-        <a class="svc-pill" onclick="event.preventDefault();document.getElementById('svc-energy').scrollIntoView({behavior:'smooth'})">⚡ Energy Audit</a>
-        <a class="svc-pill" onclick="event.preventDefault();document.getElementById('svc-environmental').scrollIntoView({behavior:'smooth'})">🌿 Environmental</a>
-        <a class="svc-pill" onclick="event.preventDefault();document.getElementById('svc-testing').scrollIntoView({behavior:'smooth'})">🔧 Testing & Commissioning</a>
-        <a class="svc-pill" onclick="event.preventDefault();document.getElementById('svc-iaq').scrollIntoView({behavior:'smooth'})">💨 IAQ</a>
-        <a class="svc-pill" onclick="event.preventDefault();document.getElementById('svc-icxa').scrollIntoView({behavior:'smooth'})">🔍 iCxA</a>
+      <div class="svc-nav-inner" id="svcNavInner">
+        <a class="svc-pill" data-target="svc-beam-schools" onclick="scrollToSvc('svc-beam-schools')">🎓 BEAM Plus Schools</a>
+        <a class="svc-pill" data-target="svc-green-cert" onclick="scrollToSvc('svc-green-cert')">🏆 Green Certification</a>
+        <a class="svc-pill" data-target="svc-energy" onclick="scrollToSvc('svc-energy')">⚡ Energy Audit</a>
+        <a class="svc-pill" data-target="svc-environmental" onclick="scrollToSvc('svc-environmental')">🌿 Environmental</a>
+        <a class="svc-pill" data-target="svc-testing" onclick="scrollToSvc('svc-testing')">🔧 Testing & Commissioning</a>
+        <a class="svc-pill" data-target="svc-iaq" onclick="scrollToSvc('svc-iaq')">💨 IAQ</a>
+        <a class="svc-pill" data-target="svc-icxa" onclick="scrollToSvc('svc-icxa')">🔍 iCxA</a>
       </div>
     </div>
 
@@ -1935,6 +1988,53 @@ html[lang="zh"] .section-desc {
 
   applyTranslations();
   initReveal();
+
+  /* ═══ SCROLL TO SERVICE SECTION ═══ */
+  function scrollToSvc(id) {
+    event.preventDefault();
+    const el = document.getElementById(id);
+    if (!el) return;
+    const offset = 120; // account for fixed nav + svc-nav
+    const top = el.getBoundingClientRect().top + window.scrollY - offset;
+    window.scrollTo({ top, behavior: 'smooth' });
+    // Set active pill
+    document.querySelectorAll('.svc-pill').forEach(p => p.classList.remove('active'));
+    document.querySelector('.svc-pill[data-target="' + id + '"]')?.classList.add('active');
+  }
+
+  /* ═══ HIGHLIGHT PILL ON SCROLL ═══ */
+  function initSvcObserver() {
+    const sections = ['svc-beam-schools','svc-green-cert','svc-energy','svc-environmental','svc-testing','svc-iaq','svc-icxa'];
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          document.querySelectorAll('.svc-pill').forEach(p => p.classList.remove('active'));
+          const pill = document.querySelector('.svc-pill[data-target="' + e.target.id + '"]');
+          if (pill) pill.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-40% 0px -50% 0px' });
+    sections.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) obs.observe(el);
+    });
+  }
+
+  /* ═══ SHOW/HIDE MARQUEE ON SCROLL ═══ */
+  window.addEventListener('scroll', () => {
+    const marquee = document.getElementById('marqueeBar');
+    if (marquee) {
+      marquee.style.display = window.scrollY > 80 ? 'none' : 'block';
+    }
+  });
+
+  // Init observer when services page is shown
+  const _origNavigate = navigate;
+  navigate = function(page) {
+    _origNavigate(page);
+    if (page === 'services') setTimeout(initSvcObserver, 200);
+  };
+
   </script>
 </body>
 </html>
