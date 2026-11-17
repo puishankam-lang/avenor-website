@@ -6,7 +6,7 @@
   <title>Avenor Consultants Ltd. — Green Building Certification Hong Kong</title>
   <meta name="description" content="Hong Kong's trusted green building consultants. BEAM Plus, LEED, and WELL certification specialists for schools and commercial buildings." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500&family=Noto+Serif+TC:wght@500&display=swap" rel="stylesheet" />
   <style>
 
 /* ═══════════════════════════════════════════════════════
@@ -1100,6 +1100,155 @@ html[lang="zh"] .section-desc {
   .cert-imgs { grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); }
 }
 
+/* ═══════════════════════════════════════════════════════
+   SMALL SHOP PAGE — 綠籽 ESG・小店可持續發展支援
+   Uses the site tokens only. Scoped to #page-smallshop / .sme-*
+═══════════════════════════════════════════════════════ */
+#page-smallshop .section-title,
+#page-smallshop .cta-band h2 {
+  font-family: 'Cormorant Garamond', 'Noto Serif TC', serif;
+}
+html[lang="zh-HK"] #page-smallshop .section-title em { font-style: normal; }
+html[lang="zh-HK"] #page-smallshop .section-title,
+html[lang="zh-HK"] #page-smallshop .cta-band h2 { line-height: 1.3; letter-spacing: 0; word-break: keep-all; overflow-wrap: anywhere; }
+#page-smallshop .section-title { text-wrap: balance; }
+
+.sme-hero { background: var(--forest); padding: 8rem var(--gutter) 5.5rem; }
+.sme-hero h1.section-title {
+  font-size: clamp(2.2rem, 4.4vw, 3.75rem);
+  max-width: 18ch;
+  margin-bottom: 2rem;
+}
+.sme-hero .section-desc { max-width: 54ch; }
+.sme-actions { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 3rem; }
+/* What you get */
+.sme-split { display: grid; grid-template-columns: 5fr 7fr; gap: 6rem; align-items: start; }
+.sme-items { display: flex; flex-direction: column; gap: 2.75rem; }
+.sme-item { padding-left: 1.75rem; border-left: 1px solid var(--sage); }
+.sme-item:last-child { border-left-color: var(--gold); }
+.sme-item h3 {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: .01em;
+  line-height: 1.4;
+  margin-bottom: .6rem;
+}
+.sme-item p { font-size: var(--f-sm); color: var(--ink-2); line-height: 1.8; font-weight: 300; max-width: 60ch; }
+.sme-fine { margin-top: .75rem; font-size: .875rem !important; color: var(--ink-3) !important; }
+
+/* Measurement table */
+.sme-table-wrap { overflow-x: auto; margin-top: 4rem; }
+.sme-table { width: 100%; min-width: 540px; border-collapse: collapse; }
+.sme-table th {
+  text-align: left;
+  font-size: .8rem;
+  font-weight: 500;
+  letter-spacing: var(--ls-eye);
+  text-transform: uppercase;
+  color: var(--gold);
+  padding: 0 1.5rem 1rem 0;
+  border-bottom: 1px solid var(--ink);
+}
+.sme-table td {
+  padding: 1.35rem 1.5rem 1.35rem 0;
+  border-bottom: 1px solid var(--rule-lt);
+  font-size: var(--f-sm);
+  color: var(--ink-2);
+  font-weight: 300;
+  line-height: 1.6;
+  vertical-align: baseline;
+}
+.sme-table td:first-child { color: var(--ink); font-weight: 500; }
+.sme-table th:last-child, .sme-table td:last-child { padding-right: 0; text-align: right; white-space: nowrap; }
+.sme-table td:last-child {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: var(--sage);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Who it's for */
+.sme-fit { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; margin-top: 4rem; }
+.sme-fit h3 {
+  font-size: .8rem;
+  font-weight: 500;
+  letter-spacing: var(--ls-eye);
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1rem;
+}
+.sme-fit ul { list-style: none; border-bottom: 1px solid var(--rule-lt); }
+.sme-fit li {
+  padding: 1.1rem 0;
+  border-top: 1px solid var(--rule-lt);
+  font-size: var(--f-sm);
+  color: var(--ink-2);
+  line-height: 1.7;
+  font-weight: 300;
+}
+.sme-team {
+  margin-top: 5rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--ink);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem 3rem;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.sme-team p { font-size: var(--f-sm); color: var(--ink-2); font-weight: 300; line-height: 1.8; max-width: 62ch; }
+.sme-link {
+  color: var(--sage);
+  font-size: var(--f-sm);
+  font-weight: 500;
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 2px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color .2s;
+}
+.sme-link:hover { color: var(--forest); }
+
+/* CTA */
+#page-smallshop .cta-band .sme-actions { justify-content: center; margin-top: 0; }
+#page-smallshop .cta-band p.sme-cta-alt {
+  margin: 2.5rem auto 0;
+  font-size: .9rem;
+  color: var(--on-dark-3);
+}
+.sme-cta-alt a { color: var(--on-dark-2); text-decoration: none; border-bottom: 1px solid var(--gold-rule); }
+.sme-cta-alt a:hover { color: var(--gold-lt); }
+
+#page-smallshop a:focus-visible,
+#page-smallshop button:focus-visible { outline: 2px solid var(--gold-lt); outline-offset: 3px; }
+
+/* Nav: room for one more link */
+@media (min-width: 1025px) and (max-width: 1360px) {
+  .nav { padding-inline: 2rem; }
+  .nav-links { gap: 1.5rem; }
+}
+@media (max-height: 820px) {
+  .nav-mobile { gap: 1.75rem; }
+  .nav-mobile a { font-size: 2.1rem; line-height: 1.25; }
+}
+@media (max-width: 1024px) {
+  .sme-hero { padding: 7rem 0 4.5rem; }
+  .sme-split, .sme-fit { grid-template-columns: 1fr; gap: 3rem; }
+  .sme-team { margin-top: 3.5rem; }
+}
+@media (max-width: 600px) {
+  .sme-actions > * { width: 100%; text-align: center; }
+  .sme-item { padding-left: 1.25rem; }
+  .sme-table { min-width: 0; }
+  .sme-table th, .sme-table td { padding-right: .875rem; }
+  .sme-table td { font-size: .9375rem; }
+  .sme-table td:last-child { font-size: 1.1rem; }
+}
+
   </style>
 </head>
 <body>
@@ -1118,6 +1267,7 @@ html[lang="zh"] .section-desc {
       <a onclick="navigate('services')" data-page="services" data-t="nav.services">Services</a>
       <a onclick="navigate('blog')" data-page="blog" data-t="nav.blog">Blog</a>
       <a onclick="navigate('comparison')" data-page="comparison" data-t="nav.comparison">Comparison</a>
+      <a onclick="navigate('smallshop')" data-page="smallshop" data-t="nav.smallshop">Small Shops</a>
       <a onclick="navigate('contact')" data-page="contact" data-t="nav.contact">Contact</a>
       <button class="nav-lang" onclick="toggleLang()" id="langBtn">⊕ 中文</button>
       <a onclick="navigate('contact')" class="nav-cta" data-t="nav.getInTouch">Get in Touch</a>
@@ -1130,6 +1280,7 @@ html[lang="zh"] .section-desc {
     <a onclick="navigate('services');toggleMobile()" data-t="nav.services">Services</a>
     <a onclick="navigate('blog');toggleMobile()" data-t="nav.blog">Blog</a>
     <a onclick="navigate('comparison');toggleMobile()" data-t="nav.comparison">Comparison</a>
+    <a onclick="navigate('smallshop');toggleMobile()" data-t="nav.smallshop">Small Shops</a>
     <a onclick="navigate('contact');toggleMobile()">Contact</a>
   </div>
 
@@ -1251,7 +1402,7 @@ html[lang="zh"] .section-desc {
     <footer class="footer" id="footer-home">
       <div class="footer-grid">
         <div class="footer-brand"><div class="footer-brand-mark"><span class="footer-brand-wordmark">Avenor</span><span class="footer-brand-sub">Consultants Ltd.</span></div><p data-t="footer.desc">Professional green building consulting for schools and commercial buildings in Hong Kong.</p></div>
-        <div class="footer-col"><strong data-t="footer.quickLinks">Quick Links</strong><a onclick="navigate('home')">Home</a><a onclick="navigate('about')">About</a><a onclick="navigate('services')">Services</a><a onclick="navigate('contact')">Contact</a></div>
+        <div class="footer-col"><strong data-t="footer.quickLinks">Quick Links</strong><a onclick="navigate('home')">Home</a><a onclick="navigate('about')">About</a><a onclick="navigate('services')">Services</a><a onclick="navigate('smallshop')" data-t="nav.smallshop">Small Shops</a><a onclick="navigate('contact')">Contact</a></div>
         <div class="footer-col"><strong data-t="footer.certifications">Certifications</strong><a onclick="navigate('services')">BEAM Plus</a><a onclick="navigate('services')">LEED</a><a onclick="navigate('services')">WELL</a></div>
         <div class="footer-col"><strong data-t="footer.contact">Contact</strong><a href="mailto:info@avenorconsultantsltd.com">info@avenorconsultantsltd.com</a><a href="https://wa.me/85257947791">+852 5794 7791</a><a>Hong Kong</a></div>
       </div>
@@ -1322,7 +1473,7 @@ html[lang="zh"] .section-desc {
       <p data-t="about.cta.desc">Whether you're exploring certification for the first time or looking for a partner to manage the process.</p>
       <button class="btn-gold" onclick="navigate('contact')" data-t="nav.getInTouch">Get in Touch</button>
     </section>
-    <footer class="footer"><div class="footer-grid"><div class="footer-brand"><div class="footer-brand-mark"><span class="footer-brand-wordmark">Avenor</span><span class="footer-brand-sub">Consultants Ltd.</span></div><p data-t="footer.desc">Professional green building consulting for schools and commercial buildings in Hong Kong.</p></div><div class="footer-col"><strong data-t="footer.quickLinks">Quick Links</strong><a onclick="navigate('home')">Home</a><a onclick="navigate('about')">About</a><a onclick="navigate('services')">Services</a><a onclick="navigate('contact')">Contact</a></div><div class="footer-col"><strong data-t="footer.certifications">Certifications</strong><a onclick="navigate('services')">BEAM Plus</a><a onclick="navigate('services')">LEED</a><a onclick="navigate('services')">WELL</a></div><div class="footer-col"><strong data-t="footer.contact">Contact</strong><a href="mailto:info@avenorconsultantsltd.com">info@avenorconsultantsltd.com</a><a href="https://wa.me/85257947791">+852 5794 7791</a></div></div><div class="footer-bottom"><p>© 2026 Avenor Consultants Ltd. <span data-t="footer.rights">All rights reserved.</span></p></div></footer>
+    <footer class="footer"><div class="footer-grid"><div class="footer-brand"><div class="footer-brand-mark"><span class="footer-brand-wordmark">Avenor</span><span class="footer-brand-sub">Consultants Ltd.</span></div><p data-t="footer.desc">Professional green building consulting for schools and commercial buildings in Hong Kong.</p></div><div class="footer-col"><strong data-t="footer.quickLinks">Quick Links</strong><a onclick="navigate('home')">Home</a><a onclick="navigate('about')">About</a><a onclick="navigate('services')">Services</a><a onclick="navigate('smallshop')" data-t="nav.smallshop">Small Shops</a><a onclick="navigate('contact')">Contact</a></div><div class="footer-col"><strong data-t="footer.certifications">Certifications</strong><a onclick="navigate('services')">BEAM Plus</a><a onclick="navigate('services')">LEED</a><a onclick="navigate('services')">WELL</a></div><div class="footer-col"><strong data-t="footer.contact">Contact</strong><a href="mailto:info@avenorconsultantsltd.com">info@avenorconsultantsltd.com</a><a href="https://wa.me/85257947791">+852 5794 7791</a></div></div><div class="footer-bottom"><p>© 2026 Avenor Consultants Ltd. <span data-t="footer.rights">All rights reserved.</span></p></div></footer>
   </div>
 
   <!-- ════════════════════════════════
@@ -1587,7 +1738,7 @@ html[lang="zh"] .section-desc {
     </div>
 
     <section class="cta-band"><h2 data-t="services.cta.title">Not Sure Which Certification Is Right?</h2><p data-t="services.cta.desc">Every building is different. We'll help you identify the most suitable pathway.</p><button class="btn-gold" onclick="navigate('contact')" data-t="services.cta.button">Book a Free Consultation</button></section>
-    <footer class="footer"><div class="footer-grid"><div class="footer-brand"><div class="footer-brand-mark"><span class="footer-brand-wordmark">Avenor</span><span class="footer-brand-sub">Consultants Ltd.</span></div><p data-t="footer.desc">Professional green building consulting.</p></div><div class="footer-col"><strong data-t="footer.quickLinks">Quick Links</strong><a onclick="navigate('home')">Home</a><a onclick="navigate('about')">About</a><a onclick="navigate('services')">Services</a><a onclick="navigate('contact')">Contact</a></div><div class="footer-col"><strong data-t="footer.certifications">Certifications</strong><a onclick="navigate('services')">BEAM Plus</a><a onclick="navigate('services')">LEED</a><a onclick="navigate('services')">WELL</a></div><div class="footer-col"><strong data-t="footer.contact">Contact</strong><a href="mailto:info@avenorconsultantsltd.com">info@avenorconsultantsltd.com</a></div></div><div class="footer-bottom"><p>© 2026 Avenor Consultants Ltd.</p></div></footer>
+    <footer class="footer"><div class="footer-grid"><div class="footer-brand"><div class="footer-brand-mark"><span class="footer-brand-wordmark">Avenor</span><span class="footer-brand-sub">Consultants Ltd.</span></div><p data-t="footer.desc">Professional green building consulting.</p></div><div class="footer-col"><strong data-t="footer.quickLinks">Quick Links</strong><a onclick="navigate('home')">Home</a><a onclick="navigate('about')">About</a><a onclick="navigate('services')">Services</a><a onclick="navigate('smallshop')" data-t="nav.smallshop">Small Shops</a><a onclick="navigate('contact')">Contact</a></div><div class="footer-col"><strong data-t="footer.certifications">Certifications</strong><a onclick="navigate('services')">BEAM Plus</a><a onclick="navigate('services')">LEED</a><a onclick="navigate('services')">WELL</a></div><div class="footer-col"><strong data-t="footer.contact">Contact</strong><a href="mailto:info@avenorconsultantsltd.com">info@avenorconsultantsltd.com</a></div></div><div class="footer-bottom"><p>© 2026 Avenor Consultants Ltd.</p></div></footer>
   </div>
 
   <!-- ════════════════════════════════
@@ -1641,7 +1792,7 @@ html[lang="zh"] .section-desc {
       </div>
     </section>
     <section class="cta-band"><h2 data-t="services.cta.title">Not Sure Which Is Right for You?</h2><p data-t="services.cta.desc">Our expert consultants can help you identify the most suitable certification pathway.</p><button class="btn-gold" onclick="navigate('contact')" data-t="services.cta.button">Book a Free Consultation</button></section>
-    <footer class="footer"><div class="footer-grid"><div class="footer-brand"><div class="footer-brand-mark"><span class="footer-brand-wordmark">Avenor</span><span class="footer-brand-sub">Consultants Ltd.</span></div><p data-t="footer.desc">Professional green building consulting.</p></div><div class="footer-col"><strong data-t="footer.quickLinks">Quick Links</strong><a onclick="navigate('home')">Home</a><a onclick="navigate('about')">About</a><a onclick="navigate('services')">Services</a><a onclick="navigate('contact')">Contact</a></div><div class="footer-col"><strong data-t="footer.certifications">Certifications</strong><a onclick="navigate('services')">BEAM Plus</a><a onclick="navigate('services')">LEED</a><a onclick="navigate('services')">WELL</a></div><div class="footer-col"><strong data-t="footer.contact">Contact</strong><a href="mailto:info@avenorconsultantsltd.com">info@avenorconsultantsltd.com</a></div></div><div class="footer-bottom"><p>© 2026 Avenor Consultants Ltd.</p></div></footer>
+    <footer class="footer"><div class="footer-grid"><div class="footer-brand"><div class="footer-brand-mark"><span class="footer-brand-wordmark">Avenor</span><span class="footer-brand-sub">Consultants Ltd.</span></div><p data-t="footer.desc">Professional green building consulting.</p></div><div class="footer-col"><strong data-t="footer.quickLinks">Quick Links</strong><a onclick="navigate('home')">Home</a><a onclick="navigate('about')">About</a><a onclick="navigate('services')">Services</a><a onclick="navigate('smallshop')" data-t="nav.smallshop">Small Shops</a><a onclick="navigate('contact')">Contact</a></div><div class="footer-col"><strong data-t="footer.certifications">Certifications</strong><a onclick="navigate('services')">BEAM Plus</a><a onclick="navigate('services')">LEED</a><a onclick="navigate('services')">WELL</a></div><div class="footer-col"><strong data-t="footer.contact">Contact</strong><a href="mailto:info@avenorconsultantsltd.com">info@avenorconsultantsltd.com</a></div></div><div class="footer-bottom"><p>© 2026 Avenor Consultants Ltd.</p></div></footer>
   </div>
 
   <!-- ════════════════════════════════
@@ -1686,7 +1837,7 @@ html[lang="zh"] .section-desc {
       </div>
     </section>
     <section class="cta-band"><h2 data-t="home.cta.title">Ready to Get Started?</h2><p data-t="home.cta.desc">Contact us today to discuss your green building certification needs.</p><button class="btn-gold" onclick="navigate('contact')" data-t="services.cta.button">Book a Free Consultation</button></section>
-    <footer class="footer"><div class="footer-grid"><div class="footer-brand"><div class="footer-brand-mark"><span class="footer-brand-wordmark">Avenor</span><span class="footer-brand-sub">Consultants Ltd.</span></div><p data-t="footer.desc">Professional green building consulting.</p></div><div class="footer-col"><strong data-t="footer.quickLinks">Quick Links</strong><a onclick="navigate('home')">Home</a><a onclick="navigate('about')">About</a><a onclick="navigate('services')">Services</a><a onclick="navigate('contact')">Contact</a></div><div class="footer-col"><strong data-t="footer.certifications">Certifications</strong><a onclick="navigate('services')">BEAM Plus</a><a onclick="navigate('services')">LEED</a><a onclick="navigate('services')">WELL</a></div><div class="footer-col"><strong data-t="footer.contact">Contact</strong><a href="mailto:info@avenorconsultantsltd.com">info@avenorconsultantsltd.com</a></div></div><div class="footer-bottom"><p>© 2026 Avenor Consultants Ltd.</p></div></footer>
+    <footer class="footer"><div class="footer-grid"><div class="footer-brand"><div class="footer-brand-mark"><span class="footer-brand-wordmark">Avenor</span><span class="footer-brand-sub">Consultants Ltd.</span></div><p data-t="footer.desc">Professional green building consulting.</p></div><div class="footer-col"><strong data-t="footer.quickLinks">Quick Links</strong><a onclick="navigate('home')">Home</a><a onclick="navigate('about')">About</a><a onclick="navigate('services')">Services</a><a onclick="navigate('smallshop')" data-t="nav.smallshop">Small Shops</a><a onclick="navigate('contact')">Contact</a></div><div class="footer-col"><strong data-t="footer.certifications">Certifications</strong><a onclick="navigate('services')">BEAM Plus</a><a onclick="navigate('services')">LEED</a><a onclick="navigate('services')">WELL</a></div><div class="footer-col"><strong data-t="footer.contact">Contact</strong><a href="mailto:info@avenorconsultantsltd.com">info@avenorconsultantsltd.com</a></div></div><div class="footer-bottom"><p>© 2026 Avenor Consultants Ltd.</p></div></footer>
   </div>
 
   <!-- ════════════════════════════════
@@ -1749,7 +1900,114 @@ html[lang="zh"] .section-desc {
         </div>
       </div>
     </section>
-    <footer class="footer"><div class="footer-grid"><div class="footer-brand"><div class="footer-brand-mark"><span class="footer-brand-wordmark">Avenor</span><span class="footer-brand-sub">Consultants Ltd.</span></div><p data-t="footer.desc">Professional green building consulting.</p></div><div class="footer-col"><strong data-t="footer.quickLinks">Quick Links</strong><a onclick="navigate('home')">Home</a><a onclick="navigate('about')">About</a><a onclick="navigate('services')">Services</a><a onclick="navigate('contact')">Contact</a></div><div class="footer-col"><strong data-t="footer.certifications">Certifications</strong><a onclick="navigate('services')">BEAM Plus</a><a onclick="navigate('services')">LEED</a><a onclick="navigate('services')">WELL</a></div><div class="footer-col"><strong data-t="footer.contact">Contact</strong><a href="mailto:info@avenorconsultantsltd.com">info@avenorconsultantsltd.com</a><a href="https://wa.me/85257947791">+852 5794 7791</a></div></div><div class="footer-bottom"><p>© 2026 Avenor Consultants Ltd.</p></div></footer>
+    <footer class="footer"><div class="footer-grid"><div class="footer-brand"><div class="footer-brand-mark"><span class="footer-brand-wordmark">Avenor</span><span class="footer-brand-sub">Consultants Ltd.</span></div><p data-t="footer.desc">Professional green building consulting.</p></div><div class="footer-col"><strong data-t="footer.quickLinks">Quick Links</strong><a onclick="navigate('home')">Home</a><a onclick="navigate('about')">About</a><a onclick="navigate('services')">Services</a><a onclick="navigate('smallshop')" data-t="nav.smallshop">Small Shops</a><a onclick="navigate('contact')">Contact</a></div><div class="footer-col"><strong data-t="footer.certifications">Certifications</strong><a onclick="navigate('services')">BEAM Plus</a><a onclick="navigate('services')">LEED</a><a onclick="navigate('services')">WELL</a></div><div class="footer-col"><strong data-t="footer.contact">Contact</strong><a href="mailto:info@avenorconsultantsltd.com">info@avenorconsultantsltd.com</a><a href="https://wa.me/85257947791">+852 5794 7791</a></div></div><div class="footer-bottom"><p>© 2026 Avenor Consultants Ltd.</p></div></footer>
+  </div>
+
+  <!-- ════════════════════════════════
+       SMALL SHOP PAGE (綠籽 ESG)
+       Direct link: https://www.avenorconsultantsltd.com/#smallshop
+  ════════════════════════════════ -->
+  <div class="page" id="page-smallshop">
+    <section class="sme-hero">
+      <div class="wrap">
+        <div class="eyebrow"><div class="eyebrow-line" style="width:30px"></div><span data-t="sme.hero.tag">Green Seed ESG · Small Shop Support</span></div>
+        <h1 class="section-title light"><span data-t="sme.hero.title1">Lower bills.</span><br/><em><span data-t="sme.hero.title2">Funding you can actually claim.</span></em></h1>
+        <p class="section-desc light" data-t="sme.hero.desc">An entry-level sustainability service for Hong Kong's independent shops. One visit to find out where your energy and waste go, a plain-language plan for what to fix first, and help working out whether a power-company subsidy applies to you.</p>
+        <div class="sme-actions">
+          <a class="btn-gold" href="https://wa.me/85257947791?text=%E4%BD%A0%E5%A5%BD%EF%BC%8C%E6%88%91%E6%83%B3%E4%BA%86%E8%A7%A3%E7%B6%A0%E7%B1%BD%20ESG%20%E5%B0%8F%E5%BA%97%E6%94%AF%E6%8F%B4%E6%9C%8D%E5%8B%99%E3%80%82" target="_blank" rel="noopener" data-t="sme.hero.whatsapp">WhatsApp us</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" style="background:var(--paper)">
+      <div class="section-wrap">
+        <div class="sme-split">
+          <div class="reveal">
+            <div class="eyebrow"><div class="eyebrow-line"></div><span data-t="sme.get.tag">What You Get</span></div>
+            <h2 class="section-title" data-t="sme.get.title">A check-up, a plan, and help with the paperwork</h2>
+            <p class="section-desc" data-t="sme.get.desc">Sustainability advice is usually written for big buildings. This is the small-shop version: short, practical, and tied to your own electricity bill.</p>
+          </div>
+          <div class="sme-items">
+            <div class="sme-item reveal"><h3 data-t="sme.get.i1.title">On-site quick check</h3><p data-t="sme.get.i1.desc">We visit your shop, read your electricity bills with you, and measure lighting, cooling, refrigeration and standby loads with instruments, not guesswork. We also look at how waste and packaging are handled.</p></div>
+            <div class="sme-item reveal d1"><h3 data-t="sme.get.i2.title">Improvement plan</h3><p data-t="sme.get.i2.desc">A short written plan: what to fix first, what costs nothing, what needs spending, and a first estimate of your shop's carbon footprint.</p></div>
+            <div class="sme-item reveal d2"><h3 data-t="sme.get.i3.title">Subsidy eligibility and application</h3><p data-t="sme.get.i3.desc">Both power companies run energy-saving equipment subsidy schemes for non-residential customers. We check whether your shop qualifies, prepare the application documents and follow the approval through.</p><p class="sme-fine" data-t="sme.get.i3.fine">CLP: Electrical Equipment Upgrade Scheme. HK Electric: equipment subsidy for non-residential customers (節能設備資助計劃). Eligibility and amounts are set by each power company.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" style="background:var(--cream)">
+      <div class="section-wrap">
+        <div class="reveal">
+          <div class="eyebrow"><div class="eyebrow-line"></div><span data-t="sme.measure.tag">The Check-Up</span></div>
+          <h2 class="section-title" data-t="sme.measure.title">What we measure, and with what</h2>
+          <p class="section-desc" data-t="sme.measure.desc">Whole-shop consumption comes from your own bills. The instruments tell us which appliances and habits are behind that number.</p>
+        </div>
+        <div class="sme-table-wrap reveal d1">
+          <table class="sme-table">
+            <thead><tr><th data-t="sme.measure.th1" scope="col">What we look at</th><th data-t="sme.measure.th2" scope="col">How</th><th data-t="sme.measure.th3" scope="col">Reading</th></tr></thead>
+            <tbody>
+              <tr><td data-t="sme.measure.r1a">Whole-shop electricity use</td><td data-t="sme.measure.r1b">Your electricity bills, the last 12 months where available</td><td data-t="sme.measure.r1c">kWh / month</td></tr>
+              <tr><td data-t="sme.measure.r2a">One appliance over several days</td><td data-t="sme.measure.r2b">Plug-in power recorder</td><td>kWh</td></tr>
+              <tr><td data-t="sme.measure.r3a">Current drawn by an appliance, at that moment</td><td data-t="sme.measure.r3b">Clamp meter on its supply cable</td><td>A</td></tr>
+              <tr><td data-t="sme.measure.r4a">Lighting at counters and shelves</td><td data-t="sme.measure.r4b">Lux meter</td><td>lux</td></tr>
+              <tr><td data-t="sme.measure.r5a">Air-conditioner outlets and fridge surfaces</td><td data-t="sme.measure.r5b">Infrared thermometer</td><td>°C</td></tr>
+              <tr><td data-t="sme.measure.r6a">Temperature and humidity in the shop</td><td data-t="sme.measure.r6b">Temperature and humidity logger</td><td>°C · %RH</td></tr>
+              <tr><td data-t="sme.measure.r7a">Waste and packaging</td><td data-t="sme.measure.r7b">Walk-through with a short checklist</td><td data-t="sme.measure.r7c">checklist</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="section process-bg">
+      <div class="section-inner">
+        <div class="reveal">
+          <div class="eyebrow"><div class="eyebrow-line"></div><span data-t="sme.process.tag">How It Works</span></div>
+          <h2 class="section-title light" data-t="sme.process.title">Four steps, most of them ours</h2>
+          <p class="section-desc light" data-t="sme.process.desc">You keep running the shop. We do the measuring, the writing and the forms.</p>
+        </div>
+        <div class="process-grid">
+          <div class="process-card reveal"><div class="process-num">01</div><h3 data-t="sme.process.s1.title">Tell us about your shop</h3><p data-t="sme.process.s1.desc">Message us on WhatsApp with your shop type and district.</p></div>
+          <div class="process-card reveal d1"><div class="process-num">02</div><h3 data-t="sme.process.s2.title">Shop visit</h3><p data-t="sme.process.s2.desc">We come at a time that suits you and take the measurements on site.</p></div>
+          <div class="process-card reveal d2"><div class="process-num">03</div><h3 data-t="sme.process.s3.title">Your plan</h3><p data-t="sme.process.s3.desc">You receive the written plan, and we go through it with you.</p></div>
+          <div class="process-card reveal d3"><div class="process-num">04</div><h3 data-t="sme.process.s4.title">Subsidy follow-up</h3><p data-t="sme.process.s4.desc">If your shop qualifies and you want to apply, we prepare the documents and follow the application.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" style="background:var(--paper)">
+      <div class="section-wrap">
+        <div class="reveal">
+          <div class="eyebrow"><div class="eyebrow-line"></div><span data-t="sme.fit.tag">Who It's For</span></div>
+          <h2 class="section-title" data-t="sme.fit.title">Made for shops, not for towers</h2>
+        </div>
+        <div class="sme-fit">
+          <div class="reveal">
+            <h3 data-t="sme.fit.yes">A good fit if</h3>
+            <ul><li data-t="sme.fit.y1">You run an independent shop with one or two outlets: retail, food and drink, beauty or services.</li><li data-t="sme.fit.y2">The electricity bill is in your shop's name, and you pay it.</li><li data-t="sme.fit.y3">You have wondered where the bill goes but never had the time to find out.</li></ul>
+          </div>
+          <div class="reveal d1">
+            <h3 data-t="sme.fit.no">What this is not</h3>
+            <ul><li data-t="sme.fit.n1">A green building certification. For BEAM Plus, LEED or WELL, see our certification services.</li><li data-t="sme.fit.n2">An obligation to buy equipment or carry out works. What you do with the plan is your decision.</li><li data-t="sme.fit.n3">A promise of a fixed saving. We measure first, then tell you what the numbers support.</li></ul>
+          </div>
+        </div>
+        <div class="sme-team reveal">
+          <p data-t="sme.fit.team">The same team delivers BEAM Plus, LEED and WELL certification for offices and schools. This service brings that method down to the scale of one shop.</p>
+          <a class="sme-link" onclick="navigate('about')" data-t="sme.fit.link">About Avenor</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-band">
+      <h2 data-t="sme.cta.title">Tell us about your shop</h2>
+      <p data-t="sme.cta.desc">Send us a WhatsApp message with your shop type and district, and we will arrange a time to visit.</p>
+      <div class="sme-actions">
+        <a class="btn-gold" href="https://wa.me/85257947791?text=%E4%BD%A0%E5%A5%BD%EF%BC%8C%E6%88%91%E6%83%B3%E4%BA%86%E8%A7%A3%E7%B6%A0%E7%B1%BD%20ESG%20%E5%B0%8F%E5%BA%97%E6%94%AF%E6%8F%B4%E6%9C%8D%E5%8B%99%E3%80%82" target="_blank" rel="noopener" data-t="sme.hero.whatsapp">WhatsApp us</a>
+      </div>
+      <p class="sme-cta-alt"><a href="https://wa.me/85257947791?text=%E4%BD%A0%E5%A5%BD%EF%BC%8C%E6%88%91%E6%83%B3%E4%BA%86%E8%A7%A3%E7%B6%A0%E7%B1%BD%20ESG%20%E5%B0%8F%E5%BA%97%E6%94%AF%E6%8F%B4%E6%9C%8D%E5%8B%99%E3%80%82" target="_blank" rel="noopener">+852 5794 7791</a> · <a href="mailto:info@avenorconsultantsltd.com">info@avenorconsultantsltd.com</a></p>
+    </section>
+    <footer class="footer"><div class="footer-grid"><div class="footer-brand"><div class="footer-brand-mark"><span class="footer-brand-wordmark">Avenor</span><span class="footer-brand-sub">Consultants Ltd.</span></div><p data-t="footer.desc">Professional green building consulting for schools and commercial buildings in Hong Kong.</p></div><div class="footer-col"><strong data-t="footer.quickLinks">Quick Links</strong><a onclick="navigate('home')">Home</a><a onclick="navigate('about')">About</a><a onclick="navigate('services')">Services</a><a onclick="navigate('smallshop')" data-t="nav.smallshop">Small Shops</a><a onclick="navigate('contact')">Contact</a></div><div class="footer-col"><strong data-t="footer.certifications">Certifications</strong><a onclick="navigate('services')">BEAM Plus</a><a onclick="navigate('services')">LEED</a><a onclick="navigate('services')">WELL</a></div><div class="footer-col"><strong data-t="footer.contact">Contact</strong><a href="mailto:info@avenorconsultantsltd.com">info@avenorconsultantsltd.com</a><a href="https://wa.me/85257947791">+852 5794 7791</a></div></div><div class="footer-bottom"><p>© 2026 Avenor Consultants Ltd. <span data-t="footer.rights">All rights reserved.</span></p></div></footer>
   </div>
 
   <script>
@@ -1840,7 +2098,8 @@ html[lang="zh"] .section-desc {
       "panel.env.eyebrow":"Environmental","panel.env.noise":"Noise","panel.env.air":"Air Quality","panel.env.water":"Water","panel.env.waste":"Waste","panel.env.eia":"EIA","panel.env.vibration":"Vibration","panel.env.quote":"\"Comprehensive monitoring<br/>across all environmental<br/>parameters.\"",
       "panel.tc.eyebrow":"Testing & Commissioning","panel.tc.hvac":"HVAC Systems","panel.tc.electrical":"Electrical","panel.tc.lighting":"Lighting","panel.tc.plumbing":"Plumbing","panel.tc.ventilation":"Ventilation","panel.tc.bms":"BMS Integration",
       "panel.iaq.eyebrow":"Indoor Air Quality","panel.iaq.badge":"WELL IAQ Compliant",
-      "panel.icxa.eyebrow":"Independent Commissioning","panel.icxa.authority":"Authority","panel.icxa.quote":"\"Verified system performance<br/>independently certified.\""
+      "panel.icxa.eyebrow":"Independent Commissioning","panel.icxa.authority":"Authority","panel.icxa.quote":"\"Verified system performance<br/>independently certified.\"",
+      "nav.smallshop":"Small Shops","sme.hero.tag":"Green Seed ESG · Small Shop Support","sme.hero.title1":"Lower bills.","sme.hero.title2":"Funding you can actually claim.","sme.hero.desc":"An entry-level sustainability service for Hong Kong's independent shops. One visit to find out where your energy and waste go, a plain-language plan for what to fix first, and help working out whether a power-company subsidy applies to you.","sme.hero.whatsapp":"WhatsApp us","sme.get.tag":"What You Get","sme.get.title":"A check-up, a plan, and help with the paperwork","sme.get.desc":"Sustainability advice is usually written for big buildings. This is the small-shop version: short, practical, and tied to your own electricity bill.","sme.get.i1.title":"On-site quick check","sme.get.i1.desc":"We visit your shop, read your electricity bills with you, and measure lighting, cooling, refrigeration and standby loads with instruments, not guesswork. We also look at how waste and packaging are handled.","sme.get.i2.title":"Improvement plan","sme.get.i2.desc":"A short written plan: what to fix first, what costs nothing, what needs spending, and a first estimate of your shop's carbon footprint.","sme.get.i3.title":"Subsidy eligibility and application","sme.get.i3.desc":"Both power companies run energy-saving equipment subsidy schemes for non-residential customers. We check whether your shop qualifies, prepare the application documents and follow the approval through.","sme.get.i3.fine":"CLP: Electrical Equipment Upgrade Scheme. HK Electric: equipment subsidy for non-residential customers (節能設備資助計劃). Eligibility and amounts are set by each power company.","sme.measure.tag":"The Check-Up","sme.measure.title":"What we measure, and with what","sme.measure.desc":"Whole-shop consumption comes from your own bills. The instruments tell us which appliances and habits are behind that number.","sme.measure.th1":"What we look at","sme.measure.th2":"How","sme.measure.th3":"Reading","sme.measure.r1a":"Whole-shop electricity use","sme.measure.r1b":"Your electricity bills, the last 12 months where available","sme.measure.r1c":"kWh / month","sme.measure.r2a":"One appliance over several days","sme.measure.r2b":"Plug-in power recorder","sme.measure.r3a":"Current drawn by an appliance, at that moment","sme.measure.r3b":"Clamp meter on its supply cable","sme.measure.r4a":"Lighting at counters and shelves","sme.measure.r4b":"Lux meter","sme.measure.r5a":"Air-conditioner outlets and fridge surfaces","sme.measure.r5b":"Infrared thermometer","sme.measure.r6a":"Temperature and humidity in the shop","sme.measure.r6b":"Temperature and humidity logger","sme.measure.r7a":"Waste and packaging","sme.measure.r7b":"Walk-through with a short checklist","sme.measure.r7c":"checklist","sme.process.tag":"How It Works","sme.process.title":"Four steps, most of them ours","sme.process.desc":"You keep running the shop. We do the measuring, the writing and the forms.","sme.process.s1.title":"Tell us about your shop","sme.process.s1.desc":"Message us on WhatsApp with your shop type and district.","sme.process.s2.title":"Shop visit","sme.process.s2.desc":"We come at a time that suits you and take the measurements on site.","sme.process.s3.title":"Your plan","sme.process.s3.desc":"You receive the written plan, and we go through it with you.","sme.process.s4.title":"Subsidy follow-up","sme.process.s4.desc":"If your shop qualifies and you want to apply, we prepare the documents and follow the application.","sme.fit.tag":"Who It's For","sme.fit.title":"Made for shops, not for towers","sme.fit.yes":"A good fit if","sme.fit.y1":"You run an independent shop with one or two outlets: retail, food and drink, beauty or services.","sme.fit.y2":"The electricity bill is in your shop's name, and you pay it.","sme.fit.y3":"You have wondered where the bill goes but never had the time to find out.","sme.fit.no":"What this is not","sme.fit.n1":"A green building certification. For BEAM Plus, LEED or WELL, see our certification services.","sme.fit.n2":"An obligation to buy equipment or carry out works. What you do with the plan is your decision.","sme.fit.n3":"A promise of a fixed saving. We measure first, then tell you what the numbers support.","sme.fit.team":"The same team delivers BEAM Plus, LEED and WELL certification for offices and schools. This service brings that method down to the scale of one shop.","sme.fit.link":"About Avenor","sme.cta.title":"Tell us about your shop","sme.cta.desc":"Send us a WhatsApp message with your shop type and district, and we will arrange a time to visit."
     },
     zh: {
       "nav.home":"首頁","nav.about":"關於我們","nav.services":"服務","nav.blog":"網誌","nav.comparison":"比較","nav.contact":"聯絡我們","nav.getInTouch":"聯絡我們",
@@ -1928,7 +2187,8 @@ html[lang="zh"] .section-desc {
       "panel.env.eyebrow":"環境評估","panel.env.noise":"噪音","panel.env.air":"空氣質素","panel.env.water":"水質","panel.env.waste":"廢物","panel.env.eia":"環評","panel.env.vibration":"振動","panel.env.quote":"「全面監測各項環境參數。」",
       "panel.tc.eyebrow":"測試及調試","panel.tc.hvac":"空調系統","panel.tc.electrical":"電氣系統","panel.tc.lighting":"照明系統","panel.tc.plumbing":"管道系統","panel.tc.ventilation":"通風系統","panel.tc.bms":"樓宇管理系統整合",
       "panel.iaq.eyebrow":"室內空氣質素","panel.iaq.badge":"符合 WELL 室內空氣質素標準",
-      "panel.icxa.eyebrow":"獨立調試認證","panel.icxa.authority":"認證機構","panel.icxa.quote":"「系統表現經獨立核實認證。」"
+      "panel.icxa.eyebrow":"獨立調試認證","panel.icxa.authority":"認證機構","panel.icxa.quote":"「系統表現經獨立核實認證。」",
+      "nav.smallshop":"小店支援","sme.hero.tag":"綠籽 ESG · 小店可持續發展支援","sme.hero.title1":"電費可以慳，","sme.hero.title2":"資助可以申請。","sme.hero.desc":"專為香港獨立小店而設的入門級可持續發展支援。一次落店體檢，找出電力和廢物用在哪裡；一份看得明白的改善建議；再協助你了解是否符合電力公司的資助資格。","sme.hero.whatsapp":"WhatsApp 查詢","sme.get.tag":"你會得到什麼","sme.get.title":"一次體檢、一份建議、一路跟進","sme.get.desc":"可持續發展顧問服務，一向為大型建築而寫。這是小店版本：簡短、實際，一切由你自己的電費單出發。","sme.get.i1.title":"落店快速體檢","sme.get.i1.desc":"我們親身到店，與你一起看電費單，並用儀器量度照明、冷氣、雪櫃及待機耗電，不靠估算。同時了解店舖的廢物及包裝處理方式。","sme.get.i2.title":"營運改善建議書","sme.get.i2.desc":"一份簡短的書面建議：先做什麼、哪些不用花錢、哪些需要投資，並附上店舖碳足跡的初步盤點。","sme.get.i3.title":"資助資格評核及代辦申請","sme.get.i3.desc":"兩間電力公司均為非住宅用戶設有節能設備資助計劃。我們為你評核資格、準備申請文件，並跟進審批進度。","sme.get.i3.fine":"中電「節能設備升級計劃」；港燈「節能設備資助計劃」。資格及資助金額以電力公司公布為準。","sme.measure.tag":"體檢內容","sme.measure.title":"量度什麼，用什麼量度","sme.measure.desc":"全店用電量來自你的電費單；儀器則告訴我們，是哪些電器和習慣造成這個數字。","sme.measure.th1":"檢查項目","sme.measure.th2":"方法","sme.measure.th3":"讀數","sme.measure.r1a":"全店用電量","sme.measure.r1b":"你的電費單（如有，過去 12 個月）","sme.measure.r1c":"kWh／月","sme.measure.r2a":"單一電器的多日耗電","sme.measure.r2b":"插座式電力記錄器","sme.measure.r3a":"個別電器的即時電流","sme.measure.r3b":"鉗形電流表（套於供電線）","sme.measure.r4a":"櫃枱及貨架的照明水平","sme.measure.r4b":"照度計","sme.measure.r5a":"冷氣出風口及雪櫃表面溫度","sme.measure.r5b":"紅外線測溫槍","sme.measure.r6a":"店內溫度及濕度","sme.measure.r6b":"溫濕度記錄計","sme.measure.r7a":"廢物及包裝","sme.measure.r7b":"現場觀察及簡短清單","sme.measure.r7c":"清單","sme.process.tag":"服務流程","sme.process.title":"四個步驟，大部分由我們負責","sme.process.desc":"你繼續做生意；量度、撰寫和填表由我們負責。","sme.process.s1.title":"告訴我們店舖情況","sme.process.s1.desc":"經 WhatsApp 告訴我們店舖類型及所在地區。","sme.process.s2.title":"落店體檢","sme.process.s2.desc":"我們在你方便的時間到店，即場量度。","sme.process.s3.title":"收到建議書","sme.process.s3.desc":"你會收到書面建議，我們會與你逐項講解。","sme.process.s4.title":"資助跟進","sme.process.s4.desc":"如店舖符合資格而你希望申請，我們會準備文件並跟進申請。","sme.fit.tag":"適合對象","sme.fit.title":"為小店而設，不是為商廈而設","sme.fit.yes":"適合你，如果","sme.fit.y1":"你經營一至兩間分店的獨立小店：零售、餐飲、美容或服務業。","sme.fit.y2":"電費單以店舖名義開立，並由你支付。","sme.fit.y3":"你一直想知道電費用在哪裡，但沒有時間去查。","sme.fit.no":"這項服務不是","sme.fit.n1":"綠色建築認證。如需 BEAM Plus、LEED 或 WELL 認證，請參閱我們的認證服務。","sme.fit.n2":"購買設備或進行工程的承諾。如何採用建議，由你決定。","sme.fit.n3":"保證節省金額的承諾。我們先量度，再告訴你數據支持什麼。","sme.fit.team":"同一個團隊，平日為寫字樓及學校辦理 BEAM Plus、LEED 及 WELL 認證。這項服務把同一套方法，縮小到一間小店的規模。","sme.fit.link":"關於 Avenor","sme.cta.title":"告訴我們你的店舖","sme.cta.desc":"經 WhatsApp 告訴我們店舖類型及所在地區，我們會與你約定到店時間。"
     }
   };
 
@@ -2044,6 +2304,31 @@ html[lang="zh"] .section-desc {
     _origNavigate(page);
     if (page === 'services') setTimeout(initSvcObserver, 200);
   };
+
+  /* ═══ SMALL SHOP PAGE (綠籽 ESG) ═══ */
+  // Keep <html lang> in step with the language toggle
+  const _toggleLangBase = toggleLang;
+  toggleLang = function() {
+    _toggleLangBase();
+    document.documentElement.lang = lang === 'zh' ? 'zh-HK' : 'en';
+  };
+
+  // Shareable links: /#smallshop, /#services ... open that page directly
+  const _navigateBase = navigate;
+  navigate = function(page) {
+    _navigateBase(page);
+    history.replaceState(null, '', page === 'home' ? '/' : '/#' + page);
+  };
+  let _smeLangDone = false;
+  function openFromHash() {
+    const h = location.hash.slice(1);
+    if (!h || h === currentPage || !document.getElementById('page-' + h)) return;
+    // Shop owners arriving on the direct link see Chinese first
+    if (h === 'smallshop' && lang === 'en' && !_smeLangDone) { _smeLangDone = true; toggleLang(); }
+    navigate(h);
+  }
+  openFromHash();
+  window.addEventListener('hashchange', openFromHash);
 
   </script>
 </body>
